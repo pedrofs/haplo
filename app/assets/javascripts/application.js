@@ -12,4 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+
+//= require vendor/angular
+//= require vendor/angular-route
+//= require main
+
 //= require_tree .

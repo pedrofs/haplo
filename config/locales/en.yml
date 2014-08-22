@@ -21,3 +21,6 @@
 
 en:
   hello: "Hello world"
+  welcome_title: "Run the project!"
+  welcome_text: "Define the project stages with their timelines, create tasks and estimate efforts, plan your resources, establish communication to keep things flowing and deliver it."
+  welcome_button: "Start now!"

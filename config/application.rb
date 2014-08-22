@@ -2,22 +2,37 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
-# Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module TccWithNoTitle
+require 'apartment/elevators/subdomain'
+
+module TitleLess
   class Application < Rails::Application
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
+    config.middleware.use 'Apartment::Elevators::MySubdomain'
+  end
+end
 
-    # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
-    # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-    # config.time_zone = 'Central Time (US & Canada)'
+module Apartment
+  module Elevators
+    class MySubdomain < Apartment::Elevators::Subdomain
+      DEFAULT_DATABASE = "public"
+      EXCLUDED_DOMAINS = ['www']
 
-    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
+      def call(env)
+        request = Rack::Request.new(env)
+
+        database = @processor.call(request)
+
+        database = DEFAULT_DATABASE if Apartment::Elevators::Subdomain.excluded_subdomains.include? database
+
+        begin
+          Apartment::Tenant.switch database if database
+        rescue Apartment::DatabaseNotFound, Apartment::SchemaNotFound
+          return [404, {"Content-Type" => "json"}, ["Not Found"]]
+        end
+
+        @app.call(env)
+      end
+    end
   end
 end

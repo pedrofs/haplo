@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="tccless">
 <head>
-  <title>TccWithNoTitle</title>
+  <title>TitleLess</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
   <%= stylesheet_link_tag 'application' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<div ng-view>
+  <%= yield %>
+</div>
 
 </body>
 </html>

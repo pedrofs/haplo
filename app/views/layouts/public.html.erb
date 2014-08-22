@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="tccless">
+<head>
+  <title>TitleLess</title>
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta charset="utf-8" />
+
+  <meta name="description" content="Large &amp; Small" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+  <%= stylesheet_link_tag 'public' %>
+  <%= javascript_include_tag 'public' %>
+
+  <!--[if lte IE 9]>
+    <%= stylesheet_link_tag 'ie/public' %>
+  <![endif]-->
+
+  <!--[if lte IE 8]>
+    <%= javascript_include_tag 'ie/public' %>
+  <![endif]-->
+
+  <%= csrf_meta_tags %>
+</head>
+<body class="no-skin">
+  <div id="navbar" class="navbar navbar-default">
+    <script type="text/javascript">
+      try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+    </script>
+
+    <div class="navbar-container" id="navbar-container">
+      <div class="navbar-header pull-left">
+        <a href="#" class="navbar-brand">
+          <small>
+            <i class="fa fa-leaf"></i>
+            Ace Admin
+          </small>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div ng-view>
+    <%= yield %>
+  </div>
+
+</body>
+</html>

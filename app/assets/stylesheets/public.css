@@ -1,0 +1,12 @@
+/*
+ *= require bootstrap.min
+ *= require ace_template/font-awesome.min
+ *= require ace_template/ace-fonts
+ *= require ace_template/ace.min
+ *= require ace_template/ace-skins.min
+ *= require ace_template/ace-rtl.min
+ */
+
+ .login-layout a {
+  cursor: pointer;
+ }
