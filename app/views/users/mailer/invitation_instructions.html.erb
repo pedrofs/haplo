@@ -1,0 +1,8 @@
+<p>Olá <%= @resource.email %></p>
+
+<p>Alguém te convidou para <%= 'url' %>, você pode aceitar clicando no link abaixo.</p>
+
+<p><%= link_to 'Aceitar convite', accept_invitation_url(@resource, :invitation_token => @token) %></p>
+
+<p>Se você não quer aceitar o convite, por favor ignore este email.
+<br>Sua conta não será criada enquanto não clicares no link acima e setares uma senha.</p>

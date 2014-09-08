@@ -10,7 +10,9 @@ describe "authentication feature", type: :feature do
 
       response_body = JSON.parse(page.driver.response.body)
 
-      expect(response_body["auth_token"]).not_to be_nil
+      expect(response_body["authentication_token"]).not_to be_nil
+      expect(response_body["password"]).to be_nil
+      expect(response_body["email"]).not_to be_nil
       expect(page.driver.response.status).to eq(200)
     end
 

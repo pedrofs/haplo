@@ -10,3 +10,26 @@
  .login-layout a {
   cursor: pointer;
  }
+
+ #users .user {
+  margin-top: 25px;
+ }
+
+ #users .user .userWrapper {
+  border: 1px solid #ccc;
+  position: relative;
+ }
+
+ #users .user p {
+  margin: 0px;
+ }
+
+ #users .user label .lbl {
+  font-size: 12px;
+ }
+
+ #users .user label {
+  position: absolute;
+  bottom: 0px;
+  right: 5px;
+ }

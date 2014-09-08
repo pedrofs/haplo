@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   constraints(SubdomainPresent) do
     devise_for :user, controllers: { sessions: "sessions", invitations: "invitations" }
     resources :users, only: :index
-    root "timeline#index", as: :timeline
+    root "welcome#login", as: :login
   end
 
   constraints(SubdomainBlank) do

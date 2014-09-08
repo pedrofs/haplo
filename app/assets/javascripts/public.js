@@ -2,11 +2,18 @@
 //= require jquery_ujs
 
 //= require vendor/angular
+//= require vendor/angular-ui-router
 //= require vendor/angular-resource
 //= require vendor/angular-route
+//= require vendor/ui-bootstrap-tpls-0.11.0.min
+//= require vendor/angular-local-storage
 //= require main
-//= require angular/services/CreateAccountService
-//= require angular/services/FormBindService
-//= require angular/models/Account
-//= require angular/controllers/StartNowCtrl
-//= require angular/controllers/WelcomeCtrl
+//= require_tree ./angular/models
+//= require angular/services/SessionService
+//= require_tree ./angular/services
+//= require_tree ./angular/interceptors
+//= require_tree ./angular/controllers
+//= require_tree ./angular/directives
+//= require ace_template/bootstrap.min
+//= require ace_template/ace.min
+//= require ace_template/bootbox.min

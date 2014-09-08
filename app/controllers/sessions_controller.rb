@@ -11,7 +11,9 @@ class SessionsController < Devise::SessionsController
 
       sign_in resource, store: false
 
-      render json: { auth_token: resource.authentication_token, email: resource.email, email: resource.email }, status: :ok
+      resource.password = nil
+
+      render json: resource, status: :ok
 
       return
     end

@@ -1,0 +1,27 @@
+<a class="btn btn-app btn-primary no-radius" ng-click="newInvitation()">
+  Adicionar
+</a>
+
+<div id="users">
+  <div ng-repeat="user in UserService.users" class="col-md-3 user">
+    <div class="userWrapper">
+      <div class="col-md-3">
+        <img ng-src="http://www.gravatar.com/avatar/{{ user.gravatar }}" />
+      </div>
+      <div class="col-md-9">
+        <p>{{ user.name || 'sem nome' }}</p>
+        <p>{{ user.email }}</p>
+      </div>
+
+      <label>
+        <input class="ace ace-checkbox-2" type="checkbox" ng-checked="user.status" disabled>
+
+        <span class="lbl"> confirmado</span>
+      </label>
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+</div>

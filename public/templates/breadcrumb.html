@@ -1,0 +1,13 @@
+<div class="breadcrumbs" id="breadcrumbs">
+  <script type="text/javascript">
+    try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+  </script>
+
+  <ul class="breadcrumb">
+    <li ng-repeat="item in breadcrumb.items track by $index">
+      <i class="ace-icon fa fa-home home-icon" ng-show="$first"></i>
+      <a href="javascript: void(0);" ng-show="$first">{{ item }}</a>
+      <span ng-show="!$first">{{ item }}</span>
+    </li>
+  </ul><!-- /.breadcrumb -->
+</div>

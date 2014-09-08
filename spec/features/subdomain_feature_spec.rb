@@ -4,7 +4,7 @@ describe "subdomains feature", type: :feature do
     let!(:account) { create(:account_with_schema) }
 
     it "should redirect if subdomain is invalid" do
-      page.driver.get timeline_url(subdomain: 'random-subdomain')
+      page.driver.get users_url(subdomain: 'random-subdomain')
 
       expect(page.driver.response.status).to eq(404)
     end
@@ -13,7 +13,7 @@ describe "subdomains feature", type: :feature do
       page.driver.header('X-User-Email', account.owner.email)
       page.driver.header('X-User-Token', account.owner.authentication_token)
 
-      page.driver.get timeline_url(subdomain: account.subdomain, format: :json)
+      page.driver.get users_url(subdomain: account.subdomain, format: :json)
 
       expect(page.driver.response.status).to eq(200)
     end
