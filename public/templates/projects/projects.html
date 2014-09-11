@@ -1,0 +1,37 @@
+<div class="col-md-1">
+  <a class="btn btn-app btn-primary no-radius" mymodal modaltemplate="templates/projects/new.html" modalctrl="NewProjectCtrl" modalsize="lg">
+    Adicionar
+  </a>
+</div>
+
+<div class="col-md-11">
+  <form class="form-inline" role="form" id="searchForm">
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon">
+          <i class="fa fa-search ace-icon bigger-200"></i>
+        </div>
+        <input class="form-control" type="email" placeholder="Pesquisar" ng-model="search.project">
+      </div>
+    </div>
+  </form>
+</div>
+
+<div id="projects" class="col-md-12">
+  <div ng-repeat="project in projects | filter:search.project" class="col-md-3 project">
+    <div class="projectWrapper">
+      <div class="col-md-3">
+        <img ng-src="http://www.gravatar.com/avatar/{{ project.gravatar }}" />
+      </div>
+      <div class="col-md-9">
+        <p>{{ project.name }}</p>
+      </div>
+
+      <a href="javascript:;" ng-click="" class="removeButton"><i class="glyphicon-remove ace-icon glyphicon"></i></a>
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+</div>

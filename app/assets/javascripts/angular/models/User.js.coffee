@@ -1,3 +1,3 @@
 @tccless.factory('User', ($resource) ->
-  return $resource('/users.json')
+  return $resource('/users/:id.json')
 )

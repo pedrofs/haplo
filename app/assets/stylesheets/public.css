@@ -5,31 +5,55 @@
  *= require ace_template/ace.min
  *= require ace_template/ace-skins.min
  *= require ace_template/ace-rtl.min
+ *= require ace_template/dropzone
  */
 
  .login-layout a {
   cursor: pointer;
  }
 
- #users .user {
+ #users .user, #projects .project {
   margin-top: 25px;
  }
 
- #users .user .userWrapper {
+ #users .user .userWrapper, #projects .project .projectWrapper {
   border: 1px solid #ccc;
   position: relative;
  }
 
- #users .user p {
+ #users .user p, #projects .project p {
   margin: 0px;
  }
 
- #users .user label .lbl {
+ #users .user label .lbl, #projects .project label .lbl {
   font-size: 12px;
  }
 
- #users .user label {
+ #users .user label, #projects .project label {
   position: absolute;
   bottom: 0px;
   right: 5px;
  }
+
+ #searchForm .input-group {
+  margin: 2px;
+ }
+
+ #searchForm input {
+  padding: 24px 4px 24px;
+  font-size: 16px;
+ }
+
+.removeButton {
+  position: absolute;
+  right: 0.3%;
+  top: 1%; 
+}
+
+.wizard-steps {
+  margin-bottom: 5%;
+}
+
+.wizard-actions {
+  text-align: left;
+}

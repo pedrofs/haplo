@@ -6,42 +6,47 @@
   ($routeProvider, $stateProvider) ->
     $routeProvider.otherwise({
         controller: 'WelcomeCtrl',
-        templateUrl: 'templates/welcome.html'
+        templateUrl: 'templates/pages/welcome.html'
     })
 
     $stateProvider.
       state('public', {
         abstract: true,
-        templateUrl: 'templates/public.html'
+        templateUrl: 'templates/layouts/public.html'
       }).
       state('public.start-now', {
         url: '/start-now',
         controller: 'StartNowCtrl',
-        templateUrl: 'templates/start-now.html'
+        templateUrl: 'templates/pages/start-now.html'
       }).
       state('public.login', {
         url: '/login',
         controller: 'LoginCtrl',
-        templateUrl: 'templates/login.html'
+        templateUrl: 'templates/pages/login.html'
       }).
       state('public.welcome', {
         url: '/',
         controller: 'WelcomeCtrl',
-        templateUrl: 'templates/welcome.html'
+        templateUrl: 'templates/pages/welcome.html'
       }).
       state('private', {
         abstract: true,
-        templateUrl: 'templates/private.html'
+        templateUrl: 'templates/layouts/private.html'
       }).
       state('private.users', {
         url: '/users',
         controller: 'UsersCtrl',
-        templateUrl: 'templates/users.html',
+        templateUrl: 'templates/users/users.html',
         resolve: {
           users: ['UserService', (UserService) ->
             UserService.all()
           ]
         }
+      }).
+      state('private.projects', {
+        url: '/projects',
+        controller: 'ProjectsCtrl'
+        templateUrl: 'templates/projects/projects.html',
       }).
       state('private.logout', {
         url: '/logout'

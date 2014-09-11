@@ -18,9 +18,10 @@ end
 
 Rails.application.routes.draw do
   constraints(SubdomainPresent) do
-    devise_for :user, controllers: { sessions: "sessions", invitations: "invitations" }
-    resources :users, only: :index
     root "welcome#login", as: :login
+    devise_for :user, controllers: { sessions: "sessions", invitations: "invitations" }
+    resources :users, only: [:index, :destroy]
+    resources :projects, only: [:index, :create, :update, :destroy]
   end
 
   constraints(SubdomainBlank) do

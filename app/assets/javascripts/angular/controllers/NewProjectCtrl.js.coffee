@@ -1,4 +1,4 @@
-@tccless.controller 'InviteUserCtrl', [
+@tccless.controller 'NewProjectCtrl', [
   '$scope',
   '$http',
   'UserService',

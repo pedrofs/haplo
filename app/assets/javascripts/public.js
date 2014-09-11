@@ -16,4 +16,8 @@
 //= require_tree ./angular/directives
 //= require ace_template/bootstrap.min
 //= require ace_template/ace.min
+//= require ace_template/ace-elements.min
+//= require ace_template/ace-extra.min
 //= require ace_template/bootbox.min
+//= require ace_template/dropzone.min
+//= require vendor/fuelux.min

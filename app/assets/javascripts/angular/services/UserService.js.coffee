@@ -8,10 +8,31 @@
   add = (user) ->
     this.users.push(user)
 
+  remove = (userId) ->
+    newUsers = []
+
+    angular.forEach this.users, (user) ->
+      console.log user
+      console.log userId
+
+      newUsers.push(user) if user.id != userId
+
+    this.users = newUsers
+
+  save = (user) ->
+
+  destroy = (userId) ->
+    _self = this
+    User.remove({id: userId}).$promise.then (response) ->
+      _self.remove(userId)
+
   obj =
     users: [],
     all: all,
-    add: add
+    add: add,
+    remove: remove,
+    save: save,
+    destroy: destroy
 
   obj
 ]
