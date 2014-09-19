@@ -3,7 +3,7 @@
     <!-- #section:basics/navbar.user_menu -->
     <li class="light-blue">
       <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-        <img class="nav-user-photo" src="../assets/avatars/user.jpg" alt="Jason's Photo">
+        <img ng-src="http://www.gravatar.com/avatar/{{ createHash(session.currentUser.email) }}" />
         <span class="user-info">
           <small>Bem vindo,</small>
           {{ session.currentUser.name }}

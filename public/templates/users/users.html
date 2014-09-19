@@ -6,13 +6,13 @@
 </div>
 
 <div class="col-md-11">
-  <form class="form-inline" role="form" id="searchForm" on-submit="javascript: return false;">
+  <form class="form-inline" role="form" id="searchForm">
     <div class="form-group">
       <div class="input-group">
         <div class="input-group-addon">
           <i class="fa fa-search ace-icon bigger-200"></i>
         </div>
-        <input class="form-control" type="input" placeholder="Pesquisar" ng-model="search.user">
+        <input class="form-control" type="text" placeholder="Pesquisar" ng-model="search.user">
       </div>
     </div>
   </form>
@@ -22,7 +22,7 @@
   <div ng-repeat="user in UserService.users | filter:search.user" class="col-md-3 user">
     <div class="userWrapper">
       <div class="col-md-3">
-        <img ng-src="http://www.gravatar.com/avatar/{{ user.gravatar }}" />
+        <img ng-src="http://www.gravatar.com/avatar/{{ createHash(user.email) }}" />
       </div>
       <div class="col-md-9">
         <p>{{ user.name || 'sem nome' }}</p>

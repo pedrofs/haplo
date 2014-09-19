@@ -1,8 +1,13 @@
 <div class="modal-header">
     <h3 class="modal-title">Convidar usuário</h3>
+
+    <a href="javascript:;" ng-click="cancel()" class="cancel-modal">
+      <i class="ace-icon fa fa-times bigger-200"></i>
+    </a>
 </div>
-<div class="modal-body">
-  <form name="invitationForm" ng-submit="createInvitation(invitationForm, user)" class="form-horizontal">
+
+<form name="invitationForm" ng-submit="createInvitation(invitationForm, user)" class="form-horizontal">
+  <div class="modal-body">
     <fieldset>
       <div class="form-group" ng-class="{ 'has-error': invitationForm.email.$invalid && invitationForm.email.$dirty }">
         <label class="col-md-3 control-label no-padding-right" for="user__email"> Email </label>
@@ -17,16 +22,17 @@
           </div>
         </div>
       </div>
-
-      <div class="clearfix form-actions">
-        <div class="col-md-offset-3 col-md-9">
-          <button class="btn btn-success" type="submit">
-            <i class="ace-icon fa fa-check bigger-110"></i>
-            Convidar
-          </button>
-          ou <a href="javascript:;" ng-click="cancel()">cancelar</a>
-        </div>
-      </div>
     </fieldset>
-  </form>
-</div>
+  </div>
+
+  <div class="modal-footer">
+    <div class="wizard-actions my-form-actions">
+      <!-- #section:plugins/fuelux.wizard.buttons -->
+      <button class="btn btn-success" type="submit">
+        <i class="ace-icon fa fa-check bigger-110"></i>
+        Convidar
+      </button>
+    <!-- /section:plugins/fuelux.wizard.buttons -->
+    </div>
+  </div>
+</form>

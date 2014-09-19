@@ -11,23 +11,40 @@
         <div class="input-group-addon">
           <i class="fa fa-search ace-icon bigger-200"></i>
         </div>
-        <input class="form-control" type="email" placeholder="Pesquisar" ng-model="search.project">
+        <input class="form-control" type="text" placeholder="Pesquisar" ng-model="search.project">
       </div>
     </div>
   </form>
 </div>
 
-<div id="projects" class="col-md-12">
-  <div ng-repeat="project in projects | filter:search.project" class="col-md-3 project">
+<div id="projects">
+  <div ng-repeat="project in ProjectService.projects | filter:search.project" class="col-md-3 project">
     <div class="projectWrapper">
       <div class="col-md-3">
         <img ng-src="http://www.gravatar.com/avatar/{{ project.gravatar }}" />
       </div>
       <div class="col-md-9">
         <p>{{ project.name }}</p>
+        <p>{{ project.client }}</p>
       </div>
 
-      <a href="javascript:;" ng-click="" class="removeButton"><i class="glyphicon-remove ace-icon glyphicon"></i></a>
+      <a href="#" class="removeButton" data-toggle="dropdown">
+        <i class="ace-icon fa fa-bars"></i>
+      </a>
+
+      <ul class="dropdown-menu dropdown-menu-right dropdown-light-blue dropdown-caret dropdown-closer">
+        <li>
+          <a data-toggle="tab" href="#dropdown1">Arquivar</a>
+        </li>
+
+        <li>
+          <a data-toggle="tab"
+             href="javascript:;"
+             confirm-click
+             confirm-click-message="Você tem certeza?"
+             confirm-click-action="ProjectService.destroy(project.id)">Excluir</a>
+        </li>
+      </ul>
 
       <div class="clearfix"></div>
     </div>

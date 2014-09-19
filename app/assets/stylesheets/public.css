@@ -6,6 +6,8 @@
  *= require ace_template/ace-skins.min
  *= require ace_template/ace-rtl.min
  *= require ace_template/dropzone
+ *= require ace_template/daterangepicker-bs3
+ *= require angular-gantt
  */
 
  .login-layout a {
@@ -54,6 +56,90 @@
   margin-bottom: 5%;
 }
 
-.wizard-actions {
-  text-align: left;
+.wizard-actions, .my-form-actions {
+  text-align: right;
+}
+
+.wizard.complete .btn-next i {
+  display:none;
+}
+
+.cancel-modal {
+  position: absolute;
+  right: 10px;
+  top: 15px;
+}
+
+/*
+ * COLOR PICKER http://ng-color-picker.herokuapp.com/color-picker.css
+ */
+ng-color-picker ul {
+    padding: 0;
+    margin: 0;
+    height: 25px;
+    margin-left:10px;
+    position: absolute;
+}
+
+ng-color-picker li { 
+    width:20px;
+    height:20px;
+    box-sizing:border-box;
+    display:inline-block;
+    position: absolute;
+    z-index: 0;
+    margin-right: 2px;
+    text-align:center;
+    color: #EEE;
+}
+
+ng-color-picker li i.glyphicon { 
+  display:none;
+}
+
+ng-color-picker li.selected i { 
+  display:block;
+  top: 2px;
+}
+
+ng-color-picker ul.color-picker-opened li {
+  position: relative;
+}
+
+ng-color-picker ul.color-picker-opened li.selected {
+  top: -7px;
+}
+
+ng-color-picker li.selected {
+    z-index: 9999;
+}
+
+.table .tableActions {
+  text-align:center;
+}
+
+#confirmProject dl {
+  font-size: 16px;
+}
+
+#projectPhaseFields .control-label {
+  width: 75px;
+  padding-top: 5px;
+}
+
+.colorPicker {
+  margin-top: 5px;
+}
+
+#project_phases tr.destroyed {
+  display:none;
+}
+
+.navbar-buttons img {
+  width: 35px;
+  margin-right: 5px;
+}
+
+.projectWrapper .dropdown-menu.dropdown-closer {
+  top: 20%;
 }

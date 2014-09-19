@@ -19,5 +19,5 @@ class FormBindService
     )
 
 @tccless.factory 'FormBindService', [ ->
-  return FormBindService
+  FormBindService
 ]

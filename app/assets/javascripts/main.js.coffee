@@ -1,4 +1,4 @@
-@tccless = angular.module('tccless', ['ngRoute', 'ngResource', 'ui.router', 'ui.bootstrap', 'LocalStorageModule'])
+@tccless = angular.module('tccless', ['ngRoute', 'ngResource', 'ui.router', 'ui.bootstrap', 'LocalStorageModule', 'angular-md5', 'daterangepicker', 'gantt', 'ngColorPicker'])
 
 @tccless.config [
   '$routeProvider',
@@ -47,6 +47,11 @@
         url: '/projects',
         controller: 'ProjectsCtrl'
         templateUrl: 'templates/projects/projects.html',
+        resolve: {
+          projects: ['ProjectService', (ProjectService) ->
+            ProjectService.all()
+          ]
+        }
       }).
       state('private.logout', {
         url: '/logout'

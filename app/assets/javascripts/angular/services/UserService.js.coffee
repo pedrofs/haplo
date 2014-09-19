@@ -12,9 +12,6 @@
     newUsers = []
 
     angular.forEach this.users, (user) ->
-      console.log user
-      console.log userId
-
       newUsers.push(user) if user.id != userId
 
     this.users = newUsers
