@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140915184554) do
+ActiveRecord::Schema.define(version: 20140921020514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,21 @@ ActiveRecord::Schema.define(version: 20140915184554) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "api_logs", force: true do |t|
+    t.string   "controller"
+    t.string   "action"
+    t.string   "ip_address"
+    t.string   "path"
+    t.string   "url"
+    t.string   "params"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "request_method"
+  end
+
+  add_index "api_logs", ["user_id"], name: "index_api_logs_on_user_id", using: :btree
 
   create_table "project_phases", force: true do |t|
     t.string   "name"
