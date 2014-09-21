@@ -1,9 +1,9 @@
 ENV["RAILS_ENV"] ||= "test"
 
 require File.expand_path("../../config/environment", __FILE__)
-require "rspec/rails"
+require 'rspec/rails'
 require 'factory_girl_rails'
-require "database_cleaner"
+require 'database_cleaner'
 require 'capybara/rspec'
 require 'email_spec'
 
@@ -17,6 +17,7 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include EmailSpec::Matchers
   config.include EmailSpec::Helpers
+
   #config.include Devise::TestHelpers, type: :controller
   config.order = "random"
 
@@ -35,5 +36,6 @@ RSpec.configure do |config|
     drop_schemas
     Capybara.app_host = "http://example.com"
     reset_mailer
+    FileUtils.rm_rf(Dir.glob(File.join(Rails.root, 'log/api/test/*')))
   end
 end
