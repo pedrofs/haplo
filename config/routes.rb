@@ -20,9 +20,18 @@ Rails.application.routes.draw do
   constraints(SubdomainPresent) do
     root "welcome#login", as: :login
     devise_for :user, controllers: { sessions: "sessions", invitations: "invitations" }
-    resources :users, only: [:index, :destroy]
-    resources :projects, only: [:index, :show, :create, :update, :destroy]
+
+    concern :taskable do
+      resources :tasks, only: [:index, :create]
+    end
+
+    resources :users, only: [:index, :destroy] do
+      resources :tasks, only: [:index]
+    end
+
+    resources :projects, except: [:edit, :new], concerns: :taskable
     resources :api_logs, only: [:index]
+    resources :tasks, only: [:destroy, :show, :update]
   end
 
   constraints(SubdomainBlank) do

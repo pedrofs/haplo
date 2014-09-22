@@ -1,10 +1,11 @@
 class User < ActiveRecord::Base
+  has_one :account, foreign_key: 'owner_id'
+  has_many :tasks, foreign_key: 'assigned_id'
+
   devise :invitable, :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :name, presence: true
-
-  has_one :account, foreign_key: 'owner_id'
 
   before_destroy :check_ownership
 
