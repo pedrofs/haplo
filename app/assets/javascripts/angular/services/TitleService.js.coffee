@@ -1,10 +1,10 @@
 @tccless.factory 'TitleService', ->
   obj =
-    title: '',
-    description: '',
+    title: ''
+    description: ''
     setTitle: (title) ->
       this.title = title
-    ,setDescription: (description) ->
+    setDescription: (description) ->
       this.description = description
 
   obj
