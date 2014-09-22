@@ -11,8 +11,12 @@ gem 'jquery-rails'
 gem 'execjs'
 gem 'jbuilder'
 
+gem 'will_paginate', '~> 3.0'
+
 gem 'devise', '~> 3.2.0'
 gem 'devise_invitable', '~> 1.3.6'
+
+gem 'puma'
 
 group :development, :test do
 	gem 'guard'
