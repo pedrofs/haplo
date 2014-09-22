@@ -70,7 +70,8 @@ class ApiRequestLog
                        request_method: request.request_method,
                        user_id: user_id_for_request(env),
                        controller: controller_and_action[:controller],
-                       action: controller_and_action[:action]
+                       action: controller_and_action[:action],
+                       created_at: Time.now
 
     api_log_file.log api_log if api_log.valid?
   end

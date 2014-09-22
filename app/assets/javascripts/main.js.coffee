@@ -53,6 +53,11 @@
           ]
         }
       }).
+      state('private.api_logs', {
+        url: '/api_logs',
+        controller: 'ApiLogsCtrl'
+        templateUrl: 'templates/api_logs/api_logs.html'
+      }).
       state('private.logout', {
         url: '/logout'
       })

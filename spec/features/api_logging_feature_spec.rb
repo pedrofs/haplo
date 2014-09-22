@@ -18,7 +18,7 @@ describe "logging feature", type: :api do
     it "should create the log file" do
       get '/projects', format: :json
 
-      expect(File.exists?(File.join(::Rails.root, 'log/api', Rails.env, account.subdomain, "#{Date.today.to_s}.log"))).to be(true)
+      expect(File.exists?(File.join(::Rails.root, 'log/api', Rails.env, account.subdomain, "access.csv"))).to be(true)
     end
   end
 end

@@ -1,7 +1,7 @@
 class ApiFileLog
   attr_accessor :directory
 
-  FILE_EXTENSION = '.log'
+  FILENAME = 'access.csv'
 
   def initialize directory
     Dir.mkdir directory unless Dir.exists? directory
@@ -12,14 +12,16 @@ class ApiFileLog
     return unless object.respond_to? :to_csv
 
     log_file = File.new log_file_name.to_s, "a"
-    log_file.write "#{object.to_csv}\n"
+
+    log_file.write object.csv_header if log_file.size == 0
+
+    log_file.write "#{object.to_csv}"
     log_file.close
   end
 
   private
 
   def log_file_name
-    filename = [Date.today.to_s, ApiFileLog::FILE_EXTENSION].join
-    Pathname.new [Rails.root, @directory, filename].join '/'
+    Pathname.new [Rails.root, @directory, ApiFileLog::FILENAME].join '/'
   end
 end

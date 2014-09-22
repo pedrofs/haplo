@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     devise_for :user, controllers: { sessions: "sessions", invitations: "invitations" }
     resources :users, only: [:index, :destroy]
     resources :projects, only: [:index, :show, :create, :update, :destroy]
+    resources :api_logs, only: [:index]
   end
 
   constraints(SubdomainBlank) do
