@@ -3,17 +3,17 @@ class AccountsController < ApplicationController
   skip_before_filter :authenticate_user!, only: [:create]
 
   def create
-     @account = Account.new account_params
-     account_setup = AccountSetup.new
+    @account = Account.new account_params
+    account_setup = AccountSetup.new
 
-     account_setup.setup @account
+    account_setup.setup @account
 
-     @account.save!
+    @account.save!
     
-     respond_with @account, code: :created
+    respond_with @account, code: :created
 
-     rescue ActiveRecord::RecordInvalid
-       render_errors @account
+  rescue ActiveRecord::RecordInvalid
+    render_errors @account
   end
 
   def destroy
@@ -21,8 +21,8 @@ class AccountsController < ApplicationController
 
     respond_with @account.destroy!
 
-    rescue ActiveRecord::RecordNotFound
-      render_not_found
+  rescue ActiveRecord::RecordNotFound
+    render_not_found
   end
 
   private
