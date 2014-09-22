@@ -116,7 +116,7 @@ describe "Projects API", type: :api do
     end
 
     describe "DELETE /projects" do
-      it "should return 200 for a valid project" do
+      it "should return 204 for a valid project" do
         project = create_on_schema :project, account.subdomain
 
         delete "/projects/#{project.id}", format: :json
