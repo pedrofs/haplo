@@ -61,7 +61,6 @@ describe "Tasks API", type: :api do
 
         get "/tasks/#{task.id}", format: :json
         expect(last_response.status).to eq(200)
-        p JSON::parse(last_response.body)
         expect(JSON::parse(last_response.body)['title']).to eq('Task Title')
       end
 
