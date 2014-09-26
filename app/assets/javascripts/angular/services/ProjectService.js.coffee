@@ -1,4 +1,7 @@
 @tccless.factory 'ProjectService', ['Project', (Project) ->
+  find = (id) ->
+    Project.get({id: id}).$promise
+
   all = ->
     _self = this
 
@@ -24,11 +27,12 @@
       _self.remove(projectId)
 
   obj =
-    projects: [],
-    all: all,
-    add: add,
-    remove: remove,
-    save: save,
+    projects: []
+    find: find
+    all: all
+    add: add
+    remove: remove
+    save: save
     destroy: destroy
 
   obj

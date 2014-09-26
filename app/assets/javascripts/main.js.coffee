@@ -53,6 +53,30 @@
           ]
         }
       }).
+      state('private.project_view', {
+        url: '/projects/:projectId',
+        abstract: true,
+        templateUrl: 'templates/projects/view.html',
+        controller: 'ProjectViewCtrl'
+        resolve: {
+          project: ['$stateParams', 'ProjectService', ($stateParams, ProjectService) ->
+            ProjectService.find($stateParams.projectId)
+          ]
+        }
+      }).
+      state('private.project_view.overview', {
+        url: '',
+        templateUrl: 'templates/projects/overview.html',
+        controller: 'ProjectOverviewCtrl'
+      }).
+      state('private.project_view.tasks', {
+        url: '/tasks',
+        templateUrl: 'templates/projects/tasks.html',
+        controller: 'ProjectTasksCtrl',
+        resolve: ['TaskService', 'TaskData', (TaskService, TaskData) ->
+          console.log 'resolve'
+        ]
+      }).
       state('private.api_logs', {
         url: '/api_logs',
         controller: 'ApiLogsCtrl'

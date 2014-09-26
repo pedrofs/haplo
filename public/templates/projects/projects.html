@@ -24,7 +24,7 @@
         <img ng-src="http://www.gravatar.com/avatar/{{ project.gravatar }}" />
       </div>
       <div class="col-md-9">
-        <p>{{ project.name }}</p>
+        <p><a ui-sref="private.project_view.overview({projectId: project.id})" href="javascript:;">{{ project.name }}</a></p>
         <p>{{ project.client }}</p>
       </div>
 
