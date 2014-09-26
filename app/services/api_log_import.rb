@@ -10,8 +10,8 @@ class ApiLogImport
 
     api_logs = []
     CSV.foreach @filename, headers: true do |row|
+      p row.to_hash
       api_log = ApiLog.new(row.to_hash)
-      api_log.created_at = DateTime.now
       api_logs << api_log if api_log.valid?
 
       yield api_logs if block_given?
@@ -20,7 +20,7 @@ class ApiLogImport
     api_logs
   end
 
-  def unlink
-    File.unlink @filename
+  def remove_log
+    File.unlink @filename if File.exists? @filename
   end
 end

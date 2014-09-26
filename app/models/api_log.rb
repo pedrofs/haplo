@@ -20,7 +20,7 @@ class ApiLog < ActiveRecord::Base
 
   def csv_hash
     {
-      created_at: created_at,
+      requested_at: requested_at,
       ip_address: ip_address,
       request_method: request_method,
       controller: controller,
@@ -28,7 +28,9 @@ class ApiLog < ActiveRecord::Base
       url: url,
       path: path,
       params: params,
-      user_id: user_id
+      user_id: user_id,
+      response_status: response_status,
+      response_body: response_body
     }
   end
 end

@@ -1,1 +1,29 @@
-TESTING
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Usuário</th>
+      <th>Data</th>
+      <th>IP</th>
+      <th>Método</th>
+      <th>Controle</th>
+      <th>Ação</th>
+      <th>Parâmetros</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr ng-repeat="apiLog in ApiLogData.apiLogs">
+      <td>{{ apiLog.user_id }}</td>
+      <td>{{ apiLog.requested_at }}</td>
+      <td>{{ apiLog.ip_address }}</td>
+      <td>{{ apiLog.request_method }}</td>
+      <td>{{ apiLog.controller }}</td>
+      <td>{{ apiLog.action }}</td>
+      <td style="text-align:center">
+        <span ng-click="openDetail(apiLog.params)">
+          <i class="ace-icon glyphicon glyphicon-search"></i>
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>

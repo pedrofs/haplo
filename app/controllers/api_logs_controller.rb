@@ -7,18 +7,17 @@ class ApiLogsController < ApplicationController
 
     api_log_import = ApiLogImport.new log_filename
 
-    api_logs = api_log_import.build_api_logs do |a|
-      sse.write({count: a.count}, event: 'counting')
+    api_logs = api_log_import.build_api_logs do |builded_api_logs|
+      sse.write({count: builded_api_logs.count}, event: 'counting')
     end
 
-    api_log_import.unlink
+    api_log_import.remove_log
 
     api_logs.each_with_index do |a, i|
       sse.write({progress: i}, event: 'progress') if a.save
     end
-
-    sse.write({api_logs: ApiLog.paginate(page: params[:page] || 1)}, event: 'complete')
   ensure
+    sse.write({api_logs: ApiLog.paginate(page: params[:page] || 1).order('created_at DESC')}, event: 'complete')
     sse.close
   end
 

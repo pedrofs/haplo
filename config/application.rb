@@ -47,19 +47,25 @@ class ApiRequestLog
 
   def call(env)
     request = Rack::Request.new env
+    response_array = @app.call env
+    rack_response = Rack::Response.new response_array
 
-    log env, request unless request.path.match /^\/assets/
-    
-    @app.call env
+    log env, request, rack_response unless is_asset_path? request
+
+    response_array
   end
 
   private
 
-  def log env, request
+  def is_asset_path? request
+    request.path.match /^\/assets/
+  end
+
+  def log env, request, response
     params = request.params
     controller_and_action = Rails.application.routes.recognize_path request.url, method: request.request_method
 
-    api_log_file = ApiFileLog.new File.join(ApiRequestLog::BASE_DIR, Rails.env, Apartment::Tenant.current_tenant)
+    api_file_log = ApiFileLog.new File.join(ApiRequestLog::BASE_DIR, Rails.env, Apartment::Tenant.current_tenant)
 
     api_log = ApiLog.new controller: params[:controller],
                        action: params[:action],
@@ -71,9 +77,11 @@ class ApiRequestLog
                        user_id: user_id_for_request(env),
                        controller: controller_and_action[:controller],
                        action: controller_and_action[:action],
-                       created_at: Time.now
+                       requested_at: Time.now,
+                       response_status: response.status,
+                       response_body: nil
 
-    api_log_file.log api_log if api_log.valid?
+    api_file_log.log api_log if api_log.valid?
   end
 
   private

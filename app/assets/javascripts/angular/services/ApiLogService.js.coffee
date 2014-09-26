@@ -13,12 +13,13 @@
   onProgressCallback = (e) ->
     console.log JSON.parse(e.data).progress
 
-  onCompleteCallback = (e) ->
-    service.source.close() if service.source
-    service.loading = false
-    console.log JSON.parse(e.data)
+  onCompleteCallback = (callback) ->
+    (e) ->
+      service.source.close() if service.source
+      service.loading = false
+      callback(JSON.parse(e.data).api_logs)
 
-  service.load = ->
+  service.load = (callback) ->
       return if this.loading
 
       this.loading = true
@@ -28,7 +29,7 @@
 
       this.source = new EventSource "/api_logs?user_email=#{userEmail}&user_token=#{userToken}"
       this.source.addEventListener 'progress', onProgressCallback, false
-      this.source.addEventListener 'complete', onCompleteCallback, false
+      this.source.addEventListener 'complete', onCompleteCallback(callback), false
 
   service
 ]
