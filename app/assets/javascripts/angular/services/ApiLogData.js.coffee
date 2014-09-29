@@ -1,4 +1,4 @@
-@tccless.factory 'ApiLogData', ->
+angular.module('tccless').factory 'ApiLogData', ->
   service =
     apiLogs: []
 

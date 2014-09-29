@@ -1,4 +1,4 @@
-@tccless.directive 'pagetitle', ['TitleService', (TitleService) ->
+angular.module('tccless').directive 'pagetitle', ['TitleService', (TitleService) ->
   directive =
     restrict: 'E',
     replace: true,

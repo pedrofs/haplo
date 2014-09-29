@@ -1,4 +1,4 @@
-@tccless.directive 'mymodal', ['$modal', ($modal) ->
+angular.module('tccless').directive 'mymodal', ['$modal', ($modal) ->
   directive =
     restrict: 'A',
     template: '',

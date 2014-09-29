@@ -1,4 +1,4 @@
-@tccless.factory 'ProjectPhaseGanttDataStrategy', ['md5', (md5) ->
+angular.module('tccless').factory 'ProjectPhaseGanttDataStrategy', ['md5', (md5) ->
   prepareData: (data) ->
     data.map (projectPhase, i) ->
       el =

@@ -1,4 +1,4 @@
-@tccless.factory 'TaskService', [ ->
+angular.module('tccless').factory 'TaskService', [ ->
   find = (id) ->
     $http.get("/tasks/#{id}.json")
 

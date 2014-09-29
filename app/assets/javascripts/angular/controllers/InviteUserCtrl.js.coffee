@@ -1,4 +1,4 @@
-@tccless.controller 'InviteUserCtrl', [
+angular.module('tccless').controller 'InviteUserCtrl', [
   '$scope',
   '$http',
   'UserService',

@@ -1,4 +1,4 @@
-@tccless.directive 'railsComplexFormAddButton', ['$parse', ($parse) ->
+angular.module('tccless').directive 'railsComplexFormAddButton', ['$parse', ($parse) ->
   directive =
     restrict: 'A',
     link: (scope, element, attrs) ->

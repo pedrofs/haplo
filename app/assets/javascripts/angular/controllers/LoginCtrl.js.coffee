@@ -1,4 +1,4 @@
-@tccless.controller 'LoginCtrl', [
+angular.module('tccless').controller 'LoginCtrl', [
   '$scope',
   '$state',
   'AuthenticationService',

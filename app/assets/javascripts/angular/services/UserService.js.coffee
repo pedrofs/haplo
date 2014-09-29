@@ -1,4 +1,4 @@
-@tccless.factory 'UserService', ['User', (User) ->
+angular.module('tccless').factory 'UserService', ['User', (User) ->
   all = ->
     _self = this
 

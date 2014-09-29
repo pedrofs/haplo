@@ -1,4 +1,4 @@
-@tccless.factory 'ProjectService', ['Project', (Project) ->
+angular.module('tccless').factory 'ProjectService', ['Project', (Project) ->
   find = (id) ->
     Project.get({id: id}).$promise
 

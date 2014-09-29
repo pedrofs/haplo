@@ -1,4 +1,4 @@
-@tccless.factory 'TitleService', ->
+angular.module('tccless').factory 'TitleService', ->
   obj =
     title: ''
     description: ''

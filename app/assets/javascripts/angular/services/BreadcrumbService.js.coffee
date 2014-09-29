@@ -1,4 +1,4 @@
-@tccless.factory 'BreadcrumbService', ->
+angular.module('tccless').factory 'BreadcrumbService', ->
   obj =
     items: [],
     addItem: (item) ->

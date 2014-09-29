@@ -1,4 +1,4 @@
-@tccless.directive 'railsComplexForm', [ ->
+angular.module('tccless').directive 'railsComplexForm', [ ->
   directive =
     restrict: 'A',
     templateUrl: 'templates/rails_complex_form.html'

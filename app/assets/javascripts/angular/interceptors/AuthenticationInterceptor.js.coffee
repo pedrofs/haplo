@@ -1,4 +1,4 @@
-@tccless.factory 'AuthenticationInterception', ['$location', 'SessionService', ($location, SessionService) ->
+angular.module('tccless').factory 'AuthenticationInterception', ['$location', 'SessionService', ($location, SessionService) ->
   obj =
     # responseError: (response) ->
     #   if response.status == 401
@@ -16,6 +16,6 @@
   return obj
 ]
 
-@tccless.config ['$httpProvider', ($httpProvider) ->
+angular.module('tccless').config ['$httpProvider', ($httpProvider) ->
   $httpProvider.interceptors.push 'AuthenticationInterception'
 ]

@@ -1,4 +1,4 @@
-@tccless.controller 'ProjectsCtrl', [
+angular.module('tccless').controller 'ProjectsCtrl', [
   '$scope',
   'BreadcrumbService',
   'TitleService',

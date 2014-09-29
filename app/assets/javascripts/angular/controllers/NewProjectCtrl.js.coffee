@@ -1,4 +1,4 @@
-@tccless.controller 'NewProjectCtrl', [
+angular.module('tccless').controller 'NewProjectCtrl', [
   '$scope',
   '$http',
   '$filter',

@@ -1,4 +1,4 @@
-@tccless.factory 'SessionService', ['$rootScope', 'localStorageService', ($rootScope, localStorageService) ->
+angular.module('tccless').factory 'SessionService', ['$rootScope', 'localStorageService', ($rootScope, localStorageService) ->
   CURRENT_USER_KEY = 'current-user'
 
   obj =

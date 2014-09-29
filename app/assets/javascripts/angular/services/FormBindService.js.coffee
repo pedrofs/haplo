@@ -18,6 +18,6 @@ class FormBindService
       form[field].$error.backend = message
     )
 
-@tccless.factory 'FormBindService', [ ->
+angular.module('tccless').factory 'FormBindService', [ ->
   FormBindService
 ]

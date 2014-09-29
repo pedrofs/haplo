@@ -1,4 +1,4 @@
-@tccless.directive 'wizard', ['WizardService', (WizardService) ->
+angular.module('tccless').directive 'wizard', ['WizardService', (WizardService) ->
   directive =
     restrict: 'A',
     template: '',

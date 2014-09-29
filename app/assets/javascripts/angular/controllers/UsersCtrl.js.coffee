@@ -1,4 +1,4 @@
-@tccless.controller 'UsersCtrl', [
+angular.module('tccless').controller 'UsersCtrl', [
   '$scope',
   '$modal',
   'BreadcrumbService',

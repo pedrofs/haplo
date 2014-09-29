@@ -1,4 +1,4 @@
-@tccless.filter 'destroyed', [ ->
+angular.module('tccless').filter 'destroyed', [ ->
   (items) ->
     result = []
     angular.forEach items, (item, i) ->

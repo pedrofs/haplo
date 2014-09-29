@@ -1,4 +1,4 @@
-@tccless.directive 'confirmClick', [ ->
+angular.module('tccless').directive 'confirmClick', [ ->
   directive =
     link: (scope, element, attr) ->
       msg = attr.confirmClickMessage || "Are you sure?"

@@ -13,6 +13,7 @@
 //= require vendor/moment.locale.pt-br
 //= require vendor/daterangepicker.min
 //= require vendor/angular-daterangepicker.min
+//= require vendor/ct-ui-router-extras.min
 
 //= require main
 
@@ -25,6 +26,7 @@
 //= require_tree ./angular/controllers
 //= require_tree ./angular/directives
 //= require_tree ./angular/filters
+//= require_tree ./angular/tasks
 
 //= require ace_template/bootstrap.min
 //= require ace_template/ace.min

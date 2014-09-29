@@ -1,4 +1,4 @@
-@tccless.factory 'ApiLogService', ['SessionService', (SessionService) ->
+angular.module('tccless').factory 'ApiLogService', ['SessionService', (SessionService) ->
   service =
     loading: false
     total: 0

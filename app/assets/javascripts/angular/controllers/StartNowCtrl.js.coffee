@@ -1,4 +1,4 @@
-@tccless.controller 'StartNowCtrl', [
+angular.module('tccless').controller 'StartNowCtrl', [
   '$scope',
   '$location',
   'CreateAccountService',

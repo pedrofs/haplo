@@ -9,4 +9,4 @@ class AuthenticationService
         @SessionService.setCurrentUser(response.data)
       )
 
-@tccless.service 'AuthenticationService', ['$http', 'SessionService', AuthenticationService]
+angular.module('tccless').service 'AuthenticationService', ['$http', 'SessionService', AuthenticationService]

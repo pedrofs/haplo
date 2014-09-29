@@ -1,4 +1,4 @@
-@tccless.factory 'TaskData', [ ->
+angular.module('tccless').factory 'TaskData', [ ->
   taskData =
     tasks: []
     add: (task) ->

@@ -1,4 +1,4 @@
-@tccless.factory 'CreateAccountService', ['Account', (Account) ->
+angular.module('tccless').factory 'CreateAccountService', ['Account', (Account) ->
   createAccount = (account) ->
     accountResource = new Account({account: account})
     return accountResource.$save()

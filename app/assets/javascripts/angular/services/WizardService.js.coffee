@@ -1,4 +1,4 @@
-@tccless.factory 'WizardService', ->
+angular.module('tccless').factory 'WizardService', ->
   obj =
     wizard: null
     reset: ->

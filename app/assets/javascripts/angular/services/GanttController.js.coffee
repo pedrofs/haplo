@@ -19,6 +19,6 @@ class GanttController
     @ganttClear()
     @ganttLoad(preparedData)
 
-@tccless.factory 'GanttController', [ ->
+angular.module('tccless').factory 'GanttController', [ ->
   GanttController
 ]

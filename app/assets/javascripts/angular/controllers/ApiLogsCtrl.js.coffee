@@ -1,4 +1,4 @@
-@tccless.controller 'ApiLogsCtrl', [
+angular.module('tccless').controller 'ApiLogsCtrl', [
   '$scope',
   '$modal',
   'BreadcrumbService',
@@ -11,14 +11,6 @@
       BreadcrumbService.addItem('API Logs')
       TitleService.setTitle('API Logs')
       TitleService.setDescription('Audição de todas as requisições feitas.')
-
-    configureView()
-
-    ApiLogService.load (apiLogs) ->
-      $scope.$apply ->
-        ApiLogData.apiLogs = apiLogs
-
-    $scope.ApiLogData = ApiLogData
 
     $scope.openDetail = (detail) ->
       if detail
@@ -34,4 +26,11 @@
         template: template
 
       $modal.open config
+
+    configureView()
+    $scope.ApiLogData = ApiLogData
+    
+    ApiLogService.load (apiLogs) ->
+      $scope.$apply ->
+        ApiLogData.apiLogs = apiLogs
 ]
