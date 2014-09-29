@@ -1,6 +1,17 @@
-@tccless = angular.module('tccless', ['ngRoute', 'ngResource', 'ui.router', 'ui.bootstrap', 'LocalStorageModule', 'angular-md5', 'daterangepicker', 'gantt', 'ngColorPicker'])
+angular.module 'tccless', [
+  'ngRoute',
+  'ngResource',
+  'ui.router',
+  'ui.bootstrap',
+  'LocalStorageModule',
+  'angular-md5',
+  'daterangepicker',
+  'gantt',
+  'ngColorPicker',
+  'ct.ui.router.extras'
+]
 
-@tccless.config [
+angular.module('tccless').config [
   '$routeProvider',
   '$stateProvider',
   ($routeProvider, $stateProvider) ->
@@ -74,7 +85,6 @@
         templateUrl: 'templates/projects/tasks.html',
         controller: 'ProjectTasksCtrl',
         resolve: ['TaskService', 'TaskData', (TaskService, TaskData) ->
-          console.log 'resolve'
         ]
       }).
       state('private.api_logs', {
