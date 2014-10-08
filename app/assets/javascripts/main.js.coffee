@@ -8,13 +8,24 @@ angular.module 'tccless', [
   'daterangepicker',
   'gantt',
   'ngColorPicker',
-  'ct.ui.router.extras'
+  'textAngular'
 ]
 
 angular.module('tccless').config [
   '$routeProvider',
   '$stateProvider',
-  ($routeProvider, $stateProvider) ->
+  'TabWidgetServiceProvider',
+  'BreadcrumbServiceProvider'
+  ($routeProvider, $stateProvider, TabWidgetServiceProvider, BreadcrumbServiceProvider) ->
+    TabWidgetServiceProvider.createWidget('projects')
+    TabWidgetServiceProvider.addTab('projects', {name: 'Overview', class: 'blue fa-inbox', state: 'private.project_view.overview'})
+
+    BreadcrumbServiceProvider.addBreadcrumb 'home', { label: 'Home', icon: 'ace-icon fa fa-home home-icon' }
+    BreadcrumbServiceProvider.addBreadcrumb 'users', { dependency: 'home', label: 'Usuários', link: 'private.users' }
+    BreadcrumbServiceProvider.addBreadcrumb 'projects', { dependency: 'home', label: 'Projetos', link: 'private.projects' }
+    BreadcrumbServiceProvider.addBreadcrumb 'project_view', { dependency: 'projects' }
+    BreadcrumbServiceProvider.addBreadcrumb 'project_view.overview', { dependency: 'project_view', label: 'Overview' }
+
     $routeProvider.otherwise({
         controller: 'WelcomeCtrl',
         templateUrl: 'templates/pages/welcome.html'
@@ -79,13 +90,6 @@ angular.module('tccless').config [
         url: '',
         templateUrl: 'templates/projects/overview.html',
         controller: 'ProjectOverviewCtrl'
-      }).
-      state('private.project_view.tasks', {
-        url: '/tasks',
-        templateUrl: 'templates/projects/tasks.html',
-        controller: 'ProjectTasksCtrl',
-        resolve: ['TaskService', 'TaskData', (TaskService, TaskData) ->
-        ]
       }).
       state('private.api_logs', {
         url: '/api_logs',
