@@ -22,6 +22,7 @@ class TasksController < ApplicationController
     project = Project.find_by_id! params[:project_id]
     @task = Task.new task_params
     @task.taskable = project
+    @task.reporter = current_user
 
     @task.save!
 

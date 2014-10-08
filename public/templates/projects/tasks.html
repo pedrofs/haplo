@@ -1,1 +1,19 @@
-tasks testing
+<div id="task-list-header" class="message-navbar clearfix">
+  <a class="btn btn-app btn-primary no-radius pull-left" mymodal modaltemplate="templates/tasks/new.html" modalctrl="NewTaskCtrl" modalsize="lg">
+    Adicionar
+  </a>
+  <form class="form-inline pull-left" role="form" id="searchForm">
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon">
+          <i class="fa fa-search ace-icon bigger-200"></i>
+        </div>
+        <input class="form-control" type="text" placeholder="Título ou descrição ou..." ng-model="search.user">
+      </div>
+    </div>
+  </form>
+
+  <span>
+    Mostrando 25 de 39
+  </span>
+</div>
