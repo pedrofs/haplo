@@ -5,8 +5,7 @@ angular.module('tccless').controller 'ProjectsCtrl', [
   'ProjectService'
   ($scope, BreadcrumbService, TitleService, ProjectService) ->
     configureView = ->
-      BreadcrumbService.reset()
-      BreadcrumbService.addItem('Projetos')
+      BreadcrumbService.use('projects')
       TitleService.setTitle('Projetos')
       TitleService.setDescription('Lista de todos os projetos.')
 

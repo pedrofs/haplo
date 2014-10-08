@@ -1,5 +1,8 @@
 angular.module('tccless').controller 'ProjectOverviewCtrl', [
-  '$scope',
+  '$scope'
+  'BreadcrumbService'
+  'TitleService'
   'project'
-  ($scope, project) ->
+  ($scope, BreadcrumbService, TitleService, project) ->
+    BreadcrumbService.use 'project_view.overview'
 ]
