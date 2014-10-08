@@ -8,6 +8,7 @@
  *= require ace_template/dropzone
  *= require ace_template/daterangepicker-bs3
  *= require angular-gantt
+ *= require textAngular
  */
 
  .login-layout a {
@@ -142,4 +143,26 @@ ng-color-picker li.selected {
 
 .projectWrapper .dropdown-menu.dropdown-closer {
   top: 20%;
+}
+
+#task-list-header span {
+  font-size: 14px;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+input.inline {
+  border:0;
+  border-bottom: 1px dashed #333;
+  background: none;
+  padding: 0;
+}
+
+#newTaskForm input.inline {
+  font-size:22px;
+}
+
+.ta-toolbar.btn-toolbar {
+  margin: 0;
 }
