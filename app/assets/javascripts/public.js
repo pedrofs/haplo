@@ -13,7 +13,9 @@
 //= require vendor/moment.locale.pt-br
 //= require vendor/daterangepicker.min
 //= require vendor/angular-daterangepicker.min
-//= require vendor/ct-ui-router-extras.min
+//= require vendor/textAngular
+//= require vendor/textAngularSetup
+//= require vendor/textAngular-sanitize.min
 
 //= require main
 
@@ -21,6 +23,7 @@
 
 //= require angular/services/SessionService
 
+//= require_tree ./angular/core
 //= require_tree ./angular/services
 //= require_tree ./angular/interceptors
 //= require_tree ./angular/controllers
