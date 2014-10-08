@@ -1,0 +1,59 @@
+<form name="newTaskForm" ng-submit="createTask(task)" id="newTaskForm" class="form-horizontal">
+  <div class="modal-header">
+    <h3 class="modal-title">Nova tarefa</h3>
+
+    <a href="javascript:;" ng-click="cancel()" class="cancel-modal">
+      <i class="ace-icon fa fa-times bigger-200"></i>
+    </a>
+  </div>
+
+  <div class="modal-body">
+    <div class="form-group" ng-class="{ 'has-error': newTaskForm.title.$invalid && newTaskForm.title.$dirty }">
+      <label class="col-xs-12 col-sm-2 control-label no-padding-right">Título</label>
+
+      <div class="col-xs-12 col-sm-10">
+        <input type="text" ng-model="task.title" name="title" class="col-sm-12" />
+      </div>
+
+      <div ng-messages="newTaskForm.title.$error" class="col-sm-9 col-sm-offset-3">
+        <div ng-message="newTaskForm.title.$error.backend">
+          <span class="help-block">{{ newTaskForm.title.$error.backend }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" ng-class="{ 'has-error': newTaskForm.description.$invalid && newTaskForm.description.$dirty }">
+      <label class="col-xs-12 col-sm-2 control-label no-padding-right">Descrição</label>
+
+      <div class="col-sm-10 ta-small" text-angular ng-model="task.description" ta-toolbar="[['h1','h2','h3', 'quote', 'pre'], ['bold', 'italics', 'ul', 'ol'], ['justifyCenter', 'justifyLeft', 'justifyRight'], ['insertLink', 'insertImage']]"></div>
+
+      <div ng-messages="newTaskForm.description.$error" class="col-sm-9 col-sm-offset-3">
+        <div ng-message="newTaskForm.description.$error.backend">
+          <span class="help-block">{{ newTaskForm.description.$error.backend }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" ng-class="{ 'has-error': newTaskForm.assigned_id.$invalid && newTaskForm.assigned_id.$dirty }">
+      <label class="col-xs-12 col-sm-2 control-label no-padding-right">Responsável</label>
+
+      <div class="col-xs-12 col-sm-8">
+        <select name="assigned_id" ng-model="task.assigned_id">
+        </select>
+      </div>
+
+      <div ng-messages="newTaskForm.assigned_id.$error" class="col-sm-9 col-sm-offset-3">
+        <div ng-message="newTaskForm.assigned_id.$error.backend">
+          <span class="help-block">{{ newTaskForm.assigned_id.$error.backend }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-success" type="submit">
+      <i class="ace-icon fa fa-check bigger-110"></i>
+      Salvar
+    </button>
+  </div>
+</form>
