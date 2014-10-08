@@ -5,9 +5,12 @@
 
   <ul class="breadcrumb">
     <li ng-repeat="item in breadcrumb.items track by $index">
-      <i class="ace-icon fa fa-home home-icon" ng-show="$first"></i>
-      <a href="javascript: void(0);" ng-show="$first">{{ item }}</a>
-      <span ng-show="!$first">{{ item }}</span>
+      <i class="{{ item.icon }}" ng-show="item.icon"></i>
+      <a href="javascript:;" ui-sref="{{ item.link || '#' }}" ng-show="item.link">{{ item.label }}</a>
+
+      <span ng-show="!item.link">{{ item.label }}</span>
     </li>
   </ul><!-- /.breadcrumb -->
 </div>
+
+<!--  -->

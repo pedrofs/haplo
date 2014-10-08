@@ -2,6 +2,7 @@ angular.module('tccless').directive 'breadcrumb', ['BreadcrumbService', (Breadcr
   directive =
     restrict: 'A',
     templateUrl: 'templates/partials/breadcrumb.html',
+    scope: {}
     link: (scope, element) ->
       scope.breadcrumb = BreadcrumbService
 
