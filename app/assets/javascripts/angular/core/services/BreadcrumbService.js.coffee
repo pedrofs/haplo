@@ -17,7 +17,6 @@ angular.module('tccless').provider 'BreadcrumbService', ->
 
         breadcrumbs[breadcrumb] = angular.extend(breadcrumbs[breadcrumb], params)
         this.items = process(breadcrumbs[breadcrumb])
-        console.log this.items
 
     service
 

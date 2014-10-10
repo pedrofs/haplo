@@ -19,16 +19,12 @@
 
 //= require main
 
-//= require_tree ./angular/models
-
-//= require angular/services/SessionService
-
 //= require_tree ./angular/core
-//= require_tree ./angular/services
-//= require_tree ./angular/interceptors
-//= require_tree ./angular/controllers
-//= require_tree ./angular/directives
-//= require_tree ./angular/filters
+//= require_tree ./angular/authentication
+//= require_tree ./angular/public
+//= require_tree ./angular/projects
+//= require_tree ./angular/users
+//= require_tree ./angular/api_logs
 //= require_tree ./angular/tasks
 
 //= require ace_template/bootstrap.min

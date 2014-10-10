@@ -7,8 +7,7 @@ angular.module('tccless').controller 'ApiLogsCtrl', [
   'ApiLogData',
   ($scope, $modal, BreadcrumbService, TitleService, ApiLogService, ApiLogData) ->
     configureView = ->
-      BreadcrumbService.reset()
-      BreadcrumbService.addItem('API Logs')
+      BreadcrumbService.use 'api_logs'
       TitleService.setTitle('API Logs')
       TitleService.setDescription('Audição de todas as requisições feitas.')
 
