@@ -1,13 +1,13 @@
 angular.module('tccless').config [
-  '$stateProvider',
-  'TabWidgetServiceProvider',
-  'BreadcrumbServiceProvider',
+  '$stateProvider'
+  'TabWidgetServiceProvider'
+  'BreadcrumbServiceProvider'
   ($stateProvider, TabWidgetServiceProvider, BreadcrumbServiceProvider) ->
     $stateProvider.
       state('private.projects', {
         url: '/projects',
         controller: 'ProjectsCtrl'
-        templateUrl: 'templates/projects/projects.html',
+        templateUrl: 'templates/projects/projects.html'
         resolve: {
           projects: ['ProjectService', (ProjectService) ->
             ProjectService.all()
@@ -20,8 +20,9 @@ angular.module('tccless').config [
         templateUrl: 'templates/projects/view.html',
         controller: 'ProjectViewCtrl'
         resolve: {
-          project: ['$stateParams', 'ProjectService', ($stateParams, ProjectService) ->
-            ProjectService.find($stateParams.projectId)
+          project: ['$stateParams', 'ProjectService', 'ProjectData', ($stateParams, ProjectService, ProjectData) ->
+            ProjectService.find($stateParams.projectId).then (project) ->
+              ProjectData.currentProject = project
           ]
         }
       }).

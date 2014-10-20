@@ -5,7 +5,8 @@ class TasksController < ApplicationController
 
     resource = klass.find_by_id! params_id
 
-    respond_with resource.tasks
+    @tasks = resource.tasks
+    @paginated_tasks = @tasks.paginate(page: params[:page] || 1)
   rescue ActiveRecord::RecordNotFound
     render_not_found
   end

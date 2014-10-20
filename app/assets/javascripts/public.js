@@ -16,6 +16,7 @@
 //= require vendor/textAngular
 //= require vendor/textAngularSetup
 //= require vendor/textAngular-sanitize.min
+//= require vendor/select
 
 //= require main
 
@@ -35,3 +36,4 @@
 //= require ace_template/dropzone.min
 
 //= require vendor/fuelux.min
+//= require vendor/angular-xeditable

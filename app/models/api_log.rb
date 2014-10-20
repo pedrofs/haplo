@@ -9,7 +9,7 @@ class ApiLog < ActiveRecord::Base
   validates :request_method, presence: true
 
   def to_csv
-    csv_hash.values.to_csv
+    csv_hash.values.to_csv.force_encoding('iso8859-1').encode('UTF-8')
   end
 
   def csv_header

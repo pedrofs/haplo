@@ -3,6 +3,7 @@ angular.module('tccless').factory 'TaskData', [ ->
     tasks: []
     add: (task) ->
       this.tasks.push task
+    count: null
     remove: (id) ->
       result = []
       angular.forEach this.tasks, (el) ->

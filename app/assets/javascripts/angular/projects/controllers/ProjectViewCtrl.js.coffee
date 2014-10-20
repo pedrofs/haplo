@@ -1,11 +1,12 @@
 angular.module('tccless').controller 'ProjectViewCtrl', [
-  '$scope',
-  'BreadcrumbService',
-  'TitleService',
+  '$scope'
+  'BreadcrumbService'
+  'TitleService'
   'ProjectService'
-  'project',
+  'project'
   'TabWidgetService'
-  ($scope, BreadcrumbService, TitleService, ProjectService, project, TabWidgetService) ->
+  'ProjectData'
+  ($scope, BreadcrumbService, TitleService, ProjectService, project, TabWidgetService, ProjectData) ->
     configureView = ->
       TitleService.setTitle(project.name)
       TitleService.setDescription(project.description)

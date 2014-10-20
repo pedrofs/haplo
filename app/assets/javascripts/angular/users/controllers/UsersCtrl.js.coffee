@@ -3,16 +3,12 @@ angular.module('tccless').controller 'UsersCtrl', [
   '$modal',
   'BreadcrumbService',
   'TitleService',
-  'UserService',
-  'md5'
-  ($scope, $modal, BreadcrumbService, TitleService, UserService, md5) ->
+  'UserService'
+  ($scope, $modal, BreadcrumbService, TitleService, UserService) ->
     configureView = ->
       BreadcrumbService.use 'users'
       TitleService.setTitle 'Usuários'
       TitleService.setDescription 'Lista de todos os usuários: confirmados e pendentes.'
-
-    $scope.createHash = (text) ->
-      md5.createHash text
 
     configureView()
     $scope.UserService = UserService

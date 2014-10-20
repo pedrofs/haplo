@@ -8,10 +8,47 @@
  *= require ace_template/dropzone
  *= require ace_template/daterangepicker-bs3
  *= require angular-gantt
+ *= require select.min
+ *= require selectize2-theme
  *= require textAngular
+ *= require angular-xeditable.min
  */
 
- .login-layout a {
+.btn.btn-app.btn-xs.btn-task-status {
+  width: 40px;
+  border-radius: 25px;
+  font-size: 9px;
+  border-radius: 8px;
+  padding-bottom: 1px;
+  padding-top: 1px;
+}
+
+.profile-user-info-striped {
+  padding-left:0;
+  padding-right:0;
+}
+
+.profile-info-value {
+  width:100%;
+}
+
+.tab-content.no-border {
+  margin-top: 25px;
+}
+
+.progress {
+  margin-bottom:0;
+}
+
+table.table tbody td {
+  vertical-align: middle;
+}
+
+table.table tbody td .btn {
+  padding: 0px 12px;
+}
+
+.login-layout a {
   cursor: pointer;
  }
 
@@ -165,4 +202,12 @@ input.inline {
 
 .ta-toolbar.btn-toolbar {
   margin: 0;
+}
+
+#task-list-table {
+  margin-top: 25px;
+}
+
+td .btn-toolbar {
+  margin-left: 0;
 }

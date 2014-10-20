@@ -21,7 +21,7 @@
   <div ng-repeat="project in ProjectService.projects | filter:search.project" class="col-md-3 project">
     <div class="projectWrapper">
       <div class="col-md-3">
-        <img ng-src="http://www.gravatar.com/avatar/{{ project.gravatar }}" />
+        <img ng-src="/assets/project_bgx80.jpg" />
       </div>
       <div class="col-md-9">
         <p><a ui-sref="private.project_view.overview({projectId: project.id})" href="javascript:;">{{ project.name }}</a></p>

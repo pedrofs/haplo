@@ -1,20 +1,22 @@
 angular.module 'tccless', [
-  'ngRoute',
-  'ngResource',
-  'ui.router',
-  'ui.bootstrap',
-  'LocalStorageModule',
-  'angular-md5',
-  'daterangepicker',
-  'gantt',
-  'ngColorPicker',
+  'ngRoute'
+  'ngResource'
+  'ui.router'
+  'ui.bootstrap'
+  'ui.select'
+  'LocalStorageModule'
+  'angular-md5'
+  'daterangepicker'
+  'gantt'
+  'ngColorPicker'
   'textAngular'
+  'xeditable'
 ]
 
 angular.module('tccless').config [
-  '$routeProvider',
-  '$stateProvider',
-  'TabWidgetServiceProvider',
+  '$routeProvider'
+  '$stateProvider'
+  'TabWidgetServiceProvider'
   'BreadcrumbServiceProvider'
   ($routeProvider, $stateProvider, TabWidgetServiceProvider, BreadcrumbServiceProvider) ->
 
@@ -52,4 +54,8 @@ angular.module('tccless').config [
       state('private.logout', {
         url: '/logout'
       })
+]
+
+angular.module('tccless').run [ 'editableOptions', (editableOptions) ->
+  editableOptions.theme = 'bs3'
 ]
