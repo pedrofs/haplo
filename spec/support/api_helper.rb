@@ -2,7 +2,7 @@ module ApiHelper
   include Rack::Test::Methods
 
   HOST = 'example.org'
-  SUBDOMAIN = 'subdomain4test'
+  SUBDOMAIN = 'subdomain4test1337'
 
   def app
     Rails.application

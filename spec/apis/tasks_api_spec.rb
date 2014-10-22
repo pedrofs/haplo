@@ -78,7 +78,7 @@ describe "Tasks API", type: :api do
       it "should return 200 and empty tasks" do
         get "/projects/#{project.id}/tasks", format: :json
         expect(last_response.status).to eq(200)
-        expect(JSON::parse(last_response.body).count).to eq(0)
+        expect(JSON::parse(last_response.body)["tasks"].count).to eq(0)
       end
 
       it "should return 200 and one task" do
@@ -93,7 +93,7 @@ describe "Tasks API", type: :api do
         get "/projects/#{project.id}/tasks", format: :json
 
         expect(last_response.status).to eq(200)
-        expect(JSON::parse(last_response.body).count).to eq(1)
+        expect(JSON::parse(last_response.body)["tasks"].count).to eq(1)
       end
 
       it "should return 404 for non existant project" do
@@ -132,7 +132,7 @@ describe "Tasks API", type: :api do
       it "should return 200 and empty tasks" do
         get "/users/#{user.id}/tasks", format: :json
         expect(last_response.status).to eq(200)
-        expect(JSON::parse(last_response.body).count).to eq(0)
+        expect(JSON::parse(last_response.body)["tasks"].count).to eq(0)
       end
 
       it "should return 200 and one task" do
@@ -147,7 +147,7 @@ describe "Tasks API", type: :api do
         get "/users/#{user.id}/tasks", format: :json
 
         expect(last_response.status).to eq(200)
-        expect(JSON::parse(last_response.body).count).to eq(1)
+        expect(JSON::parse(last_response.body)["tasks"].count).to eq(1)
       end
 
       it "should return 404 for non existant user" do
