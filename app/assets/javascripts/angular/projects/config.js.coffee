@@ -32,7 +32,7 @@ angular.module('tccless').config [
         controller: 'ProjectOverviewCtrl'
       })
 
-    BreadcrumbServiceProvider.addBreadcrumb 'projects', { dependency: 'home', label: 'Projetos', link: 'private.projects' }
+    BreadcrumbServiceProvider.addBreadcrumb 'projects', { dependency: 'home', label: 'Projetos' }
     BreadcrumbServiceProvider.addBreadcrumb 'project_view', { dependency: 'projects' }
     BreadcrumbServiceProvider.addBreadcrumb 'project_view.overview', { dependency: 'project_view', label: 'Overview' }
 

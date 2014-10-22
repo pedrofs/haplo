@@ -15,5 +15,5 @@ angular.module('tccless').config [
         }
       }
 
-    BreadcrumbServiceProvider.addBreadcrumb 'users', { dependency: 'home', label: 'Usuários', link: 'private.users' }
+    BreadcrumbServiceProvider.addBreadcrumb 'users', { dependency: 'home', label: 'Usuários' }
 ]
