@@ -30,7 +30,7 @@ class ProjectsController < ApplicationController
 
     @project.update_attributes! project_params
 
-    respond_with @project
+    render json: @project, status: :ok
   rescue ActiveRecord::RecordNotFound
     render_not_found
   rescue ActiveRecord::RecordInvalid
@@ -51,6 +51,11 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, :description, :client, :archived, project_phases_attributes: [:name, :start_at, :end_at, :_destroy])
+    params.require(:project).permit(:image,
+                                    :name,
+                                    :description,
+                                    :client,
+                                    :archived,
+                                    project_phases_attributes: [:name, :start_at, :end_at, :_destroy])
   end
 end
