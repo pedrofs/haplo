@@ -14,6 +14,24 @@
  *= require angular-xeditable.min
  */
 
+.vertical-align-helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.vertical-align img {
+    vertical-align: middle;
+}
+
+.editable-controls textarea.form-control {
+  height: auto;
+}
+
+.editable-controls .form-control {
+  height: 30px;
+}
+
 .btn.btn-app.btn-xs.btn-task-status {
   width: 40px;
   border-radius: 25px;
@@ -176,6 +194,14 @@ ng-color-picker li.selected {
 .navbar-buttons img {
   width: 35px;
   margin-right: 5px;
+}
+
+.projectWrapper {
+  height:80px;
+}
+
+.projectWrapper .img {
+  height:80px;
 }
 
 .projectWrapper .dropdown-menu.dropdown-closer {
