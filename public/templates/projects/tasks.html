@@ -12,10 +12,6 @@
       </div>
     </div>
   </form>
-
-  <span>
-    Mostrando {{ TaskData.tasks.length }} de {{ TaskData.count }}
-  </span>
 </div>
 
 <div id="task-list-table">
@@ -23,8 +19,8 @@
     <thead>
       <tr>
         <th width="5%">Prioridade</th>
-        <th width="5%">Criada em</th>
         <th width="25%">Título</th>
+        <th width="5%">Criada em</th>
         <th width="25%">Responsável</th>
         <th width="10%">Status</th>
         <th width="20%">Progresso</th>
@@ -39,8 +35,8 @@
             <i class="ace-icon fa fa-warning bigger-110"></i>
           </span>
         </td>
-        <td>{{ task.created_at|date:'dd/MM/yyyy' }}</td>
         <td>{{ task.title }}</td>
+        <td>{{ task.created_at|date:'dd/MM/yyyy' }}</td>
         <td class="img"><img ng-src="http://www.gravatar.com/avatar/{{ task.assigned.email|md5 }}?s=20" /> {{ task.assigned.name }}</td>
         <td></td>
         <td><progressbar class="progress-striped" value="task.progress" type="success">{{ task.progress || 0 }}%</progressbar></td>
