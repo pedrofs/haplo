@@ -20,8 +20,9 @@
 <div id="projects">
   <div ng-repeat="project in ProjectService.projects | filter:search.project" class="col-md-3 project">
     <div class="projectWrapper">
-      <div class="col-md-3">
-        <img ng-src="/images/project_bgx80.jpg" />
+      <div class="col-md-3 vertical-align">
+        <span class="vertical-align-helper"></span>
+        <img ng-src="{{ project.image.thumb }}" />
       </div>
       <div class="col-md-9">
         <p><a ui-sref="private.project_view.overview({projectId: project.id})" href="javascript:;">{{ project.name }}</a></p>
