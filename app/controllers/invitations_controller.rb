@@ -3,7 +3,12 @@ class InvitationsController < ApplicationController
   skip_before_filter :authenticate_user_from_token!, :authenticate_user!, only: :update
 
   def create
-    @user = invite_resource
+    @user = invite_resource do |u|
+      u.skip_invitation = true
+    end
+
+    NotificationMailer.invite_message(@user, request.host, request.port).deliver
+    @user.update_attribute :invitation_sent_at, Time.now.utc
 
     if @user.errors.empty?
       render json: @user, status: :created
@@ -18,7 +23,10 @@ class InvitationsController < ApplicationController
     if resource.errors.empty?
       sign_in resource, store: false
 
-      render json: { auth_token: resource.authentication_token, email: resource.email, email: resource.email }, status: :ok
+      resource.authentication_token = resource.generate_authentication_token
+      sign_in resource, store: false
+
+      render json: { authentication_token: resource.authentication_token, email: resource.email }, status: :ok
     else
       render_errors resource
     end
