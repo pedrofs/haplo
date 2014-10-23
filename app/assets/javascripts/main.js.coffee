@@ -33,19 +33,24 @@ angular.module('tccless').config [
         templateUrl: 'templates/layouts/public.html'
       }).
       state('public.start-now', {
-        url: '/start-now',
-        controller: 'StartNowCtrl',
+        url: '/start-now'
+        controller: 'StartNowCtrl'
         templateUrl: 'templates/pages/start-now.html'
       }).
       state('public.login', {
-        url: '/login',
-        controller: 'LoginCtrl',
+        url: '/login'
+        controller: 'LoginCtrl'
         templateUrl: 'templates/pages/login.html'
       }).
       state('public.welcome', {
-        url: '/',
-        controller: 'WelcomeCtrl',
+        url: '/'
+        controller: 'WelcomeCtrl'
         templateUrl: 'templates/pages/welcome.html'
+      }).
+      state('public.confirmInvitation', {
+        url: '/confirm-invitation/:invitationToken'
+        controller: 'ConfirmInvitationCtrl'
+        templateUrl: 'templates/pages/confirm-invitation.html'
       }).
       state('private', {
         abstract: true,
