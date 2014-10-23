@@ -27,6 +27,7 @@
 //= require_tree ./angular/users
 //= require_tree ./angular/api_logs
 //= require_tree ./angular/tasks
+//= require_tree ./angular/roles
 
 //= require ace_template/bootstrap.min
 //= require ace_template/ace.min
