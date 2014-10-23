@@ -1,0 +1,32 @@
+<form name="newRoleForm" ng-submit="createRole(newRoleForm)" id="newRoleForm" class="form-horizontal">
+  <div class="modal-header">
+    <h3 class="modal-title">Nova role de usuário</h3>
+
+    <a href="javascript:;" ng-click="cancel()" class="cancel-modal">
+      <i class="ace-icon fa fa-times bigger-200"></i>
+    </a>
+  </div>
+
+  <div class="modal-body">
+    <div class="form-group" ng-class="{ 'has-error': newRoleForm.name.$invalid && newRoleForm.name.$dirty }">
+      <label class="col-xs-12 col-sm-2 control-label no-padding-right">Nome</label>
+
+      <div class="col-xs-12 col-sm-10">
+        <input type="text" ng-model="role.name" name="name" class="col-sm-12" />
+      </div>
+
+      <div ng-messages="newRoleForm.name.$error" class="col-sm-9 col-sm-offset-2">
+        <div ng-message="newRoleForm.name.$error.backend">
+          <span class="help-block">{{ newRoleForm.name.$error.backend }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-success" type="submit">
+      <i class="ace-icon fa fa-check bigger-110"></i>
+      Salvar
+    </button>
+  </div>
+</form>

@@ -1,0 +1,48 @@
+<div class="col-md-1">
+  <a class="btn btn-app btn-primary no-radius pull-left" mymodal modaltemplate="templates/roles/new.html" modalctrl="NewRoleCtrl" modalsize="lg">
+    Adicionar
+  </a>
+</div>
+<div class="col-md-11">
+  <form class="form-inline pull-left" role="form" id="searchForm">
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon">
+          <i class="fa fa-search ace-icon bigger-200"></i>
+        </div>
+        <input class="form-control" type="text" placeholder="Nome" ng-model="search.role">
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="clearfix"></div>
+
+<table class="table table-striped table-bordered table-hover" ng-if="RoleData.roles.length > 0">
+  <thead>
+    <tr>
+      <th width="90%">Nome</th>
+      <th width="10%"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr ng-repeat="role in RoleData.roles">
+      <td>{{ role.name }}</td>
+      <td>
+        <div class="btn-toolbar">
+          <div class="btn-group btn-corner">
+            <a class="btn" href="javascript:;" ui-sref="private.view_role({roleId: role.id})">
+              <i class="ace-icon fa fa-search bigger-110"></i>
+            </a>
+
+            <a class="btn"
+               href="javascript:;"
+               confirm-click
+               confirm-click-message="Você tem certeza?"
+               confirm-click-action="removeRole(role.id)"><i class="ace-icon fa fa-trash-o bigger-110"></i></a>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_one :account, foreign_key: 'owner_id'
   has_many :tasks, foreign_key: 'assigned_id'
+  belongs_to :role
 
   devise :invitable, :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
