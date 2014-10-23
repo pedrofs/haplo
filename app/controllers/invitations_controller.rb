@@ -35,11 +35,12 @@ class InvitationsController < ApplicationController
   end
 
   def invite_params
+    devise_parameter_sanitizer.for(:invite)
     devise_parameter_sanitizer.sanitize(:invite)
   end
 
   def update_resource_params
-    devise_parameter_sanitizer.for(:accept_invitation).concat [:name]
+    devise_parameter_sanitizer.for(:accept_invitation).concat [:name, :role_id]
     devise_parameter_sanitizer.sanitize(:accept_invitation)
   end
 
