@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     resources :api_logs, only: [:index]
     resources :tasks, only: [:destroy, :show, :update]
     resources :task_statuses, except: [:new, :edit]
+    resources :roles, except: [:new, :edit]
   end
 
   constraints(SubdomainBlank) do
