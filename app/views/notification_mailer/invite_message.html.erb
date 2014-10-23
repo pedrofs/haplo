@@ -1,0 +1,8 @@
+<p>Olá <%= @user.email %></p>
+
+<p>Alguém te convidou para participar do haplo.io. Você pode aceitar clicando no link abaixo.</p>
+
+<p><a href="http://<%= @host %>:<%= @port %>/#/confirm-invitation/<%= @user.raw_invitation_token %>">Aceitar convite.</a></p>
+
+<p>Se você não quer aceitar o convite, por favor ignore este email.
+<br>Sua conta não será criada enquanto não clicares no link acima e setares uma senha.</p>
