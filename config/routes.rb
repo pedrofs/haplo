@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     resources :projects, except: [:edit, :new], concerns: :taskable
     resources :api_logs, only: [:index]
     resources :tasks, only: [:destroy, :show, :update]
+    resources :task_statuses, except: [:new, :edit]
   end
 
   constraints(SubdomainBlank) do

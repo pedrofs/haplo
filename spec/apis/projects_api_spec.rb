@@ -96,7 +96,7 @@ describe "Projects API", type: :api do
 
         put "/projects/#{project.id}", project: attributes_for(:project, name: 'Edited'), format: :json
 
-        expect(last_response.status).to eq(204)
+        expect(last_response.status).to eq(200)
       end
 
       it "should return 422 with invalid attributes" do

@@ -2,7 +2,7 @@
   <h1>
     {{ titleService.title }}
     <small>
-      <i class="ace-icon fa fa-angle-double-right"></i>
+      <i class="ace-icon fa fa-angle-double-right" ng-if="titleService.description"></i>
       {{ titleService.description }}
     </small>
   </h1>
