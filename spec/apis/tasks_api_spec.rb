@@ -104,7 +104,9 @@ describe "Tasks API", type: :api do
 
     describe "POST /projects/:project_id/tasks" do
       it "should save task with valid attributes" do
-        post "/projects/#{project.id}/tasks", task: attributes_for(:task, assigned_id: user.id, reporter_id: user.id), format: :json
+        status = create_on_schema :task_status, account.subdomain
+
+        post "/projects/#{project.id}/tasks", task: attributes_for(:task, task_status_id: status.id, assigned_id: user.id, reporter_id: user.id), format: :json
 
         expect(last_response.status).to eq(201)
         on_schema account.subdomain do

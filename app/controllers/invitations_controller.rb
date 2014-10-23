@@ -7,10 +7,10 @@ class InvitationsController < ApplicationController
       u.skip_invitation = true
     end
 
-    NotificationMailer.invite_message(@user, request.host, request.port).deliver
-    @user.update_attribute :invitation_sent_at, Time.now.utc
-
     if @user.errors.empty?
+      NotificationMailer.invite_message(@user, request.host, request.port).deliver
+      @user.update_attribute :invitation_sent_at, Time.now.utc
+      
       render json: @user, status: :created
     else
       render_errors @user

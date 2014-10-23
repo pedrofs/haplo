@@ -20,7 +20,6 @@ describe "invitation feature", type: :feature do
 
     it "should accept invitation" do
       invitation_token = create_invitation(account.subdomain, user, 'pedro@fsteim.com')
-
       page.driver.put user_invitation_url(subdomain: account.subdomain),
                        user: { name: 'Invited Test User', password: '123', password_confirmation: '123', invitation_token: invitation_token },
                        format: :json
@@ -62,7 +61,7 @@ describe "invitation feature", type: :feature do
       expect(invited_user.email).to eq('pedro@fsteim.com')
       expect(invited_user.password).to be(nil)
 
-      expect(current_email.body).to have_content('Accept invitation')
+      expect(current_email.body).to have_content('Aceitar convite')
       expect(current_email.body).to have_content('pedro@fsteim.com')
     end
 
@@ -91,5 +90,5 @@ def create_invitation subdomain, user, email
 
   open_email email
   
-  current_email.body.match(/invitation_token=([\w|-]*)/)[1]
+  current_email.body.match(/\/confirm-invitation\/(\S+)">Aceitar/)[1]
 end
