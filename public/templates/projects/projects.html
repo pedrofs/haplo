@@ -35,6 +35,52 @@
 
   <div class="widget-body">
     <div class="widget-main">
+
+    <div id="favorite-projects" class="projects">
+        <p class="alert" ng-if="FavoriteProjectData.favoriteProjects.length == 0">Você não tem nenhum projeto favorito.</p>
+
+        <div ng-repeat="project in FavoriteProjectData.favoriteProjects | filter:search.project" class="col-md-3 project">
+          <div class="projectWrapper">
+            <div class="col-md-3 vertical-align">
+              <span class="vertical-align-helper"></span>
+              <img ng-src="{{ project.image.thumb }}" />
+            </div>
+            <div class="col-md-9">
+              <p><a ui-sref="private.project_view.overview({projectId: project.id})" href="javascript:;">{{ project.name }}</a></p>
+              <p>{{ project.client }}</p>
+            </div>
+
+            <ul class="project-action-list list-inline">
+              <li>
+                <i favorite-project-star project="project"></i>
+              </li>
+              <li>
+                <a href="#" data-toggle="dropdown">
+                  <i class="ace-icon fa fa-bars bigger-140"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right dropdown-light-blue dropdown-caret dropdown-closer">
+                  <li>
+                    <a data-toggle="tab" href="#dropdown1">Arquivar</a>
+                  </li>
+
+                  <li>
+                    <a data-toggle="tab"
+                       href="javascript:;"
+                       confirm-click
+                       confirm-click-message="Você tem certeza?"
+                       confirm-click-action="ProjectService.destroy(project.id)">Excluir</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="clearfix"></div>
+      </div>
+    </div>
+
     </div>
   </div>
 </div>
@@ -55,7 +101,7 @@
 
   <div class="widget-body">
     <div class="widget-main">
-      <div id="projects">
+      <div id="projects" class="projects">
         <div ng-repeat="project in ProjectService.projects | filter:search.project" class="col-md-3 project">
           <div class="projectWrapper">
             <div class="col-md-3 vertical-align">
@@ -67,21 +113,28 @@
               <p>{{ project.client }}</p>
             </div>
 
-            <a href="#" class="removeButton" data-toggle="dropdown">
-              <i class="ace-icon fa fa-bars"></i>
-            </a>
-
-            <ul class="dropdown-menu dropdown-menu-right dropdown-light-blue dropdown-caret dropdown-closer">
+            <ul class="project-action-list list-inline">
               <li>
-                <a data-toggle="tab" href="#dropdown1">Arquivar</a>
+                <i favorite-project-star project="project"></i>
               </li>
-
               <li>
-                <a data-toggle="tab"
-                   href="javascript:;"
-                   confirm-click
-                   confirm-click-message="Você tem certeza?"
-                   confirm-click-action="ProjectService.destroy(project.id)">Excluir</a>
+                <a href="#" data-toggle="dropdown">
+                  <i class="ace-icon fa fa-bars bigger-140"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right dropdown-light-blue dropdown-caret dropdown-closer">
+                  <li>
+                    <a data-toggle="tab" href="#dropdown1">Arquivar</a>
+                  </li>
+
+                  <li>
+                    <a data-toggle="tab"
+                       href="javascript:;"
+                       confirm-click
+                       confirm-click-message="Você tem certeza?"
+                       confirm-click-action="ProjectService.destroy(project.id)">Excluir</a>
+                  </li>
+                </ul>
               </li>
             </ul>
 
