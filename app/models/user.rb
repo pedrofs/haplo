@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
 
+  validates :password, format: {with: /(?=.*[@#$%])/, message: "você precisa incluir um caracter especial: @#$%", multiline: true}
+
   before_destroy :check_ownership
 
   def generate_authentication_token
