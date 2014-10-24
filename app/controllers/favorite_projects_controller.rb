@@ -2,7 +2,7 @@ class FavoriteProjectsController < ApplicationController
   respond_to :json
 
   def index
-    user_id = params[:user_id]
+    user_id = params[:user_id] || current_user
 
     @favorite_projects = FavoriteProject.eager_load(:project).where(user_id: user_id).all
   end
