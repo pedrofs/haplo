@@ -14,7 +14,11 @@
  *= require angular-xeditable.min
  */
 
- .table {
+#favorites {
+  margin-top:25px;
+}
+
+.table {
   margin-top:25px;
  }
 
