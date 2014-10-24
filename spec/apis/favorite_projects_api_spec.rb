@@ -11,18 +11,18 @@ describe "FavoriteProjects API", type: :api do
 
   describe "GET /users/:user_id/favorite_projects.json" do
     it "should return 200 with empty projects" do
-      get "/users/#{user.id}/favorite_projects.json"
+      get "/users/#{user.id}/favorite_projects.json", {}, format: :json
 
       expect(last_response.status).to be(200)
       expect(JSON::parse(last_response.body).count).to be(0)
     end
 
     it "should return 200 with one project" do
-      on_schema account.domain do
+      on_schema account.subdomain do
         create(:favorite_project, user_id: user.id, project_id: project.id)
       end
 
-      get "/users/#{user.id}/favorite_projects.json"
+      get "/users/#{user.id}/favorite_projects.json", {}, format: :json
 
       expect(last_response.status).to be(200)
       expect(JSON::parse(last_response.body).count).to be(1)
