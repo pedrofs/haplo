@@ -10,6 +10,7 @@ describe Project do
   describe "associations" do
     it { should have_many :project_phases }
     it { should have_many :tasks }
+    it { should have_many :favorite_projects }
   end
 
   describe "accepts nested attributes for project_phases" do
