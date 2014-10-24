@@ -11,6 +11,14 @@ angular.module('tccless').config [
         resolve: {
           projects: ['ProjectService', (ProjectService) ->
             ProjectService.all()
+          ],
+          favoriteProjects: ['$q', '$http', 'FavoriteProjectData', ($q, $http, FavoriteProjectData) ->
+            deferred = $q.defer()
+            $http.get("/favorite_projects.json").then (response) ->
+              FavoriteProjectData.favoriteProjects = response.data
+              deferred.resolve(response.data)
+
+            deferred.promise
           ]
         }
       }).
