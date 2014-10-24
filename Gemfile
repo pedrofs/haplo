@@ -23,6 +23,7 @@ group :development, :test do
 	gem 'guard-livereload'
 	gem 'guard-rspec'
 	gem 'rspec-rails'
+	gem 'rspec-mocks'
 	gem 'capybara'
 	gem 'factory_girl_rails', require: false
 	gem 'database_cleaner'

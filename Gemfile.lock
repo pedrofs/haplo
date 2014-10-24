@@ -238,6 +238,7 @@ DEPENDENCIES
   pg
   puma
   rails (= 4.1.4)
+  rspec-mocks
   rspec-rails
   sass-rails (~> 4.0.3)
   shoulda-matchers
