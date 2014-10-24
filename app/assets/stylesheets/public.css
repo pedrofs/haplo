@@ -14,6 +14,11 @@
  *= require angular-xeditable.min
  */
 
+#favorite-projects p.alert, .projects p.alert {
+  text-align:center;
+  font-weight:bold;
+}
+
 #favorites {
   margin-top:25px;
 }
@@ -78,24 +83,28 @@ table.table tbody td .btn {
   cursor: pointer;
  }
 
- #users .user, #projects .project {
+ #users .user {
   margin-top: 25px;
  }
 
- #users .user .userWrapper, #projects .project .projectWrapper {
+ .projects .project {
+  margin: 12px 0px;
+ }
+
+ #users .user .userWrapper, .projects .project .projectWrapper {
   border: 1px solid #ccc;
   position: relative;
  }
 
- #users .user p, #projects .project p {
+ #users .user p, .projects .project p {
   margin: 0px;
  }
 
- #users .user label .lbl, #projects .project label .lbl {
+ #users .user label .lbl, .projects .project label .lbl {
   font-size: 12px;
  }
 
- #users .user label, #projects .project label {
+ #users .user label, .projects .project label {
   position: absolute;
   bottom: 0px;
   right: 5px;
@@ -110,10 +119,10 @@ table.table tbody td .btn {
   font-size: 16px;
  }
 
-.removeButton {
+.removeButton, .project-action-list {
   position: absolute;
   right: 0.3%;
-  top: 1%; 
+  top: 2%; 
 }
 
 .wizard-steps {
@@ -210,10 +219,6 @@ ng-color-picker li.selected {
 
 .projectWrapper .img {
   height:80px;
-}
-
-.projectWrapper .dropdown-menu.dropdown-closer {
-  top: 20%;
 }
 
 #task-list-header span {
