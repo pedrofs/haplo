@@ -34,6 +34,9 @@ Rails.application.routes.draw do
     resources :tasks, only: [:destroy, :show, :update]
     resources :task_statuses, except: [:new, :edit]
     resources :roles, except: [:new, :edit]
+
+    post "/favorite_projects/toggle/:project_id.json", to: "favorite_projects#toggle", as: :favorite_projects_toggle
+    get "/users/:user_id/favorite_projects.json", to: "favorite_projects#index", as: :favorite_projects
   end
 
   constraints(SubdomainBlank) do
