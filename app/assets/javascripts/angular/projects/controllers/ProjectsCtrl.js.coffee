@@ -1,9 +1,10 @@
 angular.module('tccless').controller 'ProjectsCtrl', [
-  '$scope',
-  'BreadcrumbService',
-  'TitleService',
+  '$scope'
+  'BreadcrumbService'
+  'TitleService'
   'ProjectService'
-  ($scope, BreadcrumbService, TitleService, ProjectService) ->
+  'FavoriteProjectData'
+  ($scope, BreadcrumbService, TitleService, ProjectService, FavoriteProjectData) ->
     configureView = ->
       BreadcrumbService.use('projects')
       TitleService.setTitle('Projetos')
@@ -11,4 +12,5 @@ angular.module('tccless').controller 'ProjectsCtrl', [
 
     configureView()
     $scope.ProjectService = ProjectService
+    $scope.FavoriteProjectData = FavoriteProjectData
 ]
