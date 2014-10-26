@@ -18,7 +18,14 @@ angular.module('tccless').config [
         url: '/users/:userId'
         controller: 'UserViewCtrl'
         templateUrl: 'templates/users/view.html'
+        resolve:
+          user: ['$http', '$q', '$stateParams', ($http, $q, $stateParams) ->
+            deferred = $q.defer()
+            $http.get("/users/#{$stateParams.userId}.json").then (response) -> deferred.resolve(response.data)
+            deferred.promise
+          ]
       })
 
     BreadcrumbServiceProvider.addBreadcrumb 'users', { dependency: 'home', label: 'Usuários' }
+    BreadcrumbServiceProvider.addBreadcrumb 'users.view', { dependency: 'users' }
 ]
