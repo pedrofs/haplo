@@ -13,8 +13,6 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find_by! id: params[:id]
-
-    respond_with @task
   rescue ActiveRecord::RecordNotFound
     render_not_found
   end
@@ -27,7 +25,7 @@ class TasksController < ApplicationController
 
     @task.save!
 
-    respond_with @task, location: nil, code: :created
+    render :show, status: :created
   rescue  ActiveRecord::RecordInvalid
     render_errors @task
   rescue ActiveRecord::RecordNotFound
