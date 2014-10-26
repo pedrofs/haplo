@@ -56,6 +56,8 @@ describe "Tasks API", type: :api do
     describe "GET /tasks/:id" do
       it "should return 200 for an existant task" do
         on_schema account.subdomain do
+          task_status = create(:task_status)
+          task.task_status = task_status
           task.save
         end
 
