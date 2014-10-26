@@ -3,6 +3,12 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def show
+    @user = User.eager_load(:role).find_by! id: params[:id]
+  rescue ActiveRecord::RecordNotFound
+    render_not_found
+  end
+
   def destroy
     @user = User.find_by! id: params[:id]
 
