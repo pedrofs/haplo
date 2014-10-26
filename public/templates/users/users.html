@@ -22,7 +22,7 @@
   <div ng-repeat="user in UserService.users | filter:search.user" class="col-md-3 user">
     <div class="userWrapper">
       <div class="col-md-3">
-        <img ng-src="http://www.gravatar.com/avatar/{{ user.email|md5 }}" />
+        <img ng-src="{{ user.image.medium }}" />
       </div>
       <div class="col-md-9">
         <p>{{ user.name || 'sem nome' }}</p>

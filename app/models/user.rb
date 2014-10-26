@@ -1,7 +1,10 @@
+require 'digest/md5'
+
 class User < ActiveRecord::Base
-  has_one :account, foreign_key: 'owner_id'
   has_many :tasks, foreign_key: 'assigned_id'
   has_many :favorite_projects
+  has_attached_file :image, styles: { big: "200x200>", medium: "80x80>", small: "40x40>", mini: "20x20>" }, default_url: "http://www.gravatar.com/avatar/:md5_email?s=:size"
+  has_one :account, foreign_key: 'owner_id'
   belongs_to :role
 
   devise :invitable, :database_authenticatable,
@@ -22,5 +25,22 @@ class User < ActiveRecord::Base
 
   def check_ownership
     !account
+  end
+end
+
+Paperclip.interpolates :md5_email  do |attachment, style|
+  Digest::MD5.hexdigest attachment.instance.email
+end
+
+Paperclip.interpolates :size  do |attachment, style|
+  case style
+    when :big
+      '200'
+    when :medium
+      '80'
+    when :small
+      '40'
+    when :mini
+      '20'
   end
 end
