@@ -10,7 +10,8 @@ json.image do |img|
 end
 json.role do |r|
   if @user.role
-    r.id = @user.role.id
-    r.name = @user.role.name
+    r.id @user.role.id
+    r.name @user.role.name
   end
 end
+json.role_id @user.role_id

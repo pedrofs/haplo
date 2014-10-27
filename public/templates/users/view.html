@@ -26,7 +26,7 @@
     <div class="profile-info-name"> Sobre mim </div>
 
     <div class="profile-info-value">
-      <span editable-textarea="user.about_me" onbeforesave="saveUser('about_me', $data)">{{ user.about_me }}</span>
+      <span editable-textarea="user.about_me" onbeforesave="saveUser('about_me', $data)">{{ user.about_me || 'n/a' }}</span>
     </div>
   </div>
 
@@ -42,7 +42,7 @@
     <div class="profile-info-name"> Função </div>
 
     <div class="profile-info-value">
-      <span editable-select="user.role_id" e-ng-options="r.id as r.name for r in roles" onbeforesave="saveUser('role_id', $data)">{{ (user.role && user.role.name) || 'nenhuma' }}</span>
+      <span ng-change="updateRole($data)" ng-model="user.role_id" editable-select="user.role_id" e-ng-options="r.id as r.name for r in roles" onbeforesave="saveUser('role_id', $data)">{{(user.role && user.role.name) || 'nenhuma' }}</span>
     </div>
   </div>
 </div>
