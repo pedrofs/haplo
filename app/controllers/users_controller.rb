@@ -9,6 +9,16 @@ class UsersController < ApplicationController
     render_not_found
   end
 
+  def update
+    @user = User.find_by! id: params[:id]
+
+    @user.update_attributes params_user
+
+    render :show, status: :ok
+  rescue ActiveRecord::RecordNotFound
+    render_not_found
+  end
+
   def destroy
     @user = User.find_by! id: params[:id]
 
@@ -18,5 +28,9 @@ class UsersController < ApplicationController
       render json: {flash: 'Não foi possível deletar o usuário.'}, status: :bad_request
     rescue ActiveRecord::RecordNotFound
       render_not_found
+  end
+
+  def params_user
+    params.require(:user).permit(:name, :email, :image, :role_id)
   end
 end
