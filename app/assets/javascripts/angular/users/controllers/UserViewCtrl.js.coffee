@@ -25,10 +25,23 @@ angular.module('tccless').controller 'UserViewCtrl', [
       
       deferred.promise
 
+    updateRole = (roleId) ->
+      console.log roleId
+      selected = $scope.roles.filter (r) ->
+        r.id == roleId
+
+      $scope.user.role = selected[0]
+
     $scope.error = ->
       console.log 'erro callback'
     $scope.success = (user) ->
       $scope.user.image = user.image
+
+    $scope.$watch((scope) ->
+        scope.user.role_id
+      (newRoleId) ->
+          updateRole(newRoleId)
+      )
 
     configureView()
     $scope.user = user
