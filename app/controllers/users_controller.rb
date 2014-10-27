@@ -12,9 +12,11 @@ class UsersController < ApplicationController
   def update
     @user = User.find_by! id: params[:id]
 
-    @user.update_attributes params_user
+    @user.update_attributes! params_user
 
     render :show, status: :ok
+  rescue ActiveRecord::RecordInvalid
+    render_errors @user
   rescue ActiveRecord::RecordNotFound
     render_not_found
   end

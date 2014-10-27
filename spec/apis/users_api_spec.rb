@@ -35,6 +35,16 @@ describe "User API", type: :api do
       end
     end
 
+    it "should return 422 with invalid attributes" do
+      on_schema account.subdomain do
+        create :user, email: 'iamhere@test.com'
+      end
+
+      put "/users/#{user.id}", user: { email: 'iamhere@test.com' }
+      expect(last_response.status).to be(422)
+      expect(JSON.parse(last_response.body)["errors"]).to have_key "email"
+    end
+
     it "should return 404 for a non existant user" do
       put "/users/1337", format: :json
 
