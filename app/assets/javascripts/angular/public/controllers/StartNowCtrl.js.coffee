@@ -12,5 +12,5 @@ angular.module('tccless').controller 'StartNowCtrl', [
       formBind.bind($scope.accountForm, createAccountPromise)
 
       createAccountPromise.then ->
-        window.location.href = "http://" + account.subdomain + ".lvh.me:3000/#/login"
+        window.location.href = "#{$location.protocol()}://#{account.subdomain}.#{$location.host()}:#{$location.port()}/#/login"
 ]
