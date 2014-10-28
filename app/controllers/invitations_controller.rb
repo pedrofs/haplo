@@ -11,7 +11,7 @@ class InvitationsController < ApplicationController
       NotificationMailer.invite_message(@user, request.host, request.port).deliver
       @user.update_attribute :invitation_sent_at, Time.now.utc
       
-      render json: @user, status: :created
+      render 'users/show.json', status: :created
     else
       render_errors @user
     end
