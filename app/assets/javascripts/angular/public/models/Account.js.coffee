@@ -1,3 +1,3 @@
-angular.module('tccless').factory('Account', ($resource) ->
+angular.module('tccless').factory 'Account', ['$resource', ($resource) ->
   return $resource('/accounts.json')
-)
+]

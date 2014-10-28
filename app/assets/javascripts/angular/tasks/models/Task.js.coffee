@@ -1,3 +1,3 @@
-angular.module('tccless').factory('Task', ($resource) ->
+angular.module('tccless').factory 'Task', ['$resource', ($resource) ->
   $resource('/tasks/:id.json')
-)
+]
