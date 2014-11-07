@@ -24,10 +24,12 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find_by! id: params[:id]
 
-    respond_with @user.destroy!
+    @user.destroy!
+
+    render json: {flash: 'Usuário deletado com sucesso.', type: 'success'}, status: :ok
 
     rescue ActiveRecord::RecordNotDestroyed
-      render json: {flash: 'Não foi possível deletar o usuário.'}, status: :bad_request
+      render json: {flash: 'Não foi possível deletar o usuário.', type: 'danger'}, status: :bad_request
     rescue ActiveRecord::RecordNotFound
       render_not_found
   end

@@ -9,7 +9,7 @@ describe "User API", type: :api do
   end
 
   
-  describe "GET /task_statuses/:id" do
+  describe "GET /users/:id" do
     it "should return 404 for a non existant user" do
       get "/users/1337", format: :json
 
