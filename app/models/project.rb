@@ -11,16 +11,16 @@ class Project < ActiveRecord::Base
 
   accepts_nested_attributes_for :project_phases, allow_destroy: true
 
-  def to_json options = {}
-    {
-      id: id,
-      name: name,
-      client: client,
-      description: description,
-      image: {
-        medium: image.url(:medium),
-        thumb: image.url(:thumb)
-      }
-    }.to_json options
+  def to_builder
+    Jbuilder.new do |project|
+      project.id id
+      project.name name
+      project.client client
+      project.description description
+      project.image do |img|
+        img.medium image.url :medium
+        img.thumb image.url :thumb
+      end
+    end
   end
 end

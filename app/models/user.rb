@@ -1,5 +1,22 @@
 require 'digest/md5'
 
+Paperclip.interpolates :md5_email  do |attachment, style|
+  Digest::MD5.hexdigest attachment.instance.email
+end
+
+Paperclip.interpolates :size  do |attachment, style|
+  case style
+    when :big
+      '200'
+    when :medium
+      '80'
+    when :small
+      '40'
+    when :mini
+      '20'
+  end
+end
+
 class User < ActiveRecord::Base
   has_many :tasks, foreign_key: 'assigned_id'
   has_many :favorite_projects
@@ -26,21 +43,26 @@ class User < ActiveRecord::Base
   def check_ownership
     !account
   end
-end
 
-Paperclip.interpolates :md5_email  do |attachment, style|
-  Digest::MD5.hexdigest attachment.instance.email
-end
-
-Paperclip.interpolates :size  do |attachment, style|
-  case style
-    when :big
-      '200'
-    when :medium
-      '80'
-    when :small
-      '40'
-    when :mini
-      '20'
+  def to_builder
+    Jbuilder.new do |user|
+      user.id id
+      user.name name
+      user.email email
+      user.status invitation_accepted?
+      user.image do |img|
+        img.big image.url(:big)
+        img.medium image.url(:medium)
+        img.small image.url(:small)
+        img.mini image.url(:mini)
+      end
+      user.role do |r|
+        if role
+          r.id role.id
+          r.name role.name
+        end
+      end
+      user.role_id role_id
+    end
   end
 end
