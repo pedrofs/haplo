@@ -45,7 +45,7 @@ describe "invitation feature", type: :feature do
       response_body = JSON.parse(page.driver.response.body)
 
       expect(page.driver.response.status).to eq(201)
-      expect(response_body["email"]).to eq('pedro@fsteim.com')
+      expect(response_body["user"]["email"]).to eq('pedro@fsteim.com')
     end
 
     it "should send invitation email after creating invitation" do

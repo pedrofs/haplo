@@ -29,7 +29,7 @@ describe "User API", type: :api do
       put "/users/#{user.id}", user: {name: 'edited'}, format: :json
 
       expect(last_response.status).to be(200)
-      expect(JSON.parse(last_response.body)["name"]).to eq('edited')
+      expect(JSON.parse(last_response.body)["user"]["name"]).to eq('edited')
       on_schema account.subdomain do
         expect(User.find_by(id: user.id).try(:name)).to eq('edited')
       end
