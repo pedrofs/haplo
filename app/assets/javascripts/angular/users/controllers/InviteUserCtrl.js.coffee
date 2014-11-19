@@ -14,6 +14,6 @@ angular.module('tccless').controller 'InviteUserCtrl', [
       formBind.bind(form, invitationPromise)
 
       invitationPromise.then (response) ->
-        UserService.add(response.data)
+        UserService.add(response.data.user)
         $scope.$dismiss('created')
 ]

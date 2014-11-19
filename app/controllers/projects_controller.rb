@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find_by! id: params[:id]
 
-    respond_with @project
+    render json: @project.to_builder.attributes!
 
   rescue ActiveRecord::RecordNotFound
     render_not_found
@@ -19,7 +19,7 @@ class ProjectsController < ApplicationController
 
     @project.save!
 
-    respond_with @project, code: :created
+    render json: { project: @project.to_builder.attributes!, flash: 'Projeto criado com sucesso.', type: 'success' }, status: :created
 
   rescue ActiveRecord::RecordInvalid
     render_errors @project
@@ -30,7 +30,7 @@ class ProjectsController < ApplicationController
 
     @project.update_attributes! project_params
 
-    render json: @project, status: :ok
+    render json: { project: @project.to_builder.attributes!, flash: 'Projeto atualizado com sucesso.', type: 'success' }, status: :ok
   rescue ActiveRecord::RecordNotFound
     render_not_found
   rescue ActiveRecord::RecordInvalid
@@ -40,10 +40,11 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find_by! id: params[:id]
 
-    respond_with @project.destroy!
+    @project.destroy!
 
+    render json: {flash: 'Projeto deletado com sucesso.', type: 'success'}, status: :ok
   rescue ActiveRecord::RecordNotDestroyed
-    render json: {flash: 'Não foi possível deletar o projeto.'}, code: :bad_request
+    render json: {flash: 'Não foi possível deletar o projeto.', type: 'danger'}, status: :bad_request
   rescue ActiveRecord::RecordNotFound
     render_not_found
   end

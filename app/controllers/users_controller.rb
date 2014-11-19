@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
     @user.update_attributes! params_user
 
-    render :show, status: :ok
+    render json: { user: @user.to_builder.attributes!, flash: 'Usuário atualizado com sucesso.', type: 'success'}, status: :ok
   rescue ActiveRecord::RecordInvalid
     render_errors @user
   rescue ActiveRecord::RecordNotFound

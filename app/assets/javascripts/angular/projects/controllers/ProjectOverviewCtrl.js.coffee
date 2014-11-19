@@ -34,8 +34,8 @@ angular.module('tccless').controller 'ProjectOverviewCtrl', [
 
     $scope.error = ->
       console.log 'erro callback'
-    $scope.success = (project) ->
-      $scope.project.image = project.image
+    $scope.success = (response) ->
+      $scope.project.image = response.project.image
 
     BreadcrumbService.use 'project_view.overview'
     $scope.project = project

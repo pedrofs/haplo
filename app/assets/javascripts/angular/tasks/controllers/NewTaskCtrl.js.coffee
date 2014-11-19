@@ -29,7 +29,7 @@ angular.module('tccless').controller 'NewTaskCtrl', [
       formBind.bind(form, creationPromisse)
 
       creationPromisse.then (response) ->
-        TaskData.add(response.data)
+        TaskData.add(response.data.task)
         $scope.$dismiss('created')
 
     UserService.all().then (users) ->

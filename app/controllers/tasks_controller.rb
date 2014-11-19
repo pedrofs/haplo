@@ -13,6 +13,8 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find_by! id: params[:id]
+
+    render json: @task.to_builder.attributes!
   rescue ActiveRecord::RecordNotFound
     render_not_found
   end
@@ -25,7 +27,7 @@ class TasksController < ApplicationController
 
     @task.save!
 
-    render :show, status: :created
+    render json: {task: @task.to_builder.attributes!, flash: 'Tarefa criada com sucesso.', status: 'success'}, status: :created
   rescue  ActiveRecord::RecordInvalid
     render_errors @task
   rescue ActiveRecord::RecordNotFound
@@ -37,7 +39,7 @@ class TasksController < ApplicationController
 
     @task.update_attributes! task_params
 
-    respond_with @task
+    render json: {task: @task.to_builder.attributes!, flash: 'Tarefa atualizada com sucesso.', status: 'success'}, status: :ok
   rescue ActiveRecord::RecordNotFound
     render_not_found
   rescue ActiveRecord::RecordInvalid
@@ -47,9 +49,11 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find_by! id: params[:id]
 
-    respond_with @task.destroy!
+    @task.destroy!
+
+    render json: {flash: 'Tarefa excluída com sucesso.', type: 'success'}, status: :ok
   rescue ActiveRecord::RecordNotDestroyed
-    render json: {flash: 'Não foi possível deletar a tarefa.'}, code: :bad_request
+    render json: {flash: 'Não foi possível deletar a tarefa.', type: 'danger'}, status: :bad_request
   rescue ActiveRecord::RecordNotFound
     render_not_found
   end
