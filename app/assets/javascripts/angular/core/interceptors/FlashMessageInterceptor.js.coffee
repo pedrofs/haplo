@@ -8,9 +8,11 @@ angular.module('tccless').factory 'FlashMessageInterceptor', [->
           placement:
             from: "top"
             align: "center"
+          animate:
+            enter: 'animated fadeInDown'
+            exit: 'animated fadeOutUp'
 
-        console.log growlOptions
-        console.log $.growl(response.data.flash, growlOptions)
+        $.growl(response.data.flash, growlOptions)
 
       response
 
