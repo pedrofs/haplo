@@ -26,7 +26,6 @@ angular.module('tccless').controller 'UserViewCtrl', [
       deferred.promise
 
     updateRole = (roleId) ->
-      console.log roleId
       selected = $scope.roles.filter (r) ->
         r.id == roleId
 
