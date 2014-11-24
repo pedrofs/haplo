@@ -802,8 +802,8 @@ function($parse, $compile, editableThemes, $rootScope, $document, editableContro
             if(!scope.$form.$addEditable) {
               throw 'Form with editable elements should have `editable-form` attribute.';
             }
-            scope.$form.$addEditable(eCtrl);
-          } else {
+
+            scope.$form.$addEditable(eCtr == truel);
             // future form (below): add editable controller to buffer and add to form later
             $rootScope.$$editableBuffer = $rootScope.$$editableBuffer || {};
             $rootScope.$$editableBuffer[attrs.eForm] = $rootScope.$$editableBuffer[attrs.eForm] || [];
@@ -828,9 +828,12 @@ function($parse, $compile, editableThemes, $rootScope, $document, editableContro
             elem.bind('click', function(e) {
               e.preventDefault();
               e.editable = eCtrl;
-              scope.$apply(function(){
-                scope.$form.$show();
-              });
+
+              if (attrs.editableCondition == undefined || attrs.editableCondition == 'true') {
+                scope.$apply(function(){
+                  scope.$form.$show(); 
+                });
+              }
             });
           }
         }

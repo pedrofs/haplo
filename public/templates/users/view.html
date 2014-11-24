@@ -18,7 +18,7 @@
     <div class="profile-info-name"> Nome </div>
 
     <div class="profile-info-value">
-      <span editable-text="user.name" onbeforesave="saveUser('name', $data)">{{ user.name }}</span>
+      <span editable-text="user.name" editable-condition="{{ user.id == session.currentUser.id }}" onbeforesave="saveUser('name', $data)">{{ user.name }}</span>
     </div>
   </div>
 
@@ -26,7 +26,7 @@
     <div class="profile-info-name"> Sobre mim </div>
 
     <div class="profile-info-value">
-      <span editable-textarea="user.about_me" onbeforesave="saveUser('about_me', $data)">{{ user.about_me || 'n/a' }}</span>
+      <span editable-textarea="user.about_me" editable-condition="{{ user.id == session.currentUser.id }}" onbeforesave="saveUser('about_me', $data)">{{ user.about_me || 'n/a' }}</span>
     </div>
   </div>
 
@@ -34,7 +34,7 @@
     <div class="profile-info-name"> Email </div>
 
     <div class="profile-info-value">
-      <span editable-text="user.email" onbeforesave="saveUser('email', $data)">{{ user.email }}</span>
+      <span editable-text="user.email" editable-condition="{{ user.id == session.currentUser.id }}" onbeforesave="saveUser('email', $data)">{{ user.email }}</span>
     </div>
   </div>
 
@@ -42,7 +42,7 @@
     <div class="profile-info-name"> Função </div>
 
     <div class="profile-info-value">
-      <span ng-change="updateRole($data)" ng-model="user.role_id" editable-select="user.role_id" e-ng-options="r.id as r.name for r in roles" onbeforesave="saveUser('role_id', $data)">{{(user.role && user.role.name) || 'nenhuma' }}</span>
+      <span ng-change="updateRole($data)" ng-model="user.role_id" editable-select="user.role_id" editable-condition="{{ user.id == session.currentUser.id }}" e-ng-options="r.id as r.name for r in roles" onbeforesave="saveUser('role_id', $data)">{{(user.role && user.role.name) || 'nenhuma' }}</span>
     </div>
   </div>
 </div>
