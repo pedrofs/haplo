@@ -8,20 +8,22 @@ angular.module('tccless').directive 'fileInput', ['FileUpload', (FileUpload) ->
     link: (scope, element, attrs) ->
       input = $(attrs.fileInput)
       action = attrs.submitUrl
-      element.bind 'click', (e) ->
-        input.click()
 
-      input.bind 'change', (e) ->
-        file = e.target.files[0]
-        promise = FileUpload.uploadFileToUrlUsingName file, action, input.attr('name')
+      if attrs.fileInputCondition == undefined or attrs.fileInputCondition == 'true'
+        element.bind 'click', (e) ->
+          input.click()
 
-        promise.success (response) ->
-          env =
-            response: response
-          scope.success(env)
+        input.bind 'change', (e) ->
+          file = e.target.files[0]
+          promise = FileUpload.uploadFileToUrlUsingName file, action, input.attr('name')
 
-        promise.error (response) ->
-          env =
-            response: response
-          scope.error(env)
+          promise.success (response) ->
+            env =
+              response: response
+            scope.success(env)
+
+          promise.error (response) ->
+            env =
+              response: response
+            scope.error(env)
 ]

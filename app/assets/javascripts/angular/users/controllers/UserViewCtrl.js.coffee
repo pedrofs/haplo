@@ -8,8 +8,8 @@ angular.module('tccless').controller 'UserViewCtrl', [
   'roles'
   ($scope, $http, $q, BreadcrumbService, TitleService, user, roles) ->
     configureView = ->
-      BreadcrumbService.use 'users.view', {label: user.name}
-      TitleService.setTitle user.name
+      BreadcrumbService.use 'users.view', {label: user.name || 'usuário não confirmado'}
+      TitleService.setTitle user.name || 'usuário não confirmado'
       TitleService.setDescription null
 
     $scope.saveUser = (attribute, value) ->
@@ -33,8 +33,8 @@ angular.module('tccless').controller 'UserViewCtrl', [
 
     $scope.error = ->
       console.log 'erro callback'
-    $scope.success = (user) ->
-      $scope.user.image = user.image
+    $scope.success = (response) ->
+      $scope.user.image = response.user.image.big
 
     $scope.$watch((scope) ->
         scope.user.role_id
