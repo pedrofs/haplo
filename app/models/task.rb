@@ -6,6 +6,7 @@ class Task < ActiveRecord::Base
   ARCHIVED = 4
 
   STATUSES = ['Aberta', 'Resolvida', 'Fechada', 'Reaberta', 'Arquivada']
+  STATUSES_METHODS = [:close, :resolve, :reopen, :archive]
 
   belongs_to :assigned, class: User
   belongs_to :reporter, class: User
@@ -25,6 +26,7 @@ class Task < ActiveRecord::Base
       task.id id
       task.title title
       task.assigned assigned, :name, :email
+      task.status status
       task.progress progress
       task.created_at created_at
     end

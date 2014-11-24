@@ -11,6 +11,60 @@ describe "Tasks API", type: :api do
   context "methods that do not require nested controller" do
     let!(:project) { create_on_schema :project, account.subdomain }
     let!(:task) { build(:task, taskable: project, assigned: user, reporter: user) }
+
+    describe "PUT /tasks/:id/change_status/:status" do
+      before :each do
+        on_schema account.subdomain do
+          task.save
+        end
+      end
+
+      it "should close the task" do
+        put "/tasks/#{task.id}/change_status/close", format: :json
+        expect(last_response.status).to be(200)
+        expect(JSON::parse(last_response.body)["status"]).to be(2)
+        on_schema account.subdomain do
+          expect(Task.find(task.id).status).to be(Task::CLOSED)
+        end
+      end
+
+      it "should reopen the task" do
+        put "/tasks/#{task.id}/change_status/reopen", format: :json
+        expect(last_response.status).to be(200)
+        expect(JSON::parse(last_response.body)["status"]).to be(3)
+        on_schema account.subdomain do
+          expect(Task.find(task.id).status).to be(Task::REOPENED)
+        end
+      end
+
+      it "should resolve the task" do
+        put "/tasks/#{task.id}/change_status/resolve", format: :json
+        expect(last_response.status).to be(200)
+        expect(JSON::parse(last_response.body)["status"]).to be(1)
+        on_schema account.subdomain do
+          expect(Task.find(task.id).status).to be(Task::RESOLVED)
+        end
+      end
+
+      it "should archive the task" do
+        put "/tasks/#{task.id}/change_status/archive", format: :json
+        expect(last_response.status).to be(200)
+        expect(JSON::parse(last_response.body)["status"]).to be(4)
+        on_schema account.subdomain do
+          expect(Task.find(task.id).status).to be(Task::ARCHIVED)
+        end
+      end
+
+      it "should return 404 for an unknown status" do
+        put "/tasks/#{task.id}/change_status/unknown", format: :json
+        expect(last_response.status).to be(404)
+      end
+
+      it "should return 404 for an unknown task" do
+        put "/tasks/1337/change_status/unknown", format: :json
+        expect(last_response.status).to be(404)
+      end
+    end
   
     describe "DELETE /tasks/:id" do
       it "should return 200 for a valid task" do

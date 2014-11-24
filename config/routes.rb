@@ -31,7 +31,13 @@ Rails.application.routes.draw do
 
     resources :projects, except: [:edit, :new], concerns: :taskable
     resources :api_logs, only: [:index]
-    resources :tasks, only: [:destroy, :show, :update]
+
+    resources :tasks, only: [:destroy, :show, :update] do
+      member do
+        put "change_status/:status", action: :change_status
+      end
+    end
+
     resources :task_statuses, only: [:index]
     resources :roles, except: [:new, :edit]
 

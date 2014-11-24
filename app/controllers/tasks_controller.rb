@@ -58,6 +58,16 @@ class TasksController < ApplicationController
     render_not_found
   end
 
+  def change_status
+    status = params[:status].to_sym
+    task = Task.find_by! id: params[:id]
+    render_not_found and return unless Task::STATUSES_METHODS.include? status
+    task.send(status)
+    render json: task.to_builder.attributes!
+  rescue ActiveRecord::RecordNotFound
+    render_not_found
+  end
+
   private
 
   def task_params
