@@ -7,7 +7,8 @@
          success="success(response)"
          class="editable img-responsive editable-click editable-empty"
          src="{{user.image.big}}"
-         style="display: block;"></img>
+         style="display: block;"
+         file-input-condition="{{ user.id == session.currentUser.id }}"></img>
   </span>
 
   <input id="user_image_input" type="file" name="user[image]" file-model="user.image" style="display:none" />
