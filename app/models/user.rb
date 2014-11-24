@@ -4,7 +4,7 @@ Paperclip.interpolates :md5_email  do |attachment, style|
   Digest::MD5.hexdigest attachment.instance.email
 end
 
-Paperclip.interpolates :size  do |attachment, style|
+Paperclip.interpolates :size do |attachment, style|
   case style
     when :big
       '200'
@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :name, presence: true
+  validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
 
   # validates :password, format: {with: /(?=.*[@#$%])/, message: "você precisa incluir um caracter especial: @#$%", multiline: true}
 
