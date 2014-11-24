@@ -213,7 +213,7 @@ ng-color-picker li.selected {
   margin-right: 5px;
 }
 
-.projectWrapper {
+.projectWrapper, .userWrapper {
   height:80px;
 }
 
