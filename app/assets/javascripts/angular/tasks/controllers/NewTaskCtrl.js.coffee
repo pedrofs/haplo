@@ -35,6 +35,7 @@ angular.module('tccless').controller 'NewTaskCtrl', [
     UserService.all().then (users) ->
       $scope.users = users
     TaskStatusService.all().then (response) ->
+      console.log response
       $scope.taskStatuses = response.data
 
 

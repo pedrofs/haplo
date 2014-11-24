@@ -44,7 +44,7 @@
         <td>{{ task.title }}</td>
         <td>{{ task.created_at|date:'dd/MM/yyyy' }}</td>
         <td class="img"><img ng-src="http://www.gravatar.com/avatar/{{ task.assigned.email|md5 }}?s=20" /> {{ task.assigned.name }}</td>
-        <td>{{ task.status.name }}</td>
+        <td>{{ task.status_name }}</td>
         <td><progressbar class="progress-striped" value="task.progress" type="success">{{ task.progress || 0 }}%</progressbar></td>
         <td>
           <div class="btn-toolbar">

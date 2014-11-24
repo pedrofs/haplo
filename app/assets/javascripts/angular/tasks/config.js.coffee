@@ -15,25 +15,7 @@ angular.module('tccless').config [
               TaskData.tasks = response.data.tasks
           ]
         }
-    }).state('private.task_statuses', {
-      url: '/task_statuses'
-      templateUrl: 'templates/task_statuses/index.html'
-      controller: 'TaskStatusesCtrl'
-      resolve:
-        taskStatuses: ['TaskStatusService','TaskStatusData', (TaskStatusService, TaskStatusData) ->
-          TaskStatusService.all().then (response) ->
-            TaskStatusData.count = response.data.count
-            TaskStatusData.taskStatuses = response.data
-        ]
-    }).state('private.view_task_statuses', {
-      url: '/task_statuses/:taskStatusId'
-      templateUrl: 'templates/task_statuses/view.html'
-      controller: 'ViewTaskStatusCtrl'
-      resolve:
-        status: ['$stateParams', 'TaskStatusService', ($stateParams, TaskStatusService) ->
-          TaskStatusService.find($stateParams.taskStatusId)
-        ]
-      })
+    })
 
     TabWidgetServiceProvider.addTab('projects', {name: 'Tarefas', class: 'orange fa-tasks', state: 'private.project_view.tasks'})
 

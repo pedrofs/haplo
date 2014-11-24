@@ -27,6 +27,7 @@ class Task < ActiveRecord::Base
       task.title title
       task.assigned assigned, :name, :email
       task.status status
+      task.status_name Task::STATUSES[status]
       task.progress progress
       task.created_at created_at
     end
