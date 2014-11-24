@@ -10,8 +10,7 @@ describe "Tasks API", type: :api do
 
   context "methods that do not require nested controller" do
     let!(:project) { create_on_schema :project, account.subdomain }
-    let!(:task_status) {create_on_schema :task_status, account.subdomain}
-    let!(:task) { build(:task, taskable: project, assigned: user, reporter: user, task_status: task_status) }
+    let!(:task) { build(:task, taskable: project, assigned: user, reporter: user) }
   
     describe "DELETE /tasks/:id" do
       it "should return 200 for a valid task" do
@@ -74,7 +73,6 @@ describe "Tasks API", type: :api do
 
   context "using project as taskable resource" do
     let!(:project) { create_on_schema :project, account.subdomain }
-    let!(:task_status) {create_on_schema :task_status, account.subdomain}
 
     describe "GET /projects/:project_id/tasks" do
       it "should return 200 and empty tasks" do
@@ -89,7 +87,6 @@ describe "Tasks API", type: :api do
           task.taskable = project
           task.assigned = user
           task.reporter = user
-          task.task_status = task_status
           task.save!
         end
 
@@ -107,7 +104,7 @@ describe "Tasks API", type: :api do
 
     describe "POST /projects/:project_id/tasks" do
       it "should save task with valid attributes" do
-        post "/projects/#{project.id}/tasks", task: attributes_for(:task, task_status_id: task_status.id, assigned_id: user.id, reporter_id: user.id), format: :json
+        post "/projects/#{project.id}/tasks", task: attributes_for(:task, assigned_id: user.id, reporter_id: user.id), format: :json
 
         expect(last_response.status).to eq(201)
         on_schema account.subdomain do
@@ -129,7 +126,6 @@ describe "Tasks API", type: :api do
 
   context "using user for retrieve tasks" do
     let!(:project) { create_on_schema :project, account.subdomain }
-    let!(:task_status) {create_on_schema :task_status, account.subdomain}
     let!(:task) { build(:task, taskable: project, assigned: user, reporter: user) }
 
     describe "GET /users/:user_id/tasks" do
@@ -145,7 +141,6 @@ describe "Tasks API", type: :api do
           task.taskable = project
           task.assigned = user
           task.reporter = user
-          task.task_status = task_status
           task.save!
         end
 
