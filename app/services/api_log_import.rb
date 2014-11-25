@@ -10,7 +10,6 @@ class ApiLogImport
 
     api_logs = []
     CSV.foreach @filename, headers: true do |row|
-      p row.to_hash
       api_log = ApiLog.new(row.to_hash)
       api_logs << api_log if api_log.valid?
 
