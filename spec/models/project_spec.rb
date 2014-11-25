@@ -8,18 +8,10 @@ describe Project do
   end
 
   describe "associations" do
-    it { should have_many :project_phases }
     it { should have_many :tasks }
     it { should have_many :favorite_projects }
+    it { should have_many :targets }
   end
-
-  describe "accepts nested attributes for project_phases" do
-    it { expect { create(:project, project_phases_attributes: [attributes_for(:project_phase)]) }.to change(ProjectPhase, :count).by(1) }
-
-    it { expect { create(:project, project_phases_attributes: [attributes_for(:project_phase, _destroy: 1)]) }.to change(ProjectPhase, :count).by(0) }
-  end
-
-  describe ""
 
   it "defaults archived to false" do
     expect(Project.new).to_not be_archived
