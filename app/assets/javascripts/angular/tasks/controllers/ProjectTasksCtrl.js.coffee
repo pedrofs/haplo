@@ -4,8 +4,7 @@ angular.module('tccless').controller 'ProjectTasksCtrl', [
   'TitleService'
   'TaskService'
   'TaskData'
-  'TaskStatusService'
-  ($scope, BreadcrumbService, TitleService, TaskService, TaskData, taskStatuses) ->
+  ($scope, BreadcrumbService, TitleService, TaskService, TaskData) ->
     $scope.removeTask = (id) ->
       TaskService.remove(id).then ->
         TaskData.remove(id)
@@ -16,5 +15,6 @@ angular.module('tccless').controller 'ProjectTasksCtrl', [
     configureView()
 
     $scope.TaskData = TaskData
-    $scope.taskStatuses = taskStatuses
+    $scope.search = {}
+    $scope.search.status = 0
 ]

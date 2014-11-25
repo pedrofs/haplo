@@ -11,10 +11,33 @@
           <div class="input-group-addon">
             <i class="fa fa-search ace-icon bigger-200"></i>
           </div>
-          <input class="form-control" type="text" placeholder="Título ou descrição ou..." ng-model="search.task">
+          <input class="form-control" type="text" placeholder="Título ou descrição ou..." ng-model="search.$">
         </div>
       </div>
     </form>
+
+    <div class="btn-group btn-group-lg pull-right" role="group">
+      <button type="button" radio-button class="btn btn-yellow btn-app active" ng-model="search.status" value="0">
+        <span class="badge badge-info badge-right">{{(TaskData.tasks|filter:{status:0}:strict).length}}</span>
+        Abertas
+      </button>
+      <button type="button" radio-button class="btn btn-yellow btn-app" ng-model="search.status" value="3">
+        <span class="badge badge-info badge-right">{{(TaskData.tasks|filter:{status:3}:strict).length}}</span>
+        Reabertas
+      </button>
+      <button type="button" radio-button class="btn btn-yellow btn-app" ng-model="search.status" value="1">
+        <span class="badge badge-info badge-right">{{(TaskData.tasks|filter:{status:1}:strict).length}}</span>
+        Resolvidas
+      </button>
+      <button type="button" radio-button class="btn btn-yellow btn-app" ng-model="search.status" value="2">
+        <span class="badge badge-info badge-right">{{(TaskData.tasks|filter:{status:2}:strict).length}}</span>
+        Fechadas
+      </button>
+      <button type="button" radio-button class="btn btn-yellow btn-app" ng-model="search.status" value="4">
+        <span class="badge badge-info badge-right">{{(TaskData.tasks|filter:{status:4}:strict).length}}</span>
+        Arquivadas
+      </button>
+    </div>
   </div>
 </div>
 
@@ -25,33 +48,30 @@
     <thead>
       <tr>
         <th width="5%">Prioridade</th>
-        <th width="25%">Título</th>
         <th width="5%">Criada em</th>
+        <th width="31%">Título</th>
         <th width="25%">Responsável</th>
         <th width="10%">Status</th>
         <th width="20%">Progresso</th>
-        <th width="10%"></th>
+        <th width="4%"></th>
       </tr>
     </thead>
 
     <tbody>
-      <tr ng-repeat="task in TaskData.tasks | filter:search.task">
+      <tr ng-repeat="task in TaskData.tasks | filter:search:strict">
         <td style="text-align:center">
           <span class="btn btn-app btn-danger btn-xs btn-task-status">
             <i class="ace-icon fa fa-warning bigger-110"></i>
           </span>
         </td>
-        <td>{{ task.title }}</td>
         <td>{{ task.created_at|date:'dd/MM/yyyy' }}</td>
+        <td>{{ task.title }}</td>
         <td class="img"><img ng-src="http://www.gravatar.com/avatar/{{ task.assigned.email|md5 }}?s=20" /> {{ task.assigned.name }}</td>
         <td>{{ task.status_name }}</td>
         <td><progressbar class="progress-striped" value="task.progress" type="success">{{ task.progress || 0 }}%</progressbar></td>
         <td>
           <div class="btn-toolbar">
             <div class="btn-group btn-corner">
-              <a class="btn" href="javascript:;"><i class="ace-icon fa fa-search bigger-110"></i></a>
-              <a class="btn" href="javascript:;"><i class="ace-icon fa fa-edit bigger-110"></i></a>
-
               <a class="btn"
                  href="javascript:;"
                  confirm-click
