@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
-  has_many :project_phases, dependent: :destroy
+  include Targetable
+
   has_many :tasks, as: :taskable
   has_many :favorite_projects
 
@@ -8,8 +9,6 @@ class Project < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
   validates :client, presence: true
-
-  accepts_nested_attributes_for :project_phases, allow_destroy: true
 
   def to_builder
     Jbuilder.new do |project|

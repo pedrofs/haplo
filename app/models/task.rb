@@ -8,6 +8,8 @@ class Task < ActiveRecord::Base
   STATUSES = ['Aberta', 'Resolvida', 'Fechada', 'Reaberta', 'Arquivada']
   STATUSES_METHODS = [:close, :resolve, :reopen, :archive]
 
+  include Targetable
+
   belongs_to :assigned, class: User
   belongs_to :reporter, class: User
   belongs_to :taskable, polymorphic: true
@@ -47,6 +49,10 @@ class Task < ActiveRecord::Base
 
   def archive
     update_attribute :status, Task::ARCHIVED
+  end
+
+  def parent_targetable
+    taskable
   end
 
   protected
