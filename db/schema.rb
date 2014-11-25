@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141124141225) do
+ActiveRecord::Schema.define(version: 20141125131859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,26 @@ ActiveRecord::Schema.define(version: 20141124141225) do
 
   add_index "api_logs", ["user_id"], name: "index_api_logs_on_user_id", using: :btree
 
+  create_table "comments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "discussion_id"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["discussion_id"], name: "index_comments_on_discussion_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "discussions", force: true do |t|
+    t.integer  "user_id"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "discussions", ["user_id"], name: "index_discussions_on_user_id", using: :btree
+
   create_table "favorite_projects", force: true do |t|
     t.integer  "user_id"
     t.integer  "project_id"
@@ -50,18 +70,6 @@ ActiveRecord::Schema.define(version: 20141124141225) do
 
   add_index "favorite_projects", ["project_id"], name: "index_favorite_projects_on_project_id", using: :btree
   add_index "favorite_projects", ["user_id"], name: "index_favorite_projects_on_user_id", using: :btree
-
-  create_table "project_phases", force: true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.integer  "project_id"
-    t.date     "start_at"
-    t.date     "end_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "project_phases", ["project_id"], name: "index_project_phases_on_project_id", using: :btree
 
   create_table "projects", force: true do |t|
     t.string   "name"
@@ -81,6 +89,16 @@ ActiveRecord::Schema.define(version: 20141124141225) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "targets", force: true do |t|
+    t.integer  "discussion_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "targetable_id"
+    t.string   "targetable_type"
+  end
+
+  add_index "targets", ["discussion_id"], name: "index_targets_on_discussion_id", using: :btree
 
   create_table "tasks", force: true do |t|
     t.string   "title"
