@@ -62,4 +62,9 @@ describe Task do
 
     expect(task.status).to be(Task::ARCHIVED)
   end
+
+  it "should returns project as parent_targetable" do
+    task = create(:task_with_users_and_project)
+    expect(task.parent_targetable).to be(task.taskable)
+  end
 end
