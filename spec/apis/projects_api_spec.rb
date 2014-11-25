@@ -51,43 +51,6 @@ describe "Projects API", type: :api do
         expect(last_response.status).to eq(422)
         expect(JSON.parse(last_response.body)).to satisfy {|v| v.has_key? "errors" }
       end
-
-      context "with project phases" do
-        let(:phases_attributes) { [attributes_for(:project_phase)] }
-
-        it "should return 201 with valid attributes" do
-          project = { project: attributes_for(:project).merge({project_phases_attributes: phases_attributes}) }
-
-          post '/projects', project.merge({format: :json})
-
-          expect(last_response.status).to eq(201)
-        end
-
-        it "should return 422 with invalid attributes" do
-          phases_attributes << attributes_for(:invalid_project_phase)
-
-          project = { project: attributes_for(:project).merge({project_phases_attributes: phases_attributes}) }
-
-          post '/projects', project.merge({format: :json})
-
-          expect(last_response.status).to eq(422)
-          expect(JSON::parse(last_response.body)).to satisfy {|v| v.has_key? "errors" }
-        end
-
-        it "should not create project phases that are marked for destroy" do
-          phases_attributes << attributes_for(:project_phase, _destroy: 1)
-
-          project = { project: attributes_for(:project).merge({project_phases_attributes: phases_attributes}) }
-
-          post '/projects', project.merge({format: :json})
-
-          expect(last_response.status).to eq(201)
-
-          on_schema account.subdomain do
-            expect(ProjectPhase.all.count).to eq(1)
-          end
-        end
-      end
     end
 
     describe "PUT /projects" do
