@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     end
 
     resources :projects, except: [:edit, :new], concerns: :taskable
+    resources :discussions, except: [:edit, :new]
     resources :api_logs, only: [:index]
 
     resources :tasks, only: [:destroy, :show, :update] do
