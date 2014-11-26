@@ -153,4 +153,38 @@ describe "Discussion API", type: :api do
       expect(last_response.status).to eq(404)
     end
   end
+
+  describe "PUT /discussions/:id" do
+    let!(:discussion) { create_on_schema :discussion, account.subdomain }
+
+    it "should edit the discussion" do
+      put "/discussions/#{discussion.id}", {discussion: {content: 'testing'}}, format: :json
+      expect(last_response.status).to eq(200)
+      expect(JSON::parse(last_response.body)["discussion"]["content"]).to eq('testing')
+      expect(JSON::parse(last_response.body)["flash"]).to eq('Discussão alterada com sucesso.')
+      expect(JSON::parse(last_response.body)["status"]).to eq('success')
+    end
+
+    it "should not edit the discussion with invalid attributes" do
+      put "/discussions/#{discussion.id}", {discussion: {content: ''}}, format: :json
+      expect(last_response.status).to eq(422)
+      expect(JSON::parse(last_response.body)).to have_key("errors")
+    end
+  end
+
+  describe "DELETE /discussions/:id" do
+    let!(:discussion) { create_on_schema :discussion, account.subdomain }
+
+    it "should destroy the discussion" do
+      delete "/discussions/#{discussion.id}", format: :json
+      expect(last_response.status).to eq(200)
+      expect(JSON::parse(last_response.body)["flash"]).to eq("Discussão removida com sucesso.")
+      expect(JSON::parse(last_response.body)["status"]).to eq("success")
+    end
+
+    it "should render 404 for a invalid discussion" do
+      delete "/discussions/1337", format: :json
+      expect(last_response.status).to eq(404)
+    end
+  end
 end

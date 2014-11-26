@@ -41,9 +41,27 @@ class DiscussionsController < ApplicationController
   end
 
   def update
+    discussion = Discussion.find_by! id: params[:id]
+
+    discussion.update_attributes! params_discussion
+
+    render json: {discussion: discussion.to_builder.attributes!, flash: 'Discussão alterada com sucesso.', status: 'success'}
+  rescue ActiveRecord::RecordNotFound
+    render_not_found
+  rescue ActiveRecord::RecordInvalid
+    render_errors discussion
   end
 
   def destroy
+    discussion = Discussion.find_by! id: params[:id]
+
+    discussion.destroy!
+
+    render json: {flash: 'Discussão removida com sucesso.', status: 'success'}
+  rescue ActiveRecord::RecordNotDestroyed
+    render json: {flash: 'Não foi possível remover a discussão.', type: 'danger'}, status: :bad_request
+  rescue ActiveRecord::RecordNotFound
+    render_not_found
   end
 
   private
