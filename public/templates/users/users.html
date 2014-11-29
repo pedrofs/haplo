@@ -25,7 +25,7 @@
         <img ng-src="{{ user.image.medium }}" />
       </div>
       <div class="col-md-9">
-        <p>{{ user.name || 'sem nome' }}</p>
+        <p><a ui-sref="private.user_view({userId: user.id})">{{ user.name || 'sem nome' }}</a></p>
         <p>{{ user.email }}</p>
       </div>
 
