@@ -34,7 +34,7 @@ angular.module('tccless').controller 'UserViewCtrl', [
     $scope.error = ->
       console.log 'erro callback'
     $scope.success = (response) ->
-      $scope.user.image = response.user.image.big
+      $scope.user.image = response.user.image
 
     $scope.$watch((scope) ->
         scope.user.role_id
