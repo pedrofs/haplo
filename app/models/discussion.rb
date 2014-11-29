@@ -5,6 +5,21 @@ class Discussion < ActiveRecord::Base
 
   validates :user, presence: true
   validates :content, presence: true
+ 
+  scope :load_associations, -> {
+    includes(:user)
+    .includes(comments: :user)
+    .joins(:targets)
+    .group('discussions.id')
+  }
+
+  scope :for_target, -> (targetable_id, targetable_type) {
+    where(targets: { targetable_id: targetable_id, targetable_type: targetable_type })
+  }
+
+  scope :for_user, -> (user_id) {
+    where(discussions: {user_id: user_id})
+  }
 
   def build_targets_from_targetable targetable
     target = targetable.targets.build
