@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125131859) do
+ActiveRecord::Schema.define(version: 20141129205928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 20141125131859) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "activities", force: true do |t|
+    t.string   "action"
+    t.text     "extra_info"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
   create_table "api_logs", force: true do |t|
     t.string   "controller"
@@ -60,6 +70,16 @@ ActiveRecord::Schema.define(version: 20141125131859) do
   end
 
   add_index "discussions", ["user_id"], name: "index_discussions_on_user_id", using: :btree
+
+  create_table "favorite_discussions", force: true do |t|
+    t.integer  "discussion_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "favorite_discussions", ["discussion_id"], name: "index_favorite_discussions_on_discussion_id", using: :btree
+  add_index "favorite_discussions", ["user_id"], name: "index_favorite_discussions_on_user_id", using: :btree
 
   create_table "favorite_projects", force: true do |t|
     t.integer  "user_id"
