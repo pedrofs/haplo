@@ -55,6 +55,10 @@ class Task < ActiveRecord::Base
     taskable
   end
 
+  def label
+    title
+  end
+
   protected
 
   def set_status_to_opened
