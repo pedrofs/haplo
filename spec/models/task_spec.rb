@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Task do
+  it_behaves_like "Targetable"
+
   describe "validations" do
     it { should validate_presence_of :title }
     it { should validate_presence_of :assigned }
@@ -13,6 +15,7 @@ describe Task do
     it { should belong_to :assigned }
     it { should belong_to :reporter }
     it { should belong_to :taskable }
+    it { should have_many :targets }
   end
 
   it "should have status open for new task" do
