@@ -31,7 +31,26 @@ class Discussion < ActiveRecord::Base
     Jbuilder.new do |discussion|
       discussion.id id
       discussion.content content
-      discussion.user user, :name, :email
+      discussion.comments_count comments.count
+
+      discussion.comments comments do |comment|
+        discussion.id comment.id
+        discussion.content comment.content
+        discussion.created_at comment.created_at
+        discussion.updated_at comment.updated_at
+      end
+
+      discussion.user do
+        discussion.name user.name
+        discussion.image user.image(:small)
+      end
+
+      discussion.targets targets do |target|
+        discussion.id target.targetable.id
+        discussion.label target.targetable.label
+        discussion.type target.targetable_type
+      end
+
       discussion.created_at created_at
       discussion.updated_at updated_at
     end
