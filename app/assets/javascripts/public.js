@@ -7,11 +7,13 @@
 //= require vendor/angular-resource
 //= require vendor/angular-route
 //= require vendor/angular-gantt
+//= require vendor/angular-translate.min
 //= require vendor/ui-bootstrap-tpls-0.11.0.min
 //= require vendor/angular-local-storage
 //= require vendor/angular-md5.min
 //= require vendor/moment.min
 //= require vendor/moment.locale.pt-br
+//= require vendor/angular-moment.min
 //= require vendor/daterangepicker.min
 //= require vendor/angular-daterangepicker.min
 //= require vendor/textAngular
@@ -20,6 +22,7 @@
 //= require vendor/select
 
 //= require main
+//= require pt_br
 
 //= require_tree ./angular/core
 //= require_tree ./angular/authentication
@@ -29,6 +32,7 @@
 //= require_tree ./angular/api_logs
 //= require_tree ./angular/tasks
 //= require_tree ./angular/roles
+//= require_tree ./angular/discussions
 
 //= require ace_template/bootstrap.min
 //= require ace_template/ace.min
