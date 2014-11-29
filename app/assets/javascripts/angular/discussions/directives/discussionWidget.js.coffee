@@ -14,7 +14,7 @@ angular.module('tccless').directive 'discussionWidget', [->
         alwaysVisible : true
       $('#profile-feed-1').ace_scroll options
 
-    controller: ['$scope', '$http', 'DiscussionData', ($scope, $http, DiscussionData) ->
+    controller: ['$scope', '$http', 'DiscussionData', 'FavoriteDiscussionData', ($scope, $http, DiscussionData, FavoriteDiscussionData) ->
       query = ''
       if $scope.targetableId and $scope.targetableType
         query = "?targetable_id=#{$scope.targetableId}&targetable_type=#{$scope.targetableType}"
@@ -24,6 +24,10 @@ angular.module('tccless').directive 'discussionWidget', [->
       $http.get("/discussions.json#{query}").then (response) ->
         DiscussionData.discussions = response.data
 
+      $http.get("/favorite_discussions.json").then (response) ->
+        FavoriteDiscussionData.discussions = response.data
+
+      $scope.FavoriteDiscussionData = FavoriteDiscussionData
       $scope.DiscussionData = DiscussionData
       $scope.paginationConfig =
         limit: 5
