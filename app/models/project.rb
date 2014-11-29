@@ -22,4 +22,8 @@ class Project < ActiveRecord::Base
       end
     end
   end
+
+  def label
+    name
+  end
 end
