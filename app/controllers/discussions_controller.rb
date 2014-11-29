@@ -5,9 +5,9 @@ class DiscussionsController < ApplicationController
     user_id = params[:user_id]
 
     if targetable_type and targetable_id
-      @discussions = Discussion.joins(:targets).where("targets.targetable_id = ? and targets.targetable_type = ?", targetable_id, targetable_type)
+      @discussions = Discussion.load_associations.for_target(targetable_id, targetable_type)
     elsif user_id
-      @discussions = Discussion.where user_id: user_id
+      @discussions = Discussion.load_associations.for_user(user_id)
     else
       render_not_found
     end
