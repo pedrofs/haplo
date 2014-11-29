@@ -20,6 +20,11 @@
 
 #discussion_content .ta-bind {
   padding-bottom: 50px;
+  min-height: 220px;
+}
+
+#discussion_content .ta-scroll-window {
+  min-height: 220px;
 }
 
 #discussion_content .actions {
