@@ -10,7 +10,9 @@ angular.module 'tccless', [
   'gantt'
   'ngColorPicker'
   'textAngular'
-  'xeditable'
+  'xeditable',
+  'angularMoment',
+  'pascalprecht.translate'
 ]
 
 angular.module('tccless').config [
@@ -19,7 +21,6 @@ angular.module('tccless').config [
   'TabWidgetServiceProvider'
   'BreadcrumbServiceProvider'
   ($routeProvider, $stateProvider, TabWidgetServiceProvider, BreadcrumbServiceProvider) ->
-
     BreadcrumbServiceProvider.addBreadcrumb 'home', { label: 'Home', icon: 'ace-icon fa fa-home home-icon' }
 
     $routeProvider.otherwise({
