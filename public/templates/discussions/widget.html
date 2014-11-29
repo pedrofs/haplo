@@ -1,0 +1,61 @@
+<div class="widget-box transparent">
+  <div class="widget-header widget-header-small">
+    <h4 class="widget-title blue smaller">
+      <i class="ace-icon fa fa-weixin orange"></i>
+      Discussões
+    </h4>
+
+    <div class="widget-toolbar action-buttons">
+      <a href="#" data-action="reload">
+        <i class="ace-icon fa fa-refresh blue"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="widget-body">
+    <div class="widget-main padding-8">
+      <div new-discussion ng-show="targetableId && targetableType">
+      </div>
+
+      <div class="clearfix"></div>
+
+      <!-- #section:pages/profile.feed -->
+      <div id="profile-feed-1">
+        <div class="profile-activity clearfix" ng-repeat="discussion in DiscussionData.discussions|orderBy:'created_at':true|limitTo:paginationConfig.limit">
+          <div>
+            <img class="pull-left" ng-src="{{ discussion.user.image }}">
+            <a class="user" href="#"> {{ discussion.user.name }} </a>
+
+            <div>
+              <span ng-repeat="target in discussion.targets">
+                <strong>{{target.type|translate}}</strong>: {{ target.label }}
+              </span>
+            </div>
+
+            <div class="content">
+              {{discussion.content}}
+            </div>
+
+            <div class="time">
+              <i class="ace-icon fa fa-clock-o bigger-110"></i>
+              <span am-time-ago="discussion.created_at"></span>
+            </div>
+          </div>
+
+          <div class="tools action-buttons">
+            <a href="#" class="blue">
+              <i class="ace-icon fa fa-weixin bigger-125"></i> {{discussion.comments_count}} comentário(s)
+            </a>
+          </div>
+        </div>
+      </div></div>
+      <!-- /section:pages/profile.feed -->
+    </div>
+  </div>
+</div>
+
+<div class="hr hr2 hr-double"></div>
+<div class="space-6"></div>
+
+<discussion-pagination pagination-config="paginationConfig" pagination-array="DiscussionData.discussions">
+</discussion-pagination>
