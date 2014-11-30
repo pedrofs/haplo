@@ -45,6 +45,10 @@ Rails.application.routes.draw do
     post "/favorite_projects/toggle/:project_id.json", to: "favorite_projects#toggle", as: :favorite_projects_toggle
     get "/users/:user_id/favorite_projects", to: "favorite_projects#index", as: :user_favorite_projects
     get "/favorite_projects", to: "favorite_projects#index", as: :favorite_projects
+
+    post "/favorite_discussions/toggle/:discussion_id.json", to: "favorite_discussions#toggle", as: :favorite_discussions_toggle
+    get "/users/:user_id/favorite_discussions", to: "favorite_discussions#index", as: :user_favorite_discussions
+    get "/favorite_discussions", to: "favorite_discussions#index", as: :favorite_discussions
   end
 
   constraints(SubdomainBlank) do
