@@ -1,4 +1,4 @@
-angular.module('tccless').directive 'favoriteDiscussion', ['$http', 'FavoriteDiscussionData', ($http, FavoriteDiscussionData) ->
+angular.module('tccless').directive 'favoriteDiscussion', ['$http', 'DiscussionData', ($http, DiscussionData) ->
   directive =
     restrict: 'A'
     scope:
@@ -9,7 +9,9 @@ angular.module('tccless').directive 'favoriteDiscussion', ['$http', 'FavoriteDis
       element.css {cursor:'pointer'}
 
       discussion = scope.discussion
-      favoriteIds = FavoriteDiscussionData.discussions.map (discussion) -> discussion.id
+      favorites = DiscussionData.discussions.filter (discussion) -> discussion.favorite
+      favoriteIds = favorites.map (discussion) -> discussion.id
+
 
       if discussion.id in favoriteIds
         element.addClass 'orange'
@@ -17,9 +19,7 @@ angular.module('tccless').directive 'favoriteDiscussion', ['$http', 'FavoriteDis
       element.bind 'click', (e) ->
         $http.post("/favorite_discussions/toggle/#{discussion.id}.json").then (response) ->
           if response.status == 204
-            FavoriteDiscussionData.remove(discussion.id)
             element.removeClass 'orange'
           else if response.status == 201
-            FavoriteDiscussionData.add(discussion)
             element.addClass 'orange'
 ]
