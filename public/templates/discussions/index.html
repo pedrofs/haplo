@@ -1,1 +1,46 @@
-MINHAS DISCUSSÕES
+<div class="md-col-12">
+  <form class="form-inline pull-left" role="form" id="searchForm">
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon">
+          <i class="fa fa-search ace-icon bigger-200"></i>
+        </div>
+        <input class="form-control" type="text" placeholder="Conteúdo" ng-model="search.$">
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="clearfix"></div>
+
+<div id="discussion-list-table">
+  <p class="col-md-12 center" ng-if="DiscussionData.discussions.length == 0"><b>Não há discussões favoritas.</b></p>
+
+  <table class="table table-hover" ng-if="DiscussionData.discussions.length > 0">
+    <tbody>
+      <tr ng-repeat="discussion in DiscussionData.discussions | filter:search:strict">
+        <td>
+          <span favorite-discussion discussion="discussion" remove-from="true"></span>
+        </td>
+
+        <td>
+          <img ng-src="{{discussion.user.image}}" />
+          <a ui-sref="private.user_view({userId: discussion.user.id})">{{ discussion.user.name }}</a>
+        </td>
+        <td class="title-content">
+          <a href="javascript:;">
+            <b>{{ discussion.title }}</b>
+            <div ta-bind ng-model="discussion.content">
+            </div>
+          </a>
+        </td>
+        <td>
+          {{ discussion.created_at|date:'dd MMM' }}
+        </td>
+        <td>
+          <span class="badge badge-success">{{discussion.comments_count}}</span> comentário(s)
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
