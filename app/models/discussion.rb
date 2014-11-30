@@ -2,9 +2,10 @@ class Discussion < ActiveRecord::Base
   belongs_to :user
   has_many :comments
   has_many :targets
-  has_many :favorite_discussions
+  has_many :favorite_discussions, dependent: :destroy
 
   validates :user, presence: true
+  validates :title, presence: true, uniqueness: true
   validates :content, presence: true
  
   scope :load_associations, -> {
@@ -22,6 +23,8 @@ class Discussion < ActiveRecord::Base
     where(discussions: {user_id: user_id})
   }
 
+  after_destroy :remove_targets
+
   def build_targets_from_targetable targetable
     target = targetable.targets.build
     targets.concat target
@@ -31,6 +34,7 @@ class Discussion < ActiveRecord::Base
   def to_builder
     Jbuilder.new do |discussion|
       discussion.id id
+      discussion.title title
       discussion.content content
       discussion.comments_count comments.count
 
@@ -42,6 +46,7 @@ class Discussion < ActiveRecord::Base
       end
 
       discussion.user do
+        discussion.id user.id
         discussion.name user.name
         discussion.image user.image(:small)
       end
@@ -55,5 +60,11 @@ class Discussion < ActiveRecord::Base
       discussion.created_at created_at
       discussion.updated_at updated_at
     end
+  end
+
+  private
+
+  def remove_targets
+    targets.each &:delete
   end
 end
