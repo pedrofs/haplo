@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :discussion do
+    title "Test"
     content "Testing discussion"
     association :user, factory: :user, strategy: :build
   end
