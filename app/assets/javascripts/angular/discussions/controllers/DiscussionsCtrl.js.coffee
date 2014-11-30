@@ -11,5 +11,5 @@ angular.module('tccless').controller 'DiscussionsCtrl', [
 
     configureView()
 
-    console.log DiscussionData.discussions
+    $scope.DiscussionData = DiscussionData
 ]
