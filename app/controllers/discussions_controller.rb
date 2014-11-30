@@ -67,7 +67,7 @@ class DiscussionsController < ApplicationController
   private
 
   def params_discussion
-    params.require(:discussion).permit(:content)
+    params.require(:discussion).permit(:content, :title)
   end
 
   def is_targetable? klass
