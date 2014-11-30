@@ -12,7 +12,6 @@ angular.module('tccless').directive 'favoriteDiscussion', ['$http', 'DiscussionD
       favorites = DiscussionData.discussions.filter (discussion) -> discussion.favorite
       favoriteIds = favorites.map (discussion) -> discussion.id
 
-
       if discussion.id in favoriteIds
         element.addClass 'orange'
 
@@ -20,6 +19,8 @@ angular.module('tccless').directive 'favoriteDiscussion', ['$http', 'DiscussionD
         $http.post("/favorite_discussions/toggle/#{discussion.id}.json").then (response) ->
           if response.status == 204
             element.removeClass 'orange'
+            if attr.removeFrom
+              DiscussionData.remove(discussion.id)
           else if response.status == 201
             element.addClass 'orange'
 ]
