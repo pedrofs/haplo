@@ -2,6 +2,7 @@ json.array! @favorite_discussions do |favorite_discussion|
   discussion = favorite_discussion.discussion
 
   json.id discussion.id
+  json.title discussion.title
   json.content discussion.content
   json.comments_count discussion.comments.count
 
@@ -13,6 +14,7 @@ json.array! @favorite_discussions do |favorite_discussion|
   end
 
   json.user do
+    json.id discussion.user.id
     json.name discussion.user.name
     json.image discussion.user.image(:small)
   end
@@ -20,6 +22,8 @@ json.array! @favorite_discussions do |favorite_discussion|
   json.targets discussion.targets do |target|
     json.partial! target.targetable
   end
+
+  json.favorite true
 
   json.created_at discussion.created_at
   json.updated_at discussion.updated_at

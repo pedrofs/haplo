@@ -1,5 +1,6 @@
 json.array! @discussions do |discussion|
   json.id discussion.id
+  json.title discussion.title
   json.content discussion.content
   json.comments_count discussion.comments.count
 
