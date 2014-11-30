@@ -26,7 +26,8 @@
         <div class="profile-activity clearfix" ng-repeat="discussion in DiscussionData.discussions|orderBy:'created_at':true|limitTo:paginationConfig.limit">
           <div>
             <img class="pull-left" ng-src="{{ discussion.user.image }}">
-            <a class="user" ui-sref="private.user_view({userId: discussion.user.id})"> {{ discussion.user.name }} </a>
+            <a class="user" ui-sref="private.user_view({userId: discussion.user.id})"> {{ discussion.user.name }} </a>:
+            <b>{{ discussion.title }}</b>
 
             <div>
               <span ng-repeat="target in discussion.targets">
