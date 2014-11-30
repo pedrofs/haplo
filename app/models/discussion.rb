@@ -2,6 +2,7 @@ class Discussion < ActiveRecord::Base
   belongs_to :user
   has_many :comments
   has_many :targets
+  has_many :favorite_discussions
 
   validates :user, presence: true
   validates :content, presence: true
