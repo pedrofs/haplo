@@ -14,12 +14,31 @@
  *= require angular-xeditable.min
  */
 
+#discussion-list-table {
+  margin-top: 25px;
+}
+
+#discussion-list-table td.title-content div {
+  color: #393939;
+  max-height: 18px;
+  overflow:hidden;
+}
+
 .profile-activity .content * {
   background: transparent !important;
 }
 
 #discussion_content {
   position: relative;
+}
+
+#discussion_content div.title {
+  padding: 0px 12px;
+  margin-bottom: 15px;
+}
+
+#discussion_content div.title input {
+  width: 100%;
 }
 
 #discussion_content .ta-bind {
