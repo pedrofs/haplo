@@ -33,6 +33,8 @@ Rails.application.routes.draw do
     resources :discussions, except: [:edit, :new]
     resources :api_logs, only: [:index]
 
+    resources :comments, except: [:edit, :new, :index]
+
     resources :tasks, only: [:destroy, :show, :update] do
       member do
         put "change_status/:status", action: :change_status
