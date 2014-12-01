@@ -14,8 +14,34 @@
  *= require angular-xeditable.min
  */
 
+#comment_form {
+  position: relative;
+}
+
+#comment_form .ta-bind {
+  padding-bottom: 50px;
+  min-height: 120px;
+}
+
+#comment_form .ta-scroll-window {
+  min-height: 120px;
+}
+
 #discussion-list-table {
   margin-top: 25px;
+}
+
+.discussion_content {
+  padding: 15px 0px;
+  background-color:#F4F9FD
+}
+
+.discussion-modal>hr {
+  margin-bottom: 0;
+}
+
+.action-buttons a {
+  cursor: pointer;
 }
 
 #discussion-list-table td.title-content div {
@@ -24,7 +50,7 @@
   overflow:hidden;
 }
 
-.profile-activity .content * {
+.profile-activity .content *, .discussion_content * {
   background: transparent !important;
 }
 
@@ -50,7 +76,7 @@
   min-height: 220px;
 }
 
-#discussion_content .actions {
+#discussion_content .actions, #comment_form .actions {
   position: absolute;
   bottom: 5px;
   right: 20px;
