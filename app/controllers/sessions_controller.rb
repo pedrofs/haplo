@@ -13,7 +13,7 @@ class SessionsController < Devise::SessionsController
 
       resource.password = nil
 
-      render json: resource, status: :ok
+      render json: resource.to_builder.attributes!.merge({authentication_token: resource.authentication_token}), status: :ok
 
       return
     end
