@@ -14,6 +14,7 @@
 //= require vendor/moment.min
 //= require vendor/moment.locale.pt-br
 //= require vendor/angular-moment.min
+//= require vendor/ui-chart.min
 //= require vendor/daterangepicker.min
 //= require vendor/angular-daterangepicker.min
 //= require vendor/textAngular
