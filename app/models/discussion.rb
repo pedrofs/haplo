@@ -39,16 +39,17 @@ class Discussion < ActiveRecord::Base
       discussion.comments_count comments.count
 
       discussion.comments comments do |comment|
-        discussion.id comment.id
-        discussion.content comment.content
-        discussion.created_at comment.created_at
-        discussion.updated_at comment.updated_at
+        comment.to_builder
       end
 
       discussion.user do
         discussion.id user.id
         discussion.name user.name
-        discussion.image user.image(:small)
+        discussion.image do
+          discussion.small user.image(:small)
+          discussion.medium user.image(:medium)
+          discussion.big user.image(:big)
+        end
       end
 
       discussion.targets targets do |target|

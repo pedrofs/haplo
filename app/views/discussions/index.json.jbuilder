@@ -9,12 +9,25 @@ json.array! @discussions do |discussion|
     json.content comment.content
     json.created_at comment.created_at
     json.updated_at comment.updated_at
+    json.user do
+      json.id comment.user.id
+      json.name comment.user.name
+      json.image do
+        json.small discussion.user.image(:small)
+        json.medium discussion.user.image(:medium)
+        json.big discussion.user.image(:big)
+      end
+    end
   end
 
   json.user do
     json.id discussion.user.id
     json.name discussion.user.name
-    json.image discussion.user.image(:small)
+    json.image do
+      json.small discussion.user.image(:small)
+      json.medium discussion.user.image(:medium)
+      json.big discussion.user.image(:big)
+    end
   end
 
   json.targets discussion.targets do |target|
