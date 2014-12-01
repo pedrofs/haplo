@@ -13,9 +13,9 @@ json.array! @discussions do |discussion|
       json.id comment.user.id
       json.name comment.user.name
       json.image do
-        json.small discussion.user.image(:small)
-        json.medium discussion.user.image(:medium)
-        json.big discussion.user.image(:big)
+        json.small comment.user.image(:small)
+        json.medium comment.user.image(:medium)
+        json.big comment.user.image(:big)
       end
     end
   end
