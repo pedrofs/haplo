@@ -24,11 +24,17 @@
         </td>
 
         <td>
-          <img ng-src="{{discussion.user.image}}" />
-          <a ui-sref="private.user_view({userId: discussion.user.id})">{{ discussion.user.name }}</a>
+          <img ng-src="{{discussion.user.image.small}}" />
+          <a href="javascript:;" ui-sref="private.user_view({userId: discussion.user.id})">{{ discussion.user.name }}</a>
         </td>
         <td class="title-content">
-          <a href="javascript:;">
+          <a href="javascript:;"
+             mymodal
+             modaltemplate="templates/discussions/view.html"
+             modalctrl="DiscussionViewCtrl"
+             modalsize="lg"
+             class="blue"
+             ng-click="DiscussionData.currentDiscussion = discussion">
             <b>{{ discussion.title }}</b>
             <div ta-bind ng-model="discussion.content">
             </div>
