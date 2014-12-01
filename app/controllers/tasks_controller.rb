@@ -27,7 +27,7 @@ class TasksController < ApplicationController
 
     @task.save!
 
-    render json: {task: @task.to_builder.attributes!, flash: 'Tarefa criada com sucesso.', status: 'success'}, status: :created
+    render json: {task: @task.to_builder.attributes!, flash: 'Tarefa criada com sucesso.', type: 'success'}, status: :created
   rescue  ActiveRecord::RecordInvalid
     render_errors @task
   rescue ActiveRecord::RecordNotFound
@@ -39,7 +39,7 @@ class TasksController < ApplicationController
 
     @task.update_attributes! task_params
 
-    render json: {task: @task.to_builder.attributes!, flash: 'Tarefa atualizada com sucesso.', status: 'success'}, status: :ok
+    render json: {task: @task.to_builder.attributes!, flash: 'Tarefa atualizada com sucesso.', type: 'success'}, status: :ok
   rescue ActiveRecord::RecordNotFound
     render_not_found
   rescue ActiveRecord::RecordInvalid
