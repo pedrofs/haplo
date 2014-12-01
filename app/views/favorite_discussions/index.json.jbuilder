@@ -11,6 +11,15 @@ json.array! @favorite_discussions do |favorite_discussion|
     json.content comment.content
     json.created_at comment.created_at
     json.updated_at comment.updated_at
+    json.user do
+      json.id comment.user.id
+      json.name comment.user.name
+      json.image do 
+        json.small comment.user.image(:small)
+        json.medium comment.user.image(:medium)
+        json.big comment.user.image(:big)
+      end 
+    end
   end
 
   json.user do
