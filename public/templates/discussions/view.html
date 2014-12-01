@@ -1,0 +1,76 @@
+<div class="modal-header">
+    <h3 class="modal-title">
+      <i class="ace-icon fa fa-weixin orange"></i>
+      {{ discussion.title }}
+    </h3>
+
+    <div>
+      <span ng-repeat="target in discussion.targets">
+        <strong>{{target.type|translate}}</strong>: {{ target.label }}
+      </span>
+    </div>
+
+    <a href="javascript:;" ng-click="cancel()" class="cancel-modal">
+      <i class="ace-icon fa fa-times bigger-200"></i>
+    </a>
+</div>
+
+<div class="modal-body discussion-modal">
+  <div class="discussion_content">
+    <div class="col-md-2">
+      <img ng-src="{{discussion.user.image.medium}}" />
+
+      <span>
+        Postado por <b><a ng-click="$dismiss()" ui-sref="private.user_view({userId: discussion.user.id})">{{ discussion.user.name|limitTo:5 }}</a></b>
+        <span am-time-ago="discussion.created_at"></span>
+      </span>
+    </div>
+
+    <div class="col-md-10" ng-model="discussion.content" ta-bind>
+    </div>
+
+    <div class="clearfix"></div>
+
+  </div>
+
+  <hr />
+
+  <div id="discussion_comments">
+    <h5>Comentários</h5>
+
+    <div class="discussion_comment" ng-repeat="comment in discussion.comments|orderBy:created_at">
+      <div class="col-md-2">
+        <img ng-src="{{comment.user.image.medium}}" />
+
+        <span>
+          Postado por <b><a ng-click="$dismiss()" ui-sref="private.user_view({userId: comment.user.id})">{{ comment.user.name|limitTo:5 }}</a></b>
+          <span am-time-ago="comment.created_at"></span>
+        </span>
+      </div>
+
+      <div class="col-md-10">
+        <div class="comment_content" ta-bind ng-model="comment.content"></div>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <hr />
+    </div>
+  </div>
+
+  <div id="comment_form">
+    <div class="col-md-2">
+    </div>
+
+    <div class="col-md-10 ta-small" text-angular ng-model="comment.content" ta-toolbar="[['bold', 'italics', 'ul', 'ol']]">
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="actions">
+      <button class="btn btn-primary create-comment" ng-click="createComment(comment)">Comentar</button>
+    </div>
+
+    <div class="clearfix"></div>
+  </div>
+</div>
