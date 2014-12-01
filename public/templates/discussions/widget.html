@@ -23,9 +23,10 @@
       <div id="profile-feed-1">
         <p ng-show="DiscussionData.discussions.length == 0" class="center"><b>Não há discussões.</b></p>
 
-        <div class="profile-activity clearfix" ng-repeat="discussion in DiscussionData.discussions|orderBy:'created_at':true|limitTo:paginationConfig.limit">
+        <div class="profile-activity clearfix"
+             ng-repeat="discussion in DiscussionData.discussions|orderBy:'created_at':true|limitTo:paginationConfig.limit">
           <div>
-            <img class="pull-left" ng-src="{{ discussion.user.image }}">
+            <img class="pull-left" ng-src="{{ discussion.user.image.small }}">
             <a class="user" ui-sref="private.user_view({userId: discussion.user.id})"> {{ discussion.user.name }} </a>:
             <b>{{ discussion.title }}</b>
 
@@ -45,7 +46,12 @@
           </div>
 
           <div class="tools action-buttons">
-            <a href="#" class="blue">
+            <a mymodal
+               modaltemplate="templates/discussions/view.html"
+               modalctrl="DiscussionViewCtrl"
+               modalsize="lg"
+               class="blue"
+               ng-click="DiscussionData.currentDiscussion = discussion">
               <i class="ace-icon fa fa-comments bigger-125"></i> {{discussion.comments_count}} comentário(s)
             </a>
           </div>
