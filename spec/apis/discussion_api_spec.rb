@@ -45,7 +45,7 @@ describe "Discussion API", type: :api do
           discussion.build_targets_from_targetable task
           discussion.save!
 
-          discussion2 = build(:discussion, content: 'TESSSSTTTTTIIIINNNG')
+          discussion2 = build(:discussion, content: 'TESSSSTTTTTIIIINNNG', title: 'Test2')
           discussion2.build_targets_from_targetable project
           discussion2.save!
         end
@@ -88,7 +88,7 @@ describe "Discussion API", type: :api do
           discussion.build_targets_from_targetable task
           discussion.save!
 
-          discussion2 = build(:discussion, content: 'TESSSSTTTTTIIIINNNG', user_id: user.id)
+          discussion2 = build(:discussion, content: 'TESSSSTTTTTIIIINNNG', user_id: user.id, title: 'Test2')
           discussion2.build_targets_from_targetable project
           discussion2.save!
         end
