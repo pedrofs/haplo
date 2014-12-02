@@ -14,6 +14,9 @@
 //= require vendor/moment.min
 //= require vendor/moment.locale.pt-br
 //= require vendor/angular-moment.min
+//= require vendor/jquery.jqplot.min
+//= require vendor/jqplot.pieRenderer
+//= require vendor/jqplot.donutRenderer
 //= require vendor/ui-chart.min
 //= require vendor/daterangepicker.min
 //= require vendor/angular-daterangepicker.min
