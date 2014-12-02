@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(version: 20141202035349) do
     t.string   "taskable_type"
     t.integer  "priority"
     t.integer  "status"
+    t.datetime "closed_at"
   end
 
   add_index "tasks", ["assigned_id"], name: "index_tasks_on_assigned_id", using: :btree
