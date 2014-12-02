@@ -39,6 +39,31 @@
   </div>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-6 pull-right">
   <discussion-widget targetable-id="{{ project.id }}" targetable-type="Project"></discussion-widget>
+</div>
+
+<div class="col-md-6 pull-left widget-box widget-color-blue2" style="opacity: 1; z-index: 0;">
+  <!-- #section:custom/widget-box.options -->
+  <div class="widget-header">
+    <h5 class="widget-title bigger lighter">
+      <i class="ace-icon fa fa-pie-chart"></i>
+      Tarefas
+    </h5>
+  </div>
+
+  <!-- /section:custom/widget-box.options -->
+  <div class="widget-body">
+    <div class="widget-main no-padding">
+      <div class="col-md-4">
+        <p class="center">Por Status</p>
+        <div ui-chart="'/charts/task/donut_per_status'" chart-options="taskPieChart"></div>
+      </div>
+
+      <div class="col-md-4">
+        <p class="center">Por Prioridade</p>
+        <div ui-chart="'/charts/task/donut_per_priority'" chart-options="taskPieChart"></div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -5,7 +5,8 @@ angular.module('tccless').controller 'ProjectOverviewCtrl', [
   'project'
   '$q'
   '$http'
-  ($scope, BreadcrumbService, TitleService, project, $q, $http) ->
+  'taskPieChart'
+  ($scope, BreadcrumbService, TitleService, project, $q, $http, taskPieChart) ->
     watchTitleAttributes = ->
       $scope.$watch((scope) ->
         scope.project.name
@@ -40,4 +41,5 @@ angular.module('tccless').controller 'ProjectOverviewCtrl', [
     BreadcrumbService.use 'project_view.overview'
     $scope.project = project
     watchTitleAttributes()
+    $scope.taskPieChart = taskPieChart
 ]
