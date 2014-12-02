@@ -12,6 +12,8 @@ class Task < ActiveRecord::Base
 
   include Targetable
 
+  has_many :timelogs
+
   belongs_to :assigned, class: User
   belongs_to :reporter, class: User
   belongs_to :taskable, polymorphic: true
