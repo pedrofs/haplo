@@ -10,9 +10,6 @@ FactoryGirl.define do
     association :taskable, factory: :project, strategy: :build
 
     factory :task_with_users_and_project do
-      association :assigned, factory: :user, strategy: :build
-      association :reporter, factory: :user, strategy: :build
-      association :taskable, factory: :project, strategy: :build
     end
   end
 end
