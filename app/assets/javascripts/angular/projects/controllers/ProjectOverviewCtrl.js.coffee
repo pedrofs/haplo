@@ -6,7 +6,8 @@ angular.module('tccless').controller 'ProjectOverviewCtrl', [
   '$q'
   '$http'
   'taskPieChart'
-  ($scope, BreadcrumbService, TitleService, project, $q, $http, taskPieChart) ->
+  'taskLineChart'
+  ($scope, BreadcrumbService, TitleService, project, $q, $http, taskPieChart, taskLineChart) ->
     watchTitleAttributes = ->
       $scope.$watch((scope) ->
         scope.project.name
@@ -42,4 +43,10 @@ angular.module('tccless').controller 'ProjectOverviewCtrl', [
     $scope.project = project
     watchTitleAttributes()
     $scope.taskPieChart = taskPieChart
+    $scope.taskLineChart = taskLineChart
+
+    data = [['2008-09-30 4:00PM',4], ['2008-10-30 4:00PM',6.5], ['2008-11-30 4:00PM',5.7], ['2008-12-30 4:00PM',9], ['2009-01-30 4:00PM',8.2]]
+    data2 = [['2008-09-30 4:00PM',4], ['2008-10-30 4:00PM',6.5], ['2008-11-30 4:00PM',5.7], ['2008-12-30 4:00PM',9], ['2009-01-30 4:00PM',8.2]]
+
+    $scope.data = [data,data2]
 ]
