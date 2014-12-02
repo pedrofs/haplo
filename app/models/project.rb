@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
 
   has_many :tasks, as: :taskable
   has_many :favorite_projects
+  has_many :timelogs, through: :tasks
 
   has_attached_file :image, styles: { medium: "200x200>", thumb: "80x80>" }, default_url: "/images/:style/missing.png"
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
