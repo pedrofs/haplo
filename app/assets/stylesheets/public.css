@@ -12,10 +12,15 @@
  *= require selectize2-theme
  *= require textAngular
  *= require angular-xeditable.min
+ *= require jquery.jqplot.min
  */
 
 #comment_form {
   position: relative;
+}
+
+.widget-main.no-padding {
+  margin-top: 10px;
 }
 
 #comment_form .ta-bind {
