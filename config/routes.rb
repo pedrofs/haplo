@@ -33,6 +33,11 @@ Rails.application.routes.draw do
     resources :discussions, except: [:edit, :new]
     resources :api_logs, only: [:index]
     resources :comments, except: [:edit, :new, :index]
+    resources :timelogs, except: [:edit, :new] do
+      collection do
+        post "toggle/:task_id", action: :toggle
+      end
+    end
 
     get '/charts/:report_module/:report_name(/:report_params)', to: 'charts#index'
 
