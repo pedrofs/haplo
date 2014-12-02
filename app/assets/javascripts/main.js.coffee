@@ -10,9 +10,10 @@ angular.module 'tccless', [
   'gantt'
   'ngColorPicker'
   'textAngular'
-  'xeditable',
-  'angularMoment',
+  'xeditable'
+  'angularMoment'
   'pascalprecht.translate'
+  'ui.chart'
 ]
 
 angular.module('tccless').config [
