@@ -10,6 +10,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'execjs'
 gem 'jbuilder'
+gem 'ransack'
 
 gem 'will_paginate', '~> 3.0'
 gem 'paperclip', '~> 4.2'
