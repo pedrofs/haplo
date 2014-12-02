@@ -32,8 +32,9 @@ Rails.application.routes.draw do
     resources :projects, except: [:edit, :new], concerns: :taskable
     resources :discussions, except: [:edit, :new]
     resources :api_logs, only: [:index]
-
     resources :comments, except: [:edit, :new, :index]
+
+    get '/charts/:report_module/:report_name(/:report_params)', to: 'charts#index'
 
     resources :tasks, only: [:destroy, :show, :update] do
       member do
