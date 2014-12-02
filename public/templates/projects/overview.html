@@ -46,10 +46,15 @@
 <div class="col-md-6 pull-left widget-box widget-color-blue2" style="opacity: 1; z-index: 0;">
   <!-- #section:custom/widget-box.options -->
   <div class="widget-header">
-    <h5 class="widget-title bigger lighter">
+    <h4 class="widget-title bigger lighter">
       <i class="ace-icon fa fa-pie-chart"></i>
       Tarefas
-    </h5>
+    </h4>
+    <div class="widget-toolbar action-buttons">
+      <a href="#" data-action="collapse">
+        <i class="ace-icon fa fa-chevron-down"></i>
+      </a>
+    </div>
   </div>
 
   <!-- /section:custom/widget-box.options -->
@@ -63,6 +68,11 @@
       <div class="col-md-4">
         <p class="center">Por Prioridade</p>
         <div ui-chart="'/charts/task/donut_per_priority'" chart-options="taskPieChart"></div>
+      </div>
+
+      <div class="col-md-4">
+        <p class="center">Abertas vs. Fechadas</p>
+        <div ui-chart="data" chart-options="taskLineChart"></div>
       </div>
     </div>
   </div>
