@@ -8,6 +8,8 @@ class Task < ActiveRecord::Base
   STATUSES = ['Aberta', 'Resolvida', 'Fechada', 'Reaberta', 'Arquivada']
   STATUSES_METHODS = [:close, :resolve, :reopen, :archive]
 
+  PRIORITIES = ['Baixa', 'Média', 'Alta']
+
   include Targetable
 
   belongs_to :assigned, class: User
