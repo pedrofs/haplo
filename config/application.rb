@@ -9,6 +9,7 @@ require 'apartment/elevators/subdomain'
 module TitleLess
   class Application < Rails::Application
     config.middleware.use 'Apartment::Elevators::MySubdomain'
+    config.autoload_paths << Rails.root.join('lib')
     # config.middleware.use 'ApiRequestLog'
   end
 end
