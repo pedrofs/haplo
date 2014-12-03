@@ -14,6 +14,7 @@
 //= require vendor/moment.min
 //= require vendor/moment.locale.pt-br
 //= require vendor/angular-moment.min
+//= require vendor/angular-timer.min
 
 //= require vendor/jquery.jqplot.min
 //= require vendor/jqplot.pieRenderer
@@ -41,6 +42,7 @@
 //= require_tree ./angular/tasks
 //= require_tree ./angular/roles
 //= require_tree ./angular/discussions
+//= require_tree ./angular/timelogs
 
 //= require ace_template/bootstrap.min
 //= require ace_template/ace.min
