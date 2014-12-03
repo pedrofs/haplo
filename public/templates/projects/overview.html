@@ -62,12 +62,12 @@
     <div class="widget-main no-padding">
       <div class="col-md-4">
         <p class="center">Por Status</p>
-        <div ui-chart="'/charts/task/donut_per_status'" chart-options="taskPieChart"></div>
+        <div ui-chart="'/charts/task/donut_per_status/{{project.id}}'" chart-options="taskPieChart"></div>
       </div>
 
       <div class="col-md-4">
         <p class="center">Por Prioridade</p>
-        <div ui-chart="'/charts/task/donut_per_priority'" chart-options="taskPieChart"></div>
+        <div ui-chart="'/charts/task/donut_per_priority/{{project.id}}'" chart-options="taskPieChart"></div>
       </div>
 
       <div class="col-md-4">
