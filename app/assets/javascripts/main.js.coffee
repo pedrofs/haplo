@@ -14,6 +14,7 @@ angular.module 'tccless', [
   'angularMoment'
   'pascalprecht.translate'
   'ui.chart'
+  'timer'
 ]
 
 angular.module('tccless').config [
