@@ -21,7 +21,16 @@ class TimelogsController < ApplicationController
     render json: timelog.to_builder.attributes!
   end
 
-  def updated
+  def create
+    timelog = Timelog.new timelog_params
+    timelog.user = current_user
+    timelog.save!
+    render json: { timelog: timelog.to_builder.attributes!, flash: 'Timelog criado com sucesso.', type: 'success' }, status: :created
+  rescue ActiveRecord::RecordInvalid
+    render_errors timelog
+  end
+
+  def update
     timelog = Timelog.find_by! id: params[:id]
     timelog.update_attributes! timelog_params
     render json: timelog.to_builder.attributes!
@@ -42,6 +51,6 @@ class TimelogsController < ApplicationController
   private
 
   def timelog_params
-    params.require(:timelog).permit(:started_at, :stopped_at, :content)
+    params.require(:timelog).permit(:started_at, :stopped_at, :content, :task_id)
   end
 end
