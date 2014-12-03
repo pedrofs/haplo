@@ -1,6 +1,6 @@
 class TimelogsController < ApplicationController
   def index
-    if project_id = params[:search].delete(:project_id)
+    if params[:search] and project_id = params[:search].delete(:project_id)
       project = Project.find_by id: project_id
       @timelogs = project.try(:timelogs) || []
     else
