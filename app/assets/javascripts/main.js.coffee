@@ -15,6 +15,7 @@ angular.module 'tccless', [
   'pascalprecht.translate'
   'ui.chart'
   'timer'
+  'ui.bootstrap.datetimepicker'
 ]
 
 angular.module('tccless').config [
@@ -26,8 +27,8 @@ angular.module('tccless').config [
     BreadcrumbServiceProvider.addBreadcrumb 'home', { label: 'Home', icon: 'ace-icon fa fa-home home-icon' }
 
     $routeProvider.otherwise({
-        controller: 'WelcomeCtrl',
-        templateUrl: 'templates/pages/welcome.html'
+      controller: 'WelcomeCtrl',
+      templateUrl: 'templates/pages/welcome.html'
     })
 
     $stateProvider.
