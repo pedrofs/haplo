@@ -30,6 +30,8 @@
 //= require vendor/textAngular-sanitize.min
 //= require vendor/select
 
+//= require vendor/datetimepicker
+
 //= require main
 //= require pt_br
 
