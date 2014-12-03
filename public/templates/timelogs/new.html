@@ -1,0 +1,73 @@
+<form name="newTimelogForm" ng-submit="createTimelog(newTimelogForm)" id="newTimelogForm" class="form-horizontal">
+  <div class="modal-header">
+    <h3 class="modal-title">Novo timelog</h3>
+
+    <a href="javascript:;" ng-click="$dismiss()" class="cancel-modal">
+      <i class="ace-icon fa fa-times bigger-200"></i>
+    </a>
+  </div>
+
+  <div class="modal-body">
+    <div class="form-group" ng-class="{ 'has-error': newTimelogForm.task.$invalid && newTimelogForm.task.$dirty }">
+      <label class="col-xs-12 col-sm-2 control-label no-padding-right">Tarefa</label>
+
+      <div class="col-xs-12 col-sm-8">
+        <input type="hidden" name="task.assigned" />
+        <ui-select ng-model="timelog.task" theme="selectize" style="min-width:250px;">
+          <ui-select-match placeholder="Selecione uma tarefa">
+            <b>Projeto:</b> {{$select.selected.project.name}}
+            <b>Tarefa:</b> {{$select.selected.title}}
+          </ui-select-match>
+
+          <ui-select-choices repeat="task in tasks | filter: {title: $select.search}">
+            <div class="col-md-12">
+              <b>Projeto:</b> {{task.project.name}}
+              <b>Tarefa:</b> {{task.title}}
+            </div>
+          </ui-select-choices>
+        </ui-select>
+      </div>
+
+      <div ng-messages="newTimelogForm.task_id.$error" class="col-sm-9 col-sm-offset-2">
+        <div ng-message="newTimelogForm.task_id.$error.backend">
+          <span class="help-block">{{ newTimelogForm.task_id.$error.backend }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" ng-class="{ 'has-error': newTimelogForm.started_at.$invalid && newTimelogForm.started_at.$dirty }">
+      <label class="col-xs-12 col-sm-2 control-label no-padding-right">Iniciado em</label>
+
+      <div class="col-xs-12 col-sm-10">
+        <datetimepicker ng-model="timelog.started_at"></datetimepicker>
+      </div>
+
+      <div ng-messages="newTimelogForm.started_at.$error" class="col-sm-9 col-sm-offset-2">
+        <div ng-message="newTimelogForm.started_at.$error.backend">
+          <span class="help-block">{{ newTimelogForm.started_at.$error.backend }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" ng-class="{ 'has-error': newTimelogForm.stopped_at.$invalid && newTimelogForm.stopped_at.$dirty }">
+      <label class="col-xs-12 col-sm-2 control-label no-padding-right">Terminado em</label>
+
+      <div class="col-xs-12 col-sm-10">
+        <datetimepicker ng-model="timelog.stopped_at"></datetimepicker>
+      </div>      
+
+      <div ng-messages="newTimelogForm.stopped_at.$error" class="col-sm-9 col-sm-offset-2">
+        <div ng-message="newTimelogForm.stopped_at.$error.backend">
+          <span class="help-block">{{ newTimelogForm.stopped_at.$error.backend }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-success" type="submit">
+      <i class="ace-icon fa fa-check bigger-110"></i>
+      Salvar
+    </button>
+  </div>
+</form>
