@@ -1,0 +1,29 @@
+<div class="btn-group btn-overlap btn-corner">
+  <label class="btn btn-white btn-lg btn-success start-button" ng-class="{disabled: actived}">
+    <i class="icon-only ace-icon fa fa-play bigger-180"></i>
+  </label>
+
+  <label class="btn btn-white btn-lg btn-success stop-button" ng-class="{disabled: !actived}">
+    <i class="icon-only ace-icon fa fa-pause bigger-180"></i>
+  </label>
+</div>
+<div ng-if="actived">
+  <timer start-time="startedAt">
+    <ng-pluralize count="days" when="{'0': '0 dias', 
+                     '1': '1 dia', 
+                     'other': '{{days}} dias'}">
+    </ng-pluralize>,
+    <ng-pluralize count="hours" when="{'0': '0 horas',
+                         '1': '1 hora', 
+                         'other': '{{hours}} horas'}">
+    </ng-pluralize>,
+    <ng-pluralize count="minutes" when="{'0': '0 minutos',
+                         '1': '1 minuto', 
+                         'other': '{{minutes}} minutos'}">
+    </ng-pluralize>,
+    <ng-pluralize count="seconds" when="{'0': '0 segundos',
+                         '1': '1 segundo', 
+                         'other': '{{seconds}} segundos'}">
+    </ng-pluralize>
+  </timer>
+</div>
