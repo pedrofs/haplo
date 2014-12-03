@@ -1,0 +1,155 @@
+<div class="widget-box transparent" id="favorites">
+  <div class="widget-header widget-header-small">
+    <h4 class="widget-title blue smaller">
+      <i class="ace-icon fa-bolt fa"></i>
+      Tarefas para Hoje
+    </h4>
+
+    <div class="widget-toolbar action-buttons">
+      <a href="#" data-action="collapse">
+        <i class="ace-icon fa fa-chevron-up"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="widget-body">
+    <div class="widget-main">
+
+      <div id="today-tasks" class="tasks">
+        <p class="alert center" ng-if="(TaskData.tasks|filter:{today: true}).length == 0">Você não tem nenhuma tarefa marcada como <b>Hoje</b>.</p>
+
+        <table class="table table-hover" ng-if="(TaskData.tasks|filter:{today: true}).length > 0">
+          <tbody>
+            <tr ng-repeat="task in TaskData.tasks | filter:{today: true}:strict">
+              <td class="center" style="width:5%">
+                <span class="btn btn-app btn-danger btn-xs btn-task-status">
+                  <i class="ace-icon fa fa-warning bigger-110"></i>
+                </span>
+              </td>
+              <td class="title-content" style="width:25%">
+                <a href="javascript:;">
+                  <b>{{ task.title }}</b>
+
+                  <div ta-bind ng-model="task.description">
+                  </div>
+                </a>
+              </td>
+              <td style="width:10%">
+                <span am-time-ago="task.created_at"></span>
+              </td>
+              <td style="width:15%">
+                <b>Projeto:</b>
+                <a ui-sref="private.project_view({projectId: task.project.id})">{{task.project.name}}</a>
+              </td>
+              <td style="width:25%">
+                <b>Tempo logado:</b>
+                <span logged-time-for-task task="task"></span>
+              </td>
+              <td stile="witdh:20%" class="center">
+                <div timelog-buttons task="task"></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="widget-box transparent" id="favorites">
+  <div class="widget-header widget-header-small">
+    <h4 class="widget-title blue smaller">
+      <i class="ace-icon fa-tasks fa"></i>
+      Todas Tarefas
+    </h4>
+
+    <div class="widget-toolbar action-buttons">
+      <a href="#" data-action="collapse">
+        <i class="ace-icon fa fa-chevron-up"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="widget-body">
+    <div class="widget-main">
+
+      <div id="all-tasks" class="tasks">
+        <p class="alert center" ng-if="TaskData.tasks.length == 0">Você não tem tarefa.</p>
+
+        <div ng-if="TaskData.tasks.length > 0" id="tasks-list-table">
+          <div class="col-md-12">
+            <form class="form-inline pull-left" role="form" id="searchForm">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-addon">
+                    <i class="fa fa-search ace-icon bigger-200"></i>
+                  </div>
+                  <input class="form-control" type="text" placeholder="Pesquisar" ng-model="search.$">
+                </div>
+              </div>
+            </form>
+
+            <div class="btn-group btn-group-lg pull-right" role="group">
+              <button type="button" radio-button class="btn btn-yellow btn-app active" ng-model="search.status" value="0">
+                <span class="badge badge-info badge-right">{{(TaskData.tasks|filter:{status:0}:strict).length}}</span>
+                Abertas
+              </button>
+              <button type="button" radio-button class="btn btn-yellow btn-app" ng-model="search.status" value="3">
+                <span class="badge badge-info badge-right">{{(TaskData.tasks|filter:{status:3}:strict).length}}</span>
+                Reabertas
+              </button>
+              <button type="button" radio-button class="btn btn-yellow btn-app" ng-model="search.status" value="1">
+                <span class="badge badge-info badge-right">{{(TaskData.tasks|filter:{status:1}:strict).length}}</span>
+                Resolvidas
+              </button>
+              <button type="button" radio-button class="btn btn-yellow btn-app" ng-model="search.status" value="2">
+                <span class="badge badge-info badge-right">{{(TaskData.tasks|filter:{status:2}:strict).length}}</span>
+                Fechadas
+              </button>
+              <button type="button" radio-button class="btn btn-yellow btn-app" ng-model="search.status" value="4">
+                <span class="badge badge-info badge-right">{{(TaskData.tasks|filter:{status:4}:strict).length}}</span>
+                Arquivadas
+              </button>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <table class="table table-hover">
+              <tbody>
+                <tr ng-repeat="task in TaskData.tasks | filter:search:strict">
+                  <td class="center" style="width:5%">
+                    <i mark-as-today task="task"></i>
+                  </td>
+                  <td class="center" style="width:5%">
+                    <span class="btn btn-app btn-danger btn-xs btn-task-status">
+                      <i class="ace-icon fa fa-warning bigger-110"></i>
+                    </span>
+                  </td>
+                  <td class="title-content" style="width:25%">
+                    <a href="javascript:;">
+                      <b>{{ task.title }}</b>
+
+                      <div ta-bind ng-model="task.description">
+                      </div>
+                    </a>
+                  </td>
+                  <td style="width:10%">
+                    <span am-time-ago="task.created_at"></span>
+                  </td>
+                  <td style="width:15%">
+                    <b>Projeto:</b>
+                    <a ui-sref="private.project_view({projectId: task.project.id})">{{task.project.name}}</a>
+                  </td>
+                  <td style="width:40%">
+                    <b>Tempo logado:</b>
+                    <span logged-time-for-task task="task"></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
