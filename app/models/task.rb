@@ -36,6 +36,10 @@ class Task < ActiveRecord::Base
       task.status status
       task.status_name Task::STATUSES[status]
       task.today today || false
+      task.project do
+        task.id taskable.id
+        task.name taskable.name
+      end
       task.progress progress
       task.created_at created_at
     end
