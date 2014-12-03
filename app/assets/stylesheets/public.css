@@ -13,7 +13,12 @@
  *= require textAngular
  *= require angular-xeditable.min
  *= require jquery.jqplot.min
+ *= require datetimepicker
  */
+
+#timelogs-list-header {
+  margin-bottom:25px;
+}
 
 #all-tasks table {
   margin-top: 15px;
