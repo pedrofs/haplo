@@ -1,5 +1,6 @@
 angular.module('tccless').factory 'TimelogData', [ ->
   data =
+    currentTimelog: null
     timelogs: []
     add: (timelog) ->
       this.timelogs.push timelog
