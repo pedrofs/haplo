@@ -31,9 +31,11 @@ class Task < ActiveRecord::Base
     Jbuilder.new do |task|
       task.id id
       task.title title
+      task.description description
       task.assigned assigned, :name, :email
       task.status status
       task.status_name Task::STATUSES[status]
+      task.today today || false
       task.progress progress
       task.created_at created_at
     end
