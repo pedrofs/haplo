@@ -63,7 +63,7 @@ class TasksController < ApplicationController
     task = Task.find_by! id: params[:id]
     render_not_found and return unless Task::STATUSES_METHODS.include? status
     task.send(status)
-    render json: task.to_builder.attributes!
+    render json: {task: task.to_builder.attributes!, flash: 'Tarefa atualizada com sucesso.', type: 'success'}, status: :ok
   rescue ActiveRecord::RecordNotFound
     render_not_found
   end
@@ -71,6 +71,14 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :description, :estimated_time, :time_spent, :progress, :assigned_id, :reporter_id, :today)
+    params.require(:task).permit(:title,
+      :description,
+      :estimated_time,
+      :time_spent,
+      :progress,
+      :assigned_id,
+      :reporter_id,
+      :today,
+      :priority)
   end
 end
