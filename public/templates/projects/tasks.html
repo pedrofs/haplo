@@ -48,7 +48,7 @@
     <tbody>
       <tr ng-repeat="task in TaskData.tasks | filter:search:strict">
         <td class="center" style="width:5%">
-          <span class="btn btn-app btn-danger btn-xs btn-task-status">
+          <span class="btn btn-app btn-xs btn-task-status" ng-class="{'btn-success': task.priority == 0, 'btn-warning': task.priority == 1, 'btn-danger': task.priority == 2}">
             <i class="ace-icon fa fa-warning bigger-110"></i>
           </span>
         </td>
