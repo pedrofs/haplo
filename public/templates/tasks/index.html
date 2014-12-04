@@ -27,7 +27,7 @@
                 </span>
               </td>
               <td class="title-content" style="width:20%">
-                <a href="javascript:;">
+                <a href="javascript:;" ui-sref="private.view_task.overview({taskId: task.id})">
                   <b>{{ task.title }}</b>
 
                   <div ta-bind ng-model="task.description">
@@ -126,7 +126,7 @@
                     </span>
                   </td>
                   <td class="title-content" style="width:20%">
-                    <a href="javascript:;">
+                      <a href="javascript:;" ui-sref="private.view_task.overview({taskId: task.id})">
                       <b>{{ task.title }}</b>
 
                       <div ta-bind ng-model="task.description">
