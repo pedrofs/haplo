@@ -8,4 +8,5 @@ angular.module('tccless').controller 'TaskTimelogsCtrl', [
     BreadcrumbService.use 'view_task.timelog'
 
     $scope.timelogsGroupedByDate = TimelogService.groupTimelogsByDate('dd, MMM')
+    $scope.TimelogData = TimelogData
 ]
