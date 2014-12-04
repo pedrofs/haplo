@@ -16,6 +16,10 @@
  *= require datetimepicker
  */
 
+.profile-info-value>span+span:before {
+  content:none;
+}
+
 #timelogs-list-header {
   margin-bottom:25px;
 }
