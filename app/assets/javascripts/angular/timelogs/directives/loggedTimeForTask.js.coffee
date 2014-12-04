@@ -3,13 +3,17 @@ angular.module('tccless').directive 'loggedTimeForTask', ['TimelogData', (Timelo
   templateUrl: 'templates/timelogs/logged_time_for_task.html'
   scope:
     task: '='
+    timestamp: '@'
   link: (scope, element, attr) ->
-    timelogs = TimelogData.timelogs.filter (t) -> t.task.id == scope.task.id
 
     loggedTime = 0
 
-    for t in timelogs
-      loggedTime += new Date(t.stopped_at).getTime() - new Date(t.started_at).getTime()
+    if attr.timestamp
+      loggedTime = parseInt(attr.timestamp)*1000
+    else
+      timelogs = TimelogData.timelogs.filter (t) -> t.task.id == scope.task.id
+      for t in timelogs
+        loggedTime += new Date(t.stopped_at).getTime() - new Date(t.started_at).getTime()
 
     DAY = 1000 * 60 * 60 * 24
     HOUR = 1000 * 60 * 60
