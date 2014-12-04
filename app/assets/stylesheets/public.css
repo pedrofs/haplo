@@ -14,7 +14,25 @@
  *= require angular-xeditable.min
  *= require jquery.jqplot.min
  *= require datetimepicker
+ *= require loading-bar.min
  */
+
+#loading-bar .bar {
+  background: #000;
+}
+
+#loading-bar-spinner .spinner-icon {
+  border-top-color: #000;
+  border-left-color: #000;
+}
+
+.drop-box {
+  background: #F8F8F8;
+  border: 5px dashed #DDD;
+  text-align: center;
+  padding: 25px;
+  float: left;
+}
 
 .profile-info-value>span+span:before {
   content:none;

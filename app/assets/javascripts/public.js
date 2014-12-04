@@ -15,6 +15,7 @@
 //= require vendor/moment.locale.pt-br
 //= require vendor/angular-moment.min
 //= require vendor/angular-timer.min
+//= require vendor/angular-loading-bar.min
 
 //= require vendor/jquery.jqplot.min
 //= require vendor/jqplot.pieRenderer

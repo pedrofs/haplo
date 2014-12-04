@@ -16,6 +16,8 @@ angular.module 'tccless', [
   'timer'
   'ui.bootstrap.datetimepicker'
   'angular-flot'
+  'angularFileUpload'
+  'angular-loading-bar'
 ]
 
 angular.module('tccless').config [
