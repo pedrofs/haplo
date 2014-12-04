@@ -5,9 +5,9 @@ class DiscussionsController < ApplicationController
     user_id = params[:user_id]
 
     if targetable_type and targetable_id
-      @discussions = Discussion.load_associations.for_target(targetable_id, targetable_type)
+      @discussions = Discussion.load_associations.for_target(targetable_id, targetable_type).order('discussions.created_at DESC')
     elsif user_id
-      @discussions = Discussion.load_associations.for_user(user_id)
+      @discussions = Discussion.load_associations.for_user(user_id).order('discussions.created_at DESC')
     else
       render_not_found
     end
