@@ -38,6 +38,31 @@ angular.module('tccless').config [
         url: '',
         templateUrl: 'templates/projects/overview.html',
         controller: 'ProjectOverviewCtrl'
+        resolve:
+          taskPerStatus: ['$q', '$http', '$stateParams', ($q, $http, $stateParams) ->
+            deferred = $q.defer()
+            $http.get("/charts/task/donut_per_status/#{$stateParams.projectId}.json").then (response) ->
+              deferred.resolve response.data
+            deferred.promise
+          ]
+          taskPerPriority: ['$q', '$http', '$stateParams', ($q, $http, $stateParams) ->
+            deferred = $q.defer()
+            $http.get("/charts/task/donut_per_priority/#{$stateParams.projectId}.json").then (response) ->
+              deferred.resolve response.data
+            deferred.promise
+          ]
+          timelogGraphData: ['$q', '$http', '$stateParams', ($q, $http, $stateParams) ->
+            deferred = $q.defer()
+            $http.get("/charts/timelog/project_timelog_by_task/#{$stateParams.projectId}.json").then (response) ->
+              deferred.resolve response.data
+            deferred.promise 
+          ]
+          timelogReportData: ['$q', '$http', '$stateParams', ($q, $http, $stateParams) ->
+            deferred = $q.defer()
+            promise = $http.get("/charts/timelog/project_timelog_general_info/#{$stateParams.projectId}.json").then (response) ->
+              deferred.resolve response.data
+            deferred.promise
+          ]
       })
 
     BreadcrumbServiceProvider.addBreadcrumb 'projects', { dependency: 'home', label: 'Projetos' }
