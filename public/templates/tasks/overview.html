@@ -1,3 +1,23 @@
+<div style="margin-bottom:15px;">
+  <div class="btn-group btn-overlap btn-corner">
+    <label class="btn btn-sm btn-white btn-info" ng-if="task.status == 0 || task.status == 3" ng-click="changeStatus('resolve')">
+      Resolver
+    </label>
+
+    <label class="btn btn-sm btn-white btn-info" ng-if="task.status == 1" ng-click="changeStatus('reopen')">
+      Reabrir
+    </label>
+
+    <label class="btn btn-sm btn-white btn-info" ng-if="task.status != 4 && task.status != 2" ng-click="changeStatus('close')">
+      Fechar
+    </label>
+
+    <label class="btn btn-sm btn-white btn-info" ng-click="changeStatus('archive')">
+      Arquivar
+    </label>
+  </div>
+</div>
+
 <div class="col-md-6 pull-left">
   <div class="widget-box transparent" style="opacity: 1; z-index: 0;">
     <div class="widget-header widget-header-small">
@@ -38,6 +58,22 @@
 
             <div class="profile-info-value">
               <span class="label">{{task.status_name}}</span>
+            </div>
+          </div>
+
+          <div class="profile-info-row">
+            <div class="profile-info-name"> Prioridade </div>
+
+            <div class="profile-info-value">
+              <span class="btn btn-app btn-xs btn-task-status"
+                    ng-class="{'btn-success': task.priority == 0, 'btn-warning': task.priority == 1, 'btn-danger': task.priority == 2}">
+                <i class="ace-icon fa fa-warning bigger-110"></i>
+              </span>
+
+              <span ng-model="task.priority"
+                    editable-select="task.priority"
+                    e-ng-options="p.id as p.name for p in priorities"
+                    onbeforesave="saveTask('priority', $data)">{{ task.priority_name }}</span>
             </div>
           </div>
 
