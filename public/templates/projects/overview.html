@@ -83,16 +83,28 @@
     <!-- /section:custom/widget-box.options -->
     <div class="widget-body">
       <div class="widget-main no-padding">
-        <div class="col-md-4">
+        <div class="col-md-6">
           <p class="center">Por Status</p>
+          <table class="table table-hover">
+            <tbody>
+              <tr ng-repeat="report in taskPerStatus">
+                <td>{{ report[0] }}</td>
+                <td style="text-align:right">{{ report[1] }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-6">
           <p class="center">Por Prioridade</p>
-        </div>
-
-        <div class="col-md-4">
-          <p class="center">Abertas vs. Fechadas</p>
+          <table class="table table-hover">
+            <tbody>
+              <tr ng-repeat="report in taskPerPriority">
+                <td>{{ report[0] }}</td>
+                <td style="text-align:right">{{ report[1] }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -116,7 +128,45 @@
 
     <!-- /section:custom/widget-box.options -->
     <div class="widget-body">
-      FUTURE TIMELOG
+      <div class="widget-main no-padding">
+        <div class="col-md-6">
+          <table class="table table-hover">
+            <tbody>
+              <tr>
+                <td>
+                  Número de tarefas trabalhadas
+                </td>
+                <td style="text-align:right;">
+                  {{timelogReportData[0]}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Quantidade de timelogs registrados
+                </td>
+                <td style="text-align:right;">
+                  {{timelogReportData[1]}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Total trabalhado
+                </td>
+                <td style="text-align:right;width:50%">
+                  <span logged-time-for-task timestamp="{{timelogReportData[2]}}"></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-md-6">
+          <div>
+            <flot dataset="timelogGraphData" height="200px" options="timelogGraphOptions"></flot>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
