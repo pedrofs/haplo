@@ -1,3 +1,5 @@
+<p class="alert center" ng-if="TimelogData.timelogs.length == 0"><b>Não há timelogs para esta tarefa.</b></p>
+
 <div class="widget-box transparent" ng-repeat="(date, timelogs) in timelogsGroupedByDate">
   <div class="widget-header widget-header-small">
     <h4 class="widget-title blue smaller">
