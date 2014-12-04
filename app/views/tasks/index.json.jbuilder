@@ -9,6 +9,9 @@ json.tasks @paginated_tasks do |task|
   json.reporter_id task.reporter_id
   json.estimated_time task.estimated_time
   json.status task.status
+  json.status_name Task::STATUSES[task.status]
+  json.priority_name (task.priority && Task::PRIORITIES[task.priority]) || Task::PRIORITIES[0]
+  json.priority task.priority || 0
   json.today task.today || false
   json.status_name Task::STATUSES[task.status]
   json.project do

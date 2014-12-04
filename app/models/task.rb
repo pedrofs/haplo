@@ -36,10 +36,12 @@ class Task < ActiveRecord::Base
       task.description description
       task.assigned assigned.to_builder
       task.reporter reporter.to_builder
-      task.assigned_id
-      task.reporter_id
+      task.assigned_id assigned_id
+      task.reporter_id reporter_id
       task.status status
       task.status_name Task::STATUSES[status]
+      task.priority_name (priority && Task::PRIORITIES[priority]) || Task::PRIORITIES[0]
+      task.priority priority || 0
       task.today today || false
       task.project do
         task.id taskable.id
