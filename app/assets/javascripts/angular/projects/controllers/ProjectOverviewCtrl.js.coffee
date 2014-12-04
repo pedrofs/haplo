@@ -5,9 +5,12 @@ angular.module('tccless').controller 'ProjectOverviewCtrl', [
   'project'
   '$q'
   '$http'
-  'taskPieChart'
-  'taskLineChart'
-  ($scope, BreadcrumbService, TitleService, project, $q, $http, taskPieChart, taskLineChart) ->
+  'taskPerStatus'
+  'taskPerPriority'
+  'timelogGraphData'
+  'timelogReportData'
+  'taskTimelogByUserAndDay'
+  ($scope, BreadcrumbService, TitleService, project, $q, $http, taskPerStatus, taskPerPriority, timelogGraphData, timelogReportData, taskTimelogByUserAndDay) ->
     watchTitleAttributes = ->
       $scope.$watch((scope) ->
         scope.project.name
@@ -42,11 +45,10 @@ angular.module('tccless').controller 'ProjectOverviewCtrl', [
     BreadcrumbService.use 'project_view.overview'
     $scope.project = project
     watchTitleAttributes()
-    $scope.taskPieChart = taskPieChart
-    $scope.taskLineChart = taskLineChart
 
-    data = [['2008-09-30 4:00PM',4], ['2008-10-30 4:00PM',6.5], ['2008-11-30 4:00PM',5.7], ['2008-12-30 4:00PM',9], ['2009-01-30 4:00PM',8.2]]
-    data2 = [['2008-09-30 4:00PM',4], ['2008-10-30 4:00PM',6.5], ['2008-11-30 4:00PM',5.7], ['2008-12-30 4:00PM',9], ['2009-01-30 4:00PM',8.2]]
-
-    $scope.data = [data,data2]
+    $scope.taskPerStatus = taskPerStatus
+    $scope.taskPerPriority = taskPerPriority
+    $scope.timelogGraphData = timelogGraphData
+    $scope.timelogReportData = timelogReportData
+    $scope.timelogGraphOptions = taskTimelogByUserAndDay
 ]
