@@ -29,12 +29,22 @@ angular.module('tccless').config [
             $http.get("/timelogs.json?search[task_id_eq]=#{$stateParams.taskId}&search[stopped_at_not_null]=true").then (response) ->
               TimelogData.timelogs = response.data
           ]
+      }).state('private.project_view.timelogs', {
+        url: '/timelogs',
+        templateUrl: 'templates/timelogs/project_timelogs.html',
+        controller: 'ProjectTimelogsCtrl'
+        resolve:
+          timelogs: ['$http', '$stateParams', 'TimelogData', ($http, $stateParams, TimelogData) ->
+            $http.get("/timelogs.json?search[project_id]=#{$stateParams.projectId}&search[stopped_at_not_null]=true").then (response) ->
+              TimelogData.timelogs = response.data
+          ]
       })
 
     BreadcrumbServiceProvider.addBreadcrumb 'timelogs', { dependency: 'home', label: 'Meu Timelog' }
     BreadcrumbServiceProvider.addBreadcrumb 'view_task.timelog', { dependency: 'view_task', label: 'Timelogs' }
 
     TabWidgetServiceProvider.addTab('tasks', {name: 'Timelog', class: 'green fa-clock-o', state: 'private.view_task.timelogs'})
+    TabWidgetServiceProvider.addTab('projects', {name: 'Timelog', class: 'green fa-clock-o', state: 'private.project_view.timelogs'})
 ]
 
 angular.module('tccless').run ['$http', 'ActiveTimelogData', 'SessionService', ($http, ActiveTimelogData, SessionService) ->
