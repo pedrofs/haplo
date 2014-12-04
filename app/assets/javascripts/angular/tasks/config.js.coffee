@@ -14,6 +14,10 @@ angular.module('tccless').config [
               TaskData.count = response.data.count
               TaskData.tasks = response.data.tasks
           ]
+          timelog: ['TimelogData', '$http', '$stateParams', (TimelogData, $http, $stateParams) ->
+            $http.get("/timelogs.json?search[project_id]=#{$stateParams.projectId}").then (response) ->
+              TimelogData.timelogs = response.data
+          ]
         }
       }).state('private.tasks', {
         url: '/tasks'
@@ -37,13 +41,58 @@ angular.module('tccless').config [
               TimelogData.timelogs = response.data
           ]
         }
-    })
+      }).state('private.view_task', {
+        url: '/tasks/:taskId'
+        templateUrl: 'templates/tasks/view.html'
+        abstract: true
+        controller: 'ViewTaskCtrl'
+        resolve:
+          task: ['$q', '$http', '$stateParams', ($q, $http, $stateParams) ->
+            deferred = $q.defer()
+            $http.get("/tasks/#{$stateParams.taskId}.json").then (response) ->
+              deferred.resolve response.data
 
-    TabWidgetServiceProvider.addTab('projects', {name: 'Tarefas', class: 'orange fa-tasks', state: 'private.project_view.tasks'})
+            deferred.promise
+          ]
+      }).state('private.view_task.overview', {
+        url: '',
+        templateUrl: 'templates/tasks/overview.html',
+        controller: 'OverviewTaskCtrl'
+        resolve:
+          users: ['$q', '$http', ($q, $http) ->
+            deferred = $q.defer()
+            $http.get("/users.json").then (response) ->
+              deferred.resolve response.data
+            deferred.promise
+          ]
+          timelogGraphData: ['$q', '$http', '$stateParams', ($q, $http, $stateParams) ->
+            deferred = $q.defer()
+            $http.get("/charts/timelog/task_timelog_by_user_and_day/#{$stateParams.taskId}.json").then (response) ->
+              deferred.resolve response.data
+            deferred.promise 
+          ]
+          timelogReportData: ['$q', '$http', '$stateParams', ($q, $http, $stateParams) ->
+            deferred = $q.defer()
+            promise = $http.get("/charts/timelog/task_timelog_general_info/#{$stateParams.taskId}.json").then (response) ->
+              deferred.resolve response.data
+            deferred.promise
+          ]
+          timelog: ['$http', 'TimelogData', '$stateParams', ($http, TimelogData, $stateParams) ->
+            $http.get("/timelogs.json?search[task_id_eq]=#{$stateParams.taskId}.json").then (response) ->
+              TimelogData.timelogs = response.data
+          ]
+      })
+
+    TabWidgetServiceProvider.createWidget('tasks')
+    TabWidgetServiceProvider.addTab('tasks', {name: 'Overview', class: 'blue fa-inbox', state: 'private.view_task.overview'})
+
+    TabWidgetServiceProvider.addTab('projects', {name: 'Tarefas', class: 'brown fa-tasks', state: 'private.project_view.tasks'})
 
     BreadcrumbServiceProvider.addBreadcrumb 'tasks', { dependency: 'home', label: 'Minhas Tarefas' }
 
+    BreadcrumbServiceProvider.addBreadcrumb 'view_task', { dependency: 'home' }
+    BreadcrumbServiceProvider.addBreadcrumb 'view_task.overview', { dependency: 'view_task', label: 'Overview' }
+
+    BreadcrumbServiceProvider.addBreadcrumb 'project_view.overview', { dependency: 'project_view', label: 'Overview' }
     BreadcrumbServiceProvider.addBreadcrumb 'project_view.tasks', { dependency: 'project_view', label: 'Tarefas' }
-    BreadcrumbServiceProvider.addBreadcrumb 'task_statuses', { dependency: 'home', label: 'Status de tarefa' }
-    BreadcrumbServiceProvider.addBreadcrumb 'task_statuses.view', { dependency: 'task_statuses' }
 ]
