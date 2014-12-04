@@ -1,0 +1,150 @@
+<div class="col-md-6 pull-left">
+  <div class="widget-box transparent" style="opacity: 1; z-index: 0;">
+    <div class="widget-header widget-header-small">
+      <h4 class="widget-title blue smaller">
+        <i class="ace-icon fa blue fa-inbox"></i>
+        Informação Geral
+      </h4>
+
+      <div class="widget-toolbar action-buttons">
+        <a href="#" data-action="collapse">
+          <i class="ace-icon fa fa-chevron-up"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- /section:custom/widget-box.options -->
+    <div class="widget-body">
+      <div class="widget-main no-padding">
+        <div class="profile-user-info-striped">
+          <div class="profile-info-row">
+            <div class="profile-info-name"> Título </div>
+
+            <div class="profile-info-value">
+              <span editable-text="task.title" onbeforesave="saveTask('title', $data)">{{ task.title }}</span>
+            </div>
+          </div>
+
+          <div class="profile-info-row">
+            <div class="profile-info-name"> Projeto </div>
+
+            <div class="profile-info-value">
+              <span>{{ task.project.name }}</span>
+            </div>
+          </div>
+
+          <div class="profile-info-row">
+            <div class="profile-info-name"> Status </div>
+
+            <div class="profile-info-value">
+              <span class="label">{{task.status_name}}</span>
+            </div>
+          </div>
+
+          <div class="profile-info-row">
+            <div class="profile-info-name"> Tempo estimado </div>
+
+            <div class="profile-info-value">
+              <span editable-text="task.estimated_time" onbeforesave="saveTask('estimated_time', $data)">{{ task.estimated_time || 'n/a' }}</span>
+            </div>
+          </div>
+
+          <div class="profile-info-row">
+            <div class="profile-info-name"> Aberta por </div>
+
+            <div class="profile-info-value">
+              <span>
+                <img ng-src="{{ task.reporter.image.small }}" />
+                {{ task.reporter.name }}
+              </span>
+            </div>
+          </div>
+
+          <div class="profile-info-row">
+            <div class="profile-info-name"> Atribuída para </div>
+
+            <div class="profile-info-value">
+              <img ng-src="{{task.assigned.image.small}}" />
+              <span ng-model="task.assigned_id"
+                    editable-select="task.assigned_id"
+                    e-ng-options="u.id as u.name for u in users"
+                    onbeforesave="saveTask('assigned_id', $data)">{{ task.assigned.name }}</span>
+            </div>
+          </div>
+
+          <div class="profile-info-row">
+            <div class="profile-info-name"> Descrição </div>
+
+            <div class="profile-info-value">
+              <span ta-bind ng-model="task.description"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-6 pull-right">
+  <discussion-widget targetable-id="{{ task.id }}" targetable-type="Task"></discussion-widget>
+</div>
+
+<div class="col-md-6 pull-left">
+  <div class="widget-box transparent" style="opacity: 1; z-index: 0;">
+    <div class="widget-header widget-header-small">
+      <h4 class="widget-title blue smaller">
+        <i class="ace-icon fa green fa-clock-o"></i>
+        Timelogs
+      </h4>
+
+      <div class="widget-toolbar action-buttons">
+        <a href="#" data-action="collapse">
+          <i class="ace-icon fa fa-chevron-up"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- /section:custom/widget-box.options -->
+    <div class="widget-body">
+      <div class="widget-main no-padding">
+        <div class="col-md-6">
+          <table class="table table-hover">
+            <tbody>
+              <tr>
+                <td>
+                  Número de usuários que trabalharam
+                </td>
+                <td style="text-align:right;">
+                  {{timelogReportData[0]}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Quantidade de timelogs registrados
+                </td>
+                <td style="text-align:right;">
+                  {{timelogReportData[1]}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Total trabalhado
+                </td>
+                <td style="text-align:right;width:50%">
+                  <span logged-time-for-task task="task"></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-md-6">
+          <div>
+            <flot dataset="timelogGraphData" height="200px" options="timelogGraphOptions"></flot>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -21,7 +21,7 @@
 //= require vendor/jqplot.donutRenderer
 //= require vendor/jqplot.canvasAxisLabelRenderer
 //= require vendor/jqplot.canvasTextRenderer
-//= require vendor/ui-chart.min
+//= require vendor/angular-flot
 
 //= require vendor/daterangepicker.min
 //= require vendor/angular-daterangepicker.min
@@ -31,6 +31,9 @@
 //= require vendor/select
 
 //= require vendor/datetimepicker
+//= require vendor/jquery.flot.js
+//= require vendor/jquery.flot.time.js
+//= require vendor/jquery.flot.resize.js
 
 //= require main
 //= require pt_br

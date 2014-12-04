@@ -13,9 +13,9 @@ angular.module 'tccless', [
   'xeditable'
   'angularMoment'
   'pascalprecht.translate'
-  'ui.chart'
   'timer'
   'ui.bootstrap.datetimepicker'
+  'angular-flot'
 ]
 
 angular.module('tccless').config [

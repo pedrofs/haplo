@@ -41,12 +41,12 @@
         <input type="hidden" name="task.assigned" />
         <ui-select ng-model="task.assigned" theme="selectize" style="min-width:250px;">
           <ui-select-match placeholder="Selecione um usuário na lista ou procure pelo nome...">
-            <img ng-src="http://www.gravatar.com/avatar/{{ user.email|md5 }}?s=40" /> {{$select.selected.name}}
+            <img ng-src="{{$select.selected.image.small}}" /> {{$select.selected.name}}
           </ui-select-match>
 
           <ui-select-choices repeat="user in users | filter: {name: $select.search}">
             <div class="col-md-1">
-              <img ng-src="http://www.gravatar.com/avatar/{{ user.email|md5 }}?s=40" />
+              <img ng-src="{{user.image.small}}" />
             </div>
             <div class="col-md-11">
               <div ng-bind-html="user.name"></div>

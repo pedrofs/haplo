@@ -11,7 +11,7 @@ angular.module('tccless').directive 'loggedTimeForTask', ['TimelogData', (Timelo
     for t in timelogs
       loggedTime += new Date(t.stopped_at).getTime() - new Date(t.started_at).getTime()
 
-    DAY = 1000 * 60 * 60  * 24
+    DAY = 1000 * 60 * 60 * 24
     HOUR = 1000 * 60 * 60
     MINUTE = 1000 * 60
 

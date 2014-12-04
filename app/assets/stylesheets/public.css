@@ -58,7 +58,7 @@
   cursor: pointer;
 }
 
-#discussion-list-table td.title-content div, #tasks-list-table td.title-content div {
+#discussion-list-table td.title-content div, #tasks-list-table td.title-content div, #today-tasks td.title-content div {
   color: #393939;
   max-height: 18px;
   overflow:hidden;

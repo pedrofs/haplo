@@ -26,13 +26,18 @@ class Task < ActiveRecord::Base
   validates :status, presence: true
 
   before_validation :set_status_to_opened
+  before_destroy {|t| t.timelogs.count == 0}
 
   def to_builder
     Jbuilder.new do |task|
       task.id id
       task.title title
+      task.estimated_time estimated_time
       task.description description
-      task.assigned assigned, :name, :email
+      task.assigned assigned.to_builder
+      task.reporter reporter.to_builder
+      task.assigned_id
+      task.reporter_id
       task.status status
       task.status_name Task::STATUSES[status]
       task.today today || false
@@ -73,5 +78,9 @@ class Task < ActiveRecord::Base
 
   def set_status_to_opened
     self[:status] = Task::OPENED
+  end
+
+  def check_timelogs
+    timelogs.count == 0
   end
 end

@@ -3,8 +3,13 @@ json.tasks @paginated_tasks do |task|
   json.id task.id
   json.title task.title
   json.description task.description
-  json.assigned task.assigned, :name, :email
+  json.assigned task.assigned.to_builder
+  json.reporter task.reporter.to_builder
+  json.assigned_id task.assigned_id
+  json.reporter_id task.reporter_id
+  json.estimated_time task.estimated_time
   json.status task.status
+  json.today task.today || false
   json.status_name Task::STATUSES[task.status]
   json.project do
     json.id task.taskable_id

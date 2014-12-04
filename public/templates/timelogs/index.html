@@ -8,7 +8,7 @@
 
 <div class="clearfix"></div>
 
-<p class="center" ng-if="timelogsByDate.timelogs.length == 0"><b>Você não tem nenhum timelog registrado.</b></p>
+<p class="center" ng-if="TimelogData.timelogs.length == 0"><b>Você não tem nenhum timelog registrado.</b></p>
 
 <div class="widget-box transparent" ng-repeat="(date, timelogs) in timelogsGroupedByDate">
   <div class="widget-header widget-header-small">
@@ -31,7 +31,7 @@
           <tr ng-repeat="timelog in timelogs">
             <td style="width:25%">
               <b>Tarefa:</b>
-              {{ timelog.task.title }}
+              <a href="javascript:;" ui-sref="private.view_task.overview({taskId: timelog.task.id})"> {{ timelog.task.title }}</a>
             </td>
 
             <td style="width:25%">

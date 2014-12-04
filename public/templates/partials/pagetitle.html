@@ -1,7 +1,7 @@
 <div class="page-header">
   <h1>
     {{ titleService.title }}
-    <small>
+    <small ng-if="titleService.description">
       <i class="ace-icon fa fa-angle-double-right" ng-if="titleService.description"></i>
       <span ta-bind ng-model="titleService.description"></span>
     </small>

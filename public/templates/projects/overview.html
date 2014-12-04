@@ -1,40 +1,62 @@
-<div class="col-md-2">
-  <span class="profile-picture">
-    <img id="project_avatar"
-         file-input="#project_image_input"
-         submit-url="/projects/{{project.id}}.json"
-         error="error(response)"
-         success="success(response)"
-         class="editable img-responsive editable-click editable-empty"
-         src="{{project.image.medium}}"
-         style="display: block;"></img>
-  </span>
+<div class="col-md-6 pull-left">
+  <div class="widget-box transparent" style="opacity: 1; z-index: 0;">
+    <div class="widget-header widget-header-small">
+      <h4 class="widget-title blue smaller">
+        <i class="ace-icon fa blue fa-inbox"></i>
+        Informação Geral
+      </h4>
 
-  <input id="project_image_input" type="file" name="project[image]" file-model="project.image" style="display:none" />
-</div>
-
-<div class="profile-user-info-striped col-md-4">
-  <div class="profile-info-row">
-    <div class="profile-info-name"> Nome </div>
-
-    <div class="profile-info-value">
-      <span editable-text="project.name" onbeforesave="saveProject('name', $data)">{{ project.name }}</span>
+      <div class="widget-toolbar action-buttons">
+        <a href="#" data-action="collapse">
+          <i class="ace-icon fa fa-chevron-up"></i>
+        </a>
+      </div>
     </div>
-  </div>
 
-  <div class="profile-info-row">
-    <div class="profile-info-name"> Cliente </div>
+    <!-- /section:custom/widget-box.options -->
+    <div class="widget-body">
+      <div class="widget-main no-padding">
+        <div class="col-md-4">
+          <span class="profile-picture">
+            <img id="project_avatar"
+                 file-input="#project_image_input"
+                 submit-url="/projects/{{project.id}}.json"
+                 error="error(response)"
+                 success="success(response)"
+                 class="editable img-responsive editable-click editable-empty"
+                 src="{{project.image.medium}}"
+                 style="display: block;"></img>
+          </span>
 
-    <div class="profile-info-value">
-      <span editable-text="project.client" onbeforesave="saveProject('client', $data)">{{ project.client }}</span>
-    </div>
-  </div>
+          <input id="project_image_input" type="file" name="project[image]" file-model="project.image" style="display:none" />
+        </div>
 
-  <div class="profile-info-row">
-    <div class="profile-info-name"> Descrição </div>
+        <div class="profile-user-info-striped col-md-8">
+          <div class="profile-info-row">
+            <div class="profile-info-name"> Nome </div>
 
-    <div class="profile-info-value">
-      <span editable-textarea="project.description" onbeforesave="saveProject('description', $data)">{{ project.description || 'n/a' }}</span>
+            <div class="profile-info-value">
+              <span editable-text="project.name" onbeforesave="saveProject('name', $data)">{{ project.name }}</span>
+            </div>
+          </div>
+
+          <div class="profile-info-row">
+            <div class="profile-info-name"> Cliente </div>
+
+            <div class="profile-info-value">
+              <span editable-text="project.client" onbeforesave="saveProject('client', $data)">{{ project.client }}</span>
+            </div>
+          </div>
+
+          <div class="profile-info-row">
+            <div class="profile-info-name"> Descrição </div>
+
+            <div class="profile-info-value">
+              <span editable-textarea="project.description" onbeforesave="saveProject('description', $data)">{{ project.description || 'n/a' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -43,37 +65,58 @@
   <discussion-widget targetable-id="{{ project.id }}" targetable-type="Project"></discussion-widget>
 </div>
 
-<div class="col-md-6 pull-left widget-box widget-color-blue2" style="opacity: 1; z-index: 0;">
-  <!-- #section:custom/widget-box.options -->
-  <div class="widget-header">
-    <h4 class="widget-title bigger lighter">
-      <i class="ace-icon fa fa-pie-chart"></i>
-      Tarefas
-    </h4>
-    <div class="widget-toolbar action-buttons">
-      <a href="#" data-action="collapse">
-        <i class="ace-icon fa fa-chevron-down"></i>
-      </a>
+<div class="col-md-6 pull-left">
+  <div class="widget-box transparent" style="opacity: 1; z-index: 0;">
+    <div class="widget-header widget-header-small">
+      <h4 class="widget-title blue smaller">
+        <i class="ace-icon fa fa-tasks brown"></i>
+        Tarefas
+      </h4>
+
+      <div class="widget-toolbar action-buttons">
+        <a href="#" data-action="collapse">
+          <i class="ace-icon fa fa-chevron-up"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- /section:custom/widget-box.options -->
+    <div class="widget-body">
+      <div class="widget-main no-padding">
+        <div class="col-md-4">
+          <p class="center">Por Status</p>
+        </div>
+
+        <div class="col-md-4">
+          <p class="center">Por Prioridade</p>
+        </div>
+
+        <div class="col-md-4">
+          <p class="center">Abertas vs. Fechadas</p>
+        </div>
+      </div>
     </div>
   </div>
+</div>
 
-  <!-- /section:custom/widget-box.options -->
-  <div class="widget-body">
-    <div class="widget-main no-padding">
-      <div class="col-md-4">
-        <p class="center">Por Status</p>
-        <div ui-chart="'/charts/task/donut_per_status/{{project.id}}'" chart-options="taskPieChart"></div>
-      </div>
+<div class="col-md-6 pull-left">
+  <div class="widget-box transparent" style="opacity: 1; z-index: 0;">
+    <div class="widget-header widget-header-small">
+      <h4 class="widget-title blue smaller">
+        <i class="ace-icon fa fa-clock-o green"></i>
+        Timelogs
+      </h4>
 
-      <div class="col-md-4">
-        <p class="center">Por Prioridade</p>
-        <div ui-chart="'/charts/task/donut_per_priority/{{project.id}}'" chart-options="taskPieChart"></div>
+      <div class="widget-toolbar action-buttons">
+        <a href="#" data-action="collapse">
+          <i class="ace-icon fa fa-chevron-up"></i>
+        </a>
       </div>
+    </div>
 
-      <div class="col-md-4">
-        <p class="center">Abertas vs. Fechadas</p>
-        <div ui-chart="data" chart-options="taskLineChart"></div>
-      </div>
+    <!-- /section:custom/widget-box.options -->
+    <div class="widget-body">
+      FUTURE TIMELOG
     </div>
   </div>
 </div>
